@@ -1,0 +1,170 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Git dammit!
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      section
+        h1 Git Dammit!
+        img(src='images/gifs/god-dammit.gif')
+
+      section
+        h2 J'ai besoin de modifier mon dernier commit
+
+      section
+        pre
+          code.language-shell
+            $ git commit --amend
+
+      section
+        ul.inline
+          li
+            img(src='images/simple-branch.svg')
+          li
+            img(src='images/simple-branch-amended.svg')
+      
+      section
+        h2 Celui que je dois modifier n'est pas le dernier...
+        ul.inline
+          li
+            img(src='images/simple-branch.svg')
+
+      section
+        ul
+          li
+            pre
+              code.language-shell
+                $ git commit --fixup {sha1-A}
+        ul.inline
+          li
+            img(src='images/fixup-branch.svg')
+
+      section.background-tilde
+        ul
+          li
+            pre
+              code.language-shell
+                $ git rebase -i {sha1-A}~ --autosquash
+        ul.inline
+          li
+            img(src='images/fixup-branch-squashed.svg')
+        ul
+          li
+            pre
+              code.language-shell
+                $ git push -f origin ma-branche
+
+      section
+        h2 OUPS, J'ai modifié mes commits, et puis j'ai fait un pull.
+        h3 Je me retrouve avec des commits en double
+
+      section
+        ul.inline
+          li
+            img(src='images/local-branch-amended.svg')
+          li
+            img(src='images/remote-branch.svg')
+
+      section
+        ul.inline
+          li
+            img(src='images/merged-branch-wrong.svg')
+          li
+            img(src='images/rebased-branch-wrong.svg')
+
+      section
+        ul
+          li
+            pre
+              code.language-shell
+                $ git push -f origin ma-branche
+
+      section
+        h2 Je veux abandonner mes modifications
+        h3 et revenir à la version du repository distant
+      
+      section
+        pre
+          code.language-shell
+            $ git fetch origin ma-branche
+            $ git reset --hard origin/ma-branche
+
+
+      section
+        ul.inline
+          li
+            img(src='images/git-edit-pull-1.svg')
+
+      section
+        h2 J'ai modifié un fichier mais je voudrais séparer les modifications dans deux commits différents
+
+      section
+        pre
+          code.language-shell
+            $ git add -p
+
+      section
+        
+
+      section
+        h2 Keyboard Interaction
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
+
+      section
+        h2 Touch Interaction
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-touch">bespoke-touch</a>
+
+      section
+        h2 Responsive Slides
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
+
+      section
+        h2 Bullet List
+        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
+        ul
+          li Bullet 1
+          li Bullet 2
+          li Bullet 3
+
+      section
+        h2 Syntax Highlighting
+        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
+        pre
+          code.language-javascript.
+            bespoke.from('article', [
+              classes(),
+              keys(),
+              touch(),
+              bullets('li, .bullet')
+            ]);
+
+      section(data-bespoke-hash='named-route')
+        h2 Named Route
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
+        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+
+      section.emphatic-text(data-bespoke-backdrop='emphatic')
+        h2 Emphatic Slide!
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
+
+      section
+        h2.bullet Just the beginning...
+        br
+        ul
+          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
+          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
+          li Edit JavaScript in <em>'src/scripts/main.js'</em>
+        br
+        ul
+          li
+            strong Enjoy! :)
+            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+
+    script(src='build/build.js')

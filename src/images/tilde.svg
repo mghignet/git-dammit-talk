@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="692.18188"
+   height="188.97321"
+   viewBox="0 0 692.18188 188.97321"
+   id="svg6345"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="tilde.svg">
+  <defs
+     id="defs6347" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="-197.53759"
+     inkscape:cy="377.78696"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1023"
+     inkscape:window-x="0"
+     inkscape:window-y="1080"
+     inkscape:window-maximized="1"
+     units="px" />
+  <metadata
+     id="metadata6350">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-21.388037,-373.39686)">
+    <g
+       style="font-style:normal;font-weight:normal;font-size:1105.76330566px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="flowRoot6893">
+      <path
+         d="m 713.56992,373.39686 0,96.10638 q -56.69197,42.65396 -105.28508,61.01136 -48.05319,18.35739 -100.42577,18.35739 -59.39158,0 -138.22041,-31.85548 -5.93916,-2.1597 -8.63878,-3.23954 -3.77946,-1.61977 -11.87832,-4.31939 -83.68814,-33.47526 -134.44094,-33.47526 -47.51327,0 -93.94669,21.05702 -46.433422,20.51709 -99.345923,65.33074 l 0,-96.10638 q 56.691966,-42.65396 104.745153,-61.01135 48.59312,-18.89733 100.9657,-18.89733 59.39158,0 138.76033,32.39541 5.39924,2.1597 8.09885,3.23954 4.31939,1.61977 11.87832,4.31939 83.68814,33.47526 134.44095,33.47526 46.43342,0 91.78699,-20.51709 45.8935,-20.5171 101.50562,-65.87067 z"
+         style=""
+         id="path6949" />
+    </g>
+  </g>
+</svg>
