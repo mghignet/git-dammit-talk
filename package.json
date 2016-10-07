@@ -6,7 +6,8 @@
     "deploy": "gulp deploy",
     "compile": "gulp"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "bespoke": "^1.0.0",
     "bespoke-backdrop": "^1.0.0",

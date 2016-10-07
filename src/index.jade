@@ -104,6 +104,14 @@ html
         img(src='images/pull-vs-fetch-merge.svg')
 
       section
+        h2 Je veux revenir sur la branche sur laquelle j'étais juste avant
+
+      section
+        pre
+          code.language-shell
+            $ git checkout -
+
+      section
         h2 J'ai modifié un fichier mais je voudrais séparer les modifications dans deux commits différents
 
       section
@@ -112,60 +120,43 @@ html
             $ git add -p
 
       section
-        
+        h2 Comment voir les modifications en cours ?
 
       section
-        h2 Keyboard Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
-
-      section
-        h2 Touch Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-touch">bespoke-touch</a>
-
-      section
-        h2 Responsive Slides
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
-
-      section
-        h2 Bullet List
-        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
-        ul
-          li Bullet 1
-          li Bullet 2
-          li Bullet 3
-
-      section
-        h2 Syntax Highlighting
-        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
+        h3 Modifications "unstaged"
         pre
-          code.language-javascript.
-            bespoke.from('article', [
-              classes(),
-              keys(),
-              touch(),
-              bullets('li, .bullet')
-            ]);
+          code.language-shell
+            $ git diff
 
-      section(data-bespoke-hash='named-route')
-        h2 Named Route
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
-        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+      section
+        h3 Modifications "staged"
+        pre
+          code.language-shell
+            $ git diff --cached
+            $ git diff --staged
+        
+      section
+        h3 Toutes les modifications
+        pre
+          code.language-shell
+            $ git diff HEAD
 
+      section
+        h2 Je veux annuler les modifications faites sur un fichier en particulier
+
+      section
+        pre
+          code.language-shell
+            $ git checkout -- monFichier.ext
+
+      section
+        h2 TODO git rebase --onto
+
+      section
+        h2 TODO git reflog
+        
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         h2 Emphatic Slide!
         h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
-
-      section
-        h2.bullet Just the beginning...
-        br
-        ul
-          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
-          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
-          li Edit JavaScript in <em>'src/scripts/main.js'</em>
-        br
-        ul
-          li
-            strong Enjoy! :)
-            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
 
     script(src='build/build.js')
