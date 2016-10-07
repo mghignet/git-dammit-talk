@@ -6,6 +6,7 @@ html
     title Git dammit!
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet")
 
   body
 
@@ -62,7 +63,7 @@ html
                 $ git push -f origin ma-branche
 
       section
-        h2 OUPS, J'ai modifié mes commits, et puis j'ai fait un pull.
+        h2 Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
         h3 Je me retrouve avec des commits en double
 
       section
@@ -96,11 +97,11 @@ html
             $ git fetch origin ma-branche
             $ git reset --hard origin/ma-branche
 
+      section
+        img(src='images/local-vs-remote-branches.svg')
 
       section
-        ul.inline
-          li
-            img(src='images/git-edit-pull-1.svg')
+        img(src='images/pull-vs-fetch-merge.svg')
 
       section
         h2 J'ai modifié un fichier mais je voudrais séparer les modifications dans deux commits différents
