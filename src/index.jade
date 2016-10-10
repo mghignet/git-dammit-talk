@@ -20,9 +20,15 @@ html
         h2 J'ai besoin de modifier mon dernier commit
 
       section
-        pre
-          code.language-shell
-            $ git commit --amend
+        ul
+          li
+            pre
+              code.language-shell
+                $ git commit --amend
+          li
+            pre
+              code.language-shell
+                $ git commit --amend --no-edit
 
       section
         ul.inline
@@ -61,6 +67,18 @@ html
             pre
               code.language-shell
                 $ git push -f origin ma-branche
+
+      section
+        h2 Je veux supprimer mon dernier commit
+
+      section
+        ul
+          li
+            pre
+              code.language-shell
+                $ git reset HEAD~
+          li
+            
 
       section
         h2 Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
