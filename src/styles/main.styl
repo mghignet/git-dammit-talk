@@ -7,21 +7,36 @@
 @import 'prism/themes/prism-okaidia.css'
 // Check out "bower_components/prism/themes/" for available themes
 
+$bd-title-bgcolor = #2f8cea
+
 *
   font-family: 'Lato', sans-serif
 
-section.background-tilde::before
-  content: ""
-  width: 100%
-  height: 100%
-  position: fixed
+.bd-title
+  background: $bd-title-bgcolor
+
+.bd-title-text
+  h2
+    color: white
+
+.bd-tilde
   background: url('../images/tilde.svg')
   background-size: 100% 100%
-  z-index: -1
-  opacity: 0.3
+  &.bespoke-backdrop-active
+    opacity: 0.3
 
 img
   max-height: 100%
+  max-width: 100%
+
+
+ul.column
+  padding: 0
+
+ul.column li
+  flex: 1 1 0
+  text-align: center
+
 
 ul.inline
   display: flex

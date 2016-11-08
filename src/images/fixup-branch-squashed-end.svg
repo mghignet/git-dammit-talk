@@ -15,7 +15,7 @@
    id="svg7725"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="fixup-branch-squashed.svg">
+   sodipodi:docname="fixup-branch-squashed-end.svg">
   <defs
      id="defs7727" />
   <sodipodi:namedview
@@ -65,6 +65,25 @@
        style="fill:none;fill-opacity:1;stroke:#364a62;stroke-width:22.66983795;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <g
+       style="fill:#666666;fill-opacity:1"
+       id="g7003"
+       transform="matrix(6.1922528,0,0,5.4296307,-54.966071,-2916.2676)">
+      <path
+         sodipodi:nodetypes="cssccsscac"
+         inkscape:connector-curvature="0"
+         id="path7005"
+         d="m 62.46421,626.93112 c 0,0 -1.9752,-4.86969 -1.97011,-7.31496 0.008,-3.97993 3.01214,-7.92543 3.25613,-11.90476 0.15983,-2.60649 -1.17554,-7.81364 -1.17554,-7.81364 l 5.72377,0.0251 c 0,0 1.36373,5.14131 1.22477,7.71535 -0.21658,4.0118 -3.2243,7.99084 -3.20606,12.0031 0.011,2.42886 2.00689,7.26479 2.00689,7.26479 0,0 -1.924299,-0.35764 -2.897269,-0.35488 -0.99561,0.003 -2.962581,0.3799 -2.962581,0.3799 z"
+         style="fill:#666666;fill-opacity:1;stroke:none;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.62420379" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path7007"
+         d="m 71.71751,600.44513 -12.361,0 6.1805,-12.6625 z"
+         inkscape:transform-center-y="-4.0701"
+         inkscape:transform-center-x="4.5249998"
+         style="fill:#666666;fill-opacity:1;stroke:none;stroke-width:0;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.62420379" />
+    </g>
     <circle
        r="59.423637"
        cy="568.0376"
@@ -112,5 +131,25 @@
          x="434.22171"
          id="tspan7043"
          sodipodi:role="line">A'</tspan></text>
+    <circle
+       r="59.423637"
+       cy="196.50238"
+       cx="350.32132"
+       id="circle7045"
+       style="fill:none;fill-opacity:1;stroke:#ff591c;stroke-width:22.66983795;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:247.69010925px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="434.22171"
+       y="214.85086"
+       id="text7047"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan7049"
+         x="434.22171"
+         y="214.85086"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:154.80632019px;font-family:Photographs;-inkscape-font-specification:Photographs">B'</tspan></text>
   </g>
 </svg>

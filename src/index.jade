@@ -15,8 +15,10 @@ html
       section
         h1 Git Dammit!
         img(src='images/gifs/god-dammit.gif')
-
-      section
+        
+        
+      // Modifier dernier commit
+      section.bd-title-text(data-bespoke-backdrop='bd-title')
         h2 J'ai besoin de modifier mon dernier commit
 
       section
@@ -36,8 +38,10 @@ html
             img(src='images/simple-branch.svg')
           li
             img(src='images/simple-branch-amended.svg')
-      
-      section
+
+            
+      // Modifier, pas le dernier (fixup)
+      section.bd-title-text(data-bespoke-backdrop='bd-title')
         h2 Celui que je dois modifier n'est pas le dernier...
         ul.inline
           li
@@ -53,8 +57,8 @@ html
           li
             img(src='images/fixup-branch.svg')
 
-      section.background-tilde
-        ul
+      section.bd-tilde-text(data-bespoke-backdrop='bd-tilde')
+        ul.column
           li
             pre
               code.language-shell
@@ -62,25 +66,19 @@ html
         ul.inline
           li
             img(src='images/fixup-branch-squashed.svg')
+          li
+            img(src='images/fixup-branch-squashed-end.svg')
+      
+      section
         ul
           li
             pre
               code.language-shell
                 $ git push -f origin ma-branche
 
-      section
-        h2 Je veux supprimer mon dernier commit
 
-      section
-        ul
-          li
-            pre
-              code.language-shell
-                $ git reset HEAD~
-          li
-            
-
-      section
+      // J'ai modifié mes commits, puis j'ai pull
+      section.bd-title-text(data-bespoke-backdrop='bd-title')
         h2 Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
         h3 Je me retrouve avec des commits en double
 
@@ -120,7 +118,33 @@ html
 
       section
         img(src='images/pull-vs-fetch-merge.svg')
+        
+        
+      // Supprimer le dernier commit
+      section
+        h2 Je veux supprimer mon dernier commit
+        
+      section
+        img(src='images/git-index-initial-state.svg')
+      section
+        img(src='images/git-index-initial-state-status.svg')
+      section
+        img(src='images/git-index-added-file.svg')
+      section
+        img(src='images/git-index-reset-file.svg')
+      section
+        img(src='images/git-index-added-file.svg')
+      section
+        img(src='images/git-index-committed-file.svg')
+          
+      section
+        ul
+          li
+            pre
+              code.language-shell
+        $ git reset HEAD~
 
+      // Revenir sur la branche précédente
       section
         h2 Je veux revenir sur la branche sur laquelle j'étais juste avant
 
@@ -129,6 +153,8 @@ html
           code.language-shell
             $ git checkout -
 
+
+      // git add -p
       section
         h2 J'ai modifié un fichier mais je voudrais séparer les modifications dans deux commits différents
 
@@ -137,6 +163,8 @@ html
           code.language-shell
             $ git add -p
 
+
+      // git status, git diff...
       section
         h2 Comment voir les modifications en cours ?
 
