@@ -23,58 +23,37 @@ html
 
       section
         ul
-          li
-            pre
-              code.language-shell
-                $ git commit --amend
-          li
-            pre
-              code.language-shell
-                $ git commit --amend --no-edit
+          li: pre: code.language-shell $ git commit --amend
+          li: pre: code.language-shell $ git commit --amend --no-edit
 
       section
         ul.inline
-          li
-            img(src='images/simple-branch.svg')
-          li
-            img(src='images/simple-branch-amended.svg')
+          li: img(src='images/simple-branch.svg')
+          li: img(src='images/simple-branch-amended.svg')
 
             
       // Modifier, pas le dernier (fixup)
       section.bd-title-text(data-bespoke-backdrop='bd-title')
         h2 Celui que je dois modifier n'est pas le dernier...
         ul.inline
-          li
-            img(src='images/simple-branch.svg')
+          li: img(src='images/simple-branch.svg')
 
       section
         ul
-          li
-            pre
-              code.language-shell
-                $ git commit --fixup {sha1-A}
+          li: pre: code.language-shell $ git commit --fixup {sha1-A}
         ul.inline
-          li
-            img(src='images/fixup-branch.svg')
+          li: img(src='images/fixup-branch.svg')
 
       section.bd-tilde-text(data-bespoke-backdrop='bd-tilde')
         ul.column
-          li
-            pre
-              code.language-shell
-                $ git rebase -i {sha1-A}~ --autosquash
+          li: pre: code.language-shell $ git rebase -i {sha1-A}~ --autosquash
         ul.inline
-          li
-            img(src='images/fixup-branch-squashed.svg')
-          li
-            img(src='images/fixup-branch-squashed-end.svg')
+          li: img(src='images/fixup-branch-squashed.svg')
+          li: img(src='images/fixup-branch-squashed-end.svg')
       
       section
         ul
-          li
-            pre
-              code.language-shell
-                $ git push -f origin ma-branche
+          li: pre: code.language-shell $ git push -f origin ma-branche
 
 
       // J'ai modifié mes commits, puis j'ai pull
@@ -84,25 +63,19 @@ html
 
       section
         ul.inline
-          li
-            img(src='images/local-branch-amended.svg')
-          li
-            img(src='images/remote-branch.svg')
+          li: img(src='images/local-branch-amended.svg')
+          li: img(src='images/remote-branch.svg')
 
       section
         ul.inline
-          li
-            img(src='images/merged-branch-wrong.svg')
-          li
-            img(src='images/rebased-branch-wrong.svg')
+          li: img(src='images/merged-branch-wrong.svg')
+          li: img(src='images/rebased-branch-wrong.svg')
 
       section
         ul
-          li
-            pre
-              code.language-shell
-                $ git push -f origin ma-branche
+          li: pre: code.language-shell $ git push -f origin ma-branche
 
+      // Abandonner mes modifications
       section
         h2 Je veux abandonner mes modifications
         h3 et revenir à la version du repository distant
@@ -110,8 +83,8 @@ html
       section
         pre
           code.language-shell
-            $ git fetch origin ma-branche
-            $ git reset --hard origin/ma-branche
+            | $ git fetch origin ma-branche
+            | $ git reset --hard origin/ma-branche
 
       section
         img(src='images/local-vs-remote-branches.svg')
@@ -125,24 +98,32 @@ html
         h2 Je veux supprimer mon dernier commit
         
       section
-        img(src='images/git-index-initial-state.svg')
+        img.fullscreen(src='images/git-index-initial-state.svg')
       section
-        img(src='images/git-index-initial-state-status.svg')
+        img.fullscreen(src='images/git-index-initial-state-status.svg')
       section
-        img(src='images/git-index-added-file.svg')
+        img.fullscreen(src='images/git-index-added-file.svg')
       section
-        img(src='images/git-index-reset-file.svg')
+        img.fullscreen(src='images/git-index-reset-file.svg')
       section
-        img(src='images/git-index-added-file.svg')
+        img.fullscreen(src='images/git-index-added-file.svg')
       section
-        img(src='images/git-index-committed-file.svg')
+        img.fullscreen(src='images/git-index-committed-file.svg')
           
       section
         ul
-          li
-            pre
-              code.language-shell
-        $ git reset HEAD~
+          li: pre: code.language-shell $ git reset HEAD~ --mixed
+          li: pre: code.language-shell $ git reset HEAD~ --soft
+          li: pre: code.language-shell $ git reset HEAD~ --hard
+
+      section
+        img.fullscreen(src='images/reset-initial-state.svg')
+      section
+        img.fullscreen(src='images/reset-soft.svg')
+      section
+        img.fullscreen(src='images/reset-mixed.svg')
+      section
+        img.fullscreen(src='images/reset-hard.svg')
 
       // Revenir sur la branche précédente
       section
@@ -151,7 +132,7 @@ html
       section
         pre
           code.language-shell
-            $ git checkout -
+            | $ git checkout -
 
 
       // git add -p
@@ -161,7 +142,7 @@ html
       section
         pre
           code.language-shell
-            $ git add -p
+            | $ git add -p
 
 
       // git status, git diff...
@@ -172,20 +153,20 @@ html
         h3 Modifications "unstaged"
         pre
           code.language-shell
-            $ git diff
+            | $ git diff
 
       section
         h3 Modifications "staged"
         pre
           code.language-shell
-            $ git diff --cached
-            $ git diff --staged
+            | $ git diff --cached
+            | $ git diff --staged
         
       section
         h3 Toutes les modifications
         pre
           code.language-shell
-            $ git diff HEAD
+            | $ git diff HEAD
 
       section
         h2 Je veux annuler les modifications faites sur un fichier en particulier
@@ -193,7 +174,7 @@ html
       section
         pre
           code.language-shell
-            $ git checkout -- monFichier.ext
+            | $ git checkout -- monFichier.ext
 
       section
         h2 TODO git rebase --onto

@@ -24,6 +24,7 @@
     "bespoke-theme-build-wars": "1.0.1",
     "bespoke-theme-carousel": "0.1.0",
     "bespoke-theme-cube": "2.0.1",
+    "bespoke-theme-emix": "../bespoke-theme-emix",
     "bespoke-theme-fancy": "0.6.0",
     "bespoke-theme-greeny": "0.0.4",
     "bespoke-theme-mozilla-sandstone": "0.0.2",
