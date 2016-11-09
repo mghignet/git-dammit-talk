@@ -97,7 +97,7 @@ gulp.task('watch', function() {
   gulp.watch([
     'src/scripts/**/*.js',
     'bespoke-theme-*/dist/*.js' // Allow themes to be developed in parallel
-  ], ['js']);
+  ], ['build']);
 });
 
 gulp.task('deploy', ['build'], function(done) {
