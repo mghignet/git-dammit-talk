@@ -15,13 +15,13 @@ html
         h1 Git Dammit!
         
       // Modifier dernier commit
-      section.quote-text(data-bespoke-backdrop='quote')
-        p J'ai besoin de modifier mon dernier commit.
+      section(data-bespoke-backdrop='quote-bg')
+        .quote J'ai besoin de modifier mon dernier commit.
 
       section
         ul
-          li: pre: code.language-shell $ git commit --amend
-          li: pre: code.language-shell $ git commit --amend --no-edit
+          li: pre: code.language-git git commit --amend
+          li: pre: code.language-git git commit --amend --no-edit
 
       section
         ul.inline
@@ -30,19 +30,19 @@ html
 
             
       // Modifier, pas le dernier (fixup)
-      section.quote-text(data-bespoke-backdrop='quote')
+      section(data-bespoke-backdrop='quote-bg')
         ul.block
-          li: p Celui que je dois modifier n'est pas le dernier...
+          li.notbullet: .quote Celui que je dois modifier n'est pas le dernier...
           li.centered.double: img(src='images/simple-branch-light.svg')
 
       section
         ul.block
-          li: pre: code.language-shell $ git commit --fixup {sha1-A}
+          li: pre: code.language-git git commit --fixup {sha1-A}
           li.triple.centered: img(src='images/fixup-branch.svg')
 
       section.bd-tilde-text(data-bespoke-backdrop='bd-tilde')
         ul.block
-          li: pre: code.language-shell $ git rebase -i {sha1-A}~ --autosquash
+          li: pre: code.language-git git rebase -i {sha1-A}~ --autosquash
           li.triple.notbullet
             ul.inline
               li: img(src='images/fixup-branch-squashed.svg')
@@ -50,13 +50,13 @@ html
       
       section
         ul
-          li: pre: code.language-shell $ git push -f origin ma-branche
+          li: pre: code.language-git git push -f origin ma-branche
 
 
       // J'ai modifié mes commits, puis j'ai pull
-      section.quote-text(data-bespoke-backdrop='quote')
-        p Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
-        p.subquote Je me retrouve avec des commits en double :(
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
+        .subquote Je me retrouve avec des commits en double :(
 
       section
         ul.inline
@@ -70,27 +70,27 @@ html
 
       section
         ul
-          li: pre: code.language-shell $ git push -f origin ma-branche
+          li: pre: code.language-git git push -f origin ma-branche
 
       // Abandonner mes modifications
-      section.quote-text(data-bespoke-backdrop='quote')
-        p Je veux abandonner mes modifications…
-        p.subquote …et revenir à la version du repository distant
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Je veux abandonner mes modifications…
+        .subquote …et revenir à la version du repository distant.
       
       section
         ul.block
           li.triple: img(src='images/local-vs-remote-branches.svg')
-          li: pre: code.language-shell
-            | $ git fetch origin ma-branche
-            | $ git reset --hard origin/ma-branche
+          li: pre: code.language-git
+            | git fetch origin ma-branche
+            | git reset --hard origin/ma-branche
 
       section
         img(src='images/pull-vs-fetch-merge.svg')
         
         
       // Supprimer le dernier commit
-      section.quote-text(data-bespoke-backdrop='quote')
-        p Je veux supprimer mon dernier commit.
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Je veux supprimer mon dernier commit.
         
       section
         img(src='images/git-index-initial-state.svg')
@@ -107,11 +107,11 @@ html
           
       section
         ul
-          li: pre: code.language-shell $ git reset HEAD~ --soft
-          li: pre: code.language-shell
-            | $ git reset HEAD~ --mixed
-            | $ git reset HEAD~
-          li: pre: code.language-shell $ git reset HEAD~ --hard
+          li: pre: code.language-git git reset HEAD~ --soft
+          li: pre: code.language-git
+            | git reset HEAD~ --mixed
+            | git reset HEAD~
+          li: pre: code.language-git git reset HEAD~ --hard
 
       section
         img(src='images/reset-initial-state.svg')
@@ -123,51 +123,57 @@ html
         img(src='images/reset-hard.svg')
 
       // Revenir sur la branche précédente
-      section.quote-text(data-bespoke-backdrop='quote')
-        p Je veux revenir sur la branche sur laquelle j'étais juste avant
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Je veux revenir sur la branche sur laquelle j'étais juste avant.
 
       section
-        ul: li: pre: code.language-shell $ git checkout -
+        ul: li: pre: code.language-git git checkout -
 
 
       // git add -p
-      section.quote-text(data-bespoke-backdrop='quote')
-        p Je veux séparer les modifications d'un même fichier dans deux commits différents.
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Je veux séparer les modifications d'un même fichier dans deux commits différents.
 
       section
         ul
-          li: pre: code.language-shell $ git add -p
-          li: pre: code.language-shell $ git reset -p
-
+          li
+            pre: code.language-git git add -p
+            p Pour indexer des modifications
+          li
+            pre: code.language-git git reset -p
+            p Dans l'autre sens...
 
       // git status, git diff...
-      section.quote-text(data-bespoke-backdrop='quote')
-        p Comment voir les modifications en cours ?
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Comment voir les modifications en cours ?
 
       section
         h2 Modifications &laquo; unstaged &raquo;
-        pre: code.language-shell $ git diff
+        pre: code.language-git git diff
 
       section
         h2 Modifications &laquo; staged &raquo;
-        pre: code.language-shell
-            | $ git diff --cached
-            | $ git diff --staged
+        pre: code.language-git
+            | git diff --cached
+            | git diff --staged
         
       section
         h2 Toutes les modifications
-        pre: code.language-shell $ git diff HEAD
+        pre: code.language-git git diff HEAD
 
-      section.quote-text(data-bespoke-backdrop='quote')
-        p Je veux annuler les modifications faites sur un fichier en particulier
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Je veux annuler les modifications faites sur un fichier en particulier.
 
       section
-        pre: code.language-shell $ git checkout -- monFichier.ext
+        pre: code.language-git git checkout -- monFichier.ext
 
-      section.quote-text(data-bespoke-backdrop='quote')
-        p TODO git rebase --onto
-
-      section.quote-text(data-bespoke-backdrop='quote')
-        p TODO git reflog
+      section(data-bespoke-backdrop='quote-bg')
+        .quote TODO git rebase --onto
+        
+      section
+        li: pre: code.language-git 
+        
+      section(data-bespoke-backdrop='quote-bg')
+        .quote TODO git reflog
 
     script(src='build/build.js')
