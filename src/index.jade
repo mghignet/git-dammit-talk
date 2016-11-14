@@ -33,20 +33,20 @@ html
       section.quote-text(data-bespoke-backdrop='quote')
         ul.block
           li: p Celui que je dois modifier n'est pas le dernier...
-          li.centered: img(src='images/simple-branch.svg')
+          li.centered.double: img(src='images/simple-branch-light.svg')
 
       section
-        ul
+        ul.block
           li: pre: code.language-shell $ git commit --fixup {sha1-A}
-        ul.inline
-          li: img(src='images/fixup-branch.svg')
+          li.triple.centered: img(src='images/fixup-branch.svg')
 
       section.bd-tilde-text(data-bespoke-backdrop='bd-tilde')
-        ul
+        ul.block
           li: pre: code.language-shell $ git rebase -i {sha1-A}~ --autosquash
-        ul.inline
-          li: img(src='images/fixup-branch-squashed.svg')
-          li: img(src='images/fixup-branch-squashed-end.svg')
+          li.triple.notbullet
+            ul.inline
+              li: img(src='images/fixup-branch-squashed.svg')
+              li: img(src='images/fixup-branch-squashed-end.svg')
       
       section
         ul
@@ -127,7 +127,7 @@ html
         p Je veux revenir sur la branche sur laquelle j'étais juste avant
 
       section
-        pre: code.language-shell $ git checkout -
+        ul: li: pre: code.language-shell $ git checkout -
 
 
       // git add -p
@@ -135,7 +135,9 @@ html
         p Je veux séparer les modifications d'un même fichier dans deux commits différents.
 
       section
-        pre: code.language-shell $ git add -p
+        ul
+          li: pre: code.language-shell $ git add -p
+          li: pre: code.language-shell $ git reset -p
 
 
       // git status, git diff...
@@ -143,17 +145,17 @@ html
         p Comment voir les modifications en cours ?
 
       section
-        h3 Modifications "unstaged"
+        h2 Modifications &laquo; unstaged &raquo;
         pre: code.language-shell $ git diff
 
       section
-        h3 Modifications "staged"
+        h2 Modifications &laquo; staged &raquo;
         pre: code.language-shell
             | $ git diff --cached
             | $ git diff --staged
         
       section
-        h3 Toutes les modifications
+        h2 Toutes les modifications
         pre: code.language-shell $ git diff HEAD
 
       section.quote-text(data-bespoke-backdrop='quote')
@@ -167,9 +169,5 @@ html
 
       section.quote-text(data-bespoke-backdrop='quote')
         p TODO git reflog
-        
-      section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Emphatic Slide!
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
 
     script(src='build/build.js')
