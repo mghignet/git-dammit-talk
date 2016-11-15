@@ -20,57 +20,82 @@ html
 
       section
         ul
-          li: pre: code.language-git git commit --amend
-          li: pre: code.language-git git commit --amend --no-edit
+          li
+            pre: code.language-git
+              | # Le contenu et le nom
+              | git commit --amend
+          li
+            pre: code.language-git
+              | # Le contenu seulement
+              | git commit --amend --no-edit
 
       section
-        ul.inline
+        ul.row
           li: img(src='images/simple-branch.svg')
           li: img(src='images/simple-branch-amended.svg')
+          
+      section
+        ul
+          li: pre: code.language-git
+            | # Bien entendu il faudra &laquo; force push &raquo;
+            | git push -f origin ma-branche
 
             
       // Modifier, pas le dernier (fixup)
       section(data-bespoke-backdrop='quote-bg')
-        ul.block
+        ul.column
           li.notbullet: .quote Celui que je dois modifier n'est pas le dernier...
           li.centered.double: img(src='images/simple-branch-light.svg')
 
       section
-        ul.block
-          li: pre: code.language-git git commit --fixup {sha1-A}
-          li.triple.centered: img(src='images/fixup-branch.svg')
+        ul.column
+          li
+            pre: code.language-git
+              | # 1. Je fais un commit de fixup
+              | git commit --fixup {sha1-A}
+          li.double.centered: img(src='images/fixup-branch.svg')
 
       section.bd-tilde-text(data-bespoke-backdrop='bd-tilde')
-        ul.block
-          li: pre: code.language-git git rebase -i {sha1-A}~ --autosquash
+        ul.column
+          li: pre: code.language-git
+            | # 2. Je rebase
+            | git rebase -i {sha1-A}~ <b>--autosquash</b>
           li.triple.notbullet
-            ul.inline
+            ul.row
               li: img(src='images/fixup-branch-squashed.svg')
               li: img(src='images/fixup-branch-squashed-end.svg')
-      
-      section
-        ul
-          li: pre: code.language-git git push -f origin ma-branche
 
-
+              
       // J'ai modifié mes commits, puis j'ai pull
       section(data-bespoke-backdrop='quote-bg')
         .quote Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
         .subquote Je me retrouve avec des commits en double :(
 
       section
-        ul.inline
-          li: img(src='images/local-branch-amended.svg')
-          li: img(src='images/remote-branch.svg')
+        ul.column
+          li.notbullet
+            h2.centered Que s'est-il passé ?
+          li.triple
+            ul.row
+              li: img(src='images/local-branch-amended.svg')
+              li: img(src='images/remote-branch.svg')
 
       section
-        ul.inline
-          li: img(src='images/merged-branch-wrong.svg')
-          li: img(src='images/rebased-branch-wrong.svg')
+        ul.column
+          li.notbullet
+            h2.centered Aïe&#8230;
+          li.quintuple.notbullet
+            ul.row
+              li.notbullet
+                img(src='images/merged-branch-wrong.svg')
+              li.notbullet
+                img(src='images/rebased-branch-wrong.svg')
 
       section
         ul
-          li: pre: code.language-git git push -f origin ma-branche
+          li: pre: code.language-git
+            | # Il fallait &laquo; force push &raquo;&#8230;
+            | git push -f origin ma-branche
 
       // Abandonner mes modifications
       section(data-bespoke-backdrop='quote-bg')
@@ -78,14 +103,18 @@ html
         .subquote …et revenir à la version du repository distant.
       
       section
-        ul.block
-          li.triple: img(src='images/local-vs-remote-branches.svg')
-          li: pre: code.language-git
-            | git fetch origin ma-branche
-            | git reset --hard origin/ma-branche
+        img(src='images/local-vs-remote-branches.svg')
 
       section
+        h2 Pull ? Fetch ?
         img(src='images/pull-vs-fetch-merge.svg')
+        
+      section
+        ul.column
+          li.notbullet.triple: img(src='images/local-vs-remote-branches.svg')
+          li.notbullet: pre: code.language-git
+            | git fetch origin ma-branche
+            | git reset --hard origin/ma-branche
         
         
       // Supprimer le dernier commit
@@ -107,11 +136,16 @@ html
           
       section
         ul
-          li: pre: code.language-git git reset HEAD~ --soft
           li: pre: code.language-git
+            | # On ne prend pas trop de risques
+            | git reset HEAD~ --soft
+          li: pre: code.language-git
+            | # Les deux sont équivalents
             | git reset HEAD~ --mixed
             | git reset HEAD~
-          li: pre: code.language-git git reset HEAD~ --hard
+          li: pre: code.language-git
+            | # Bourrin
+            | git reset HEAD~ --hard
 
       section
         img(src='images/reset-initial-state.svg')
@@ -127,7 +161,9 @@ html
         .quote Je veux revenir sur la branche sur laquelle j'étais juste avant.
 
       section
-        ul: li: pre: code.language-git git checkout -
+        ul: li: pre: code.language-git
+          | # Comme "cd -" en shell !
+          | git checkout -
 
 
       // git add -p
@@ -137,35 +173,41 @@ html
       section
         ul
           li
-            pre: code.language-git git add -p
-            p Pour indexer des modifications
+            pre: code.language-git
+              | # pour indexer des modifications
+              | git add -p
           li
-            pre: code.language-git git reset -p
-            p Dans l'autre sens...
+            pre: code.language-git
+              | # Dans l'autre sens
+              | git reset -p
 
       // git status, git diff...
       section(data-bespoke-backdrop='quote-bg')
         .quote Comment voir les modifications en cours ?
 
       section
-        h2 Modifications &laquo; unstaged &raquo;
-        pre: code.language-git git diff
-
-      section
-        h2 Modifications &laquo; staged &raquo;
-        pre: code.language-git
-            | git diff --cached
-            | git diff --staged
+        ul
+          li
+            pre: code.language-git
+              | # Modifications &laquo; unstaged &raquo;
+              | git diff
+          li
+            pre: code.language-git
+              | # Modifications &laquo; staged &raquo;
+              | git diff --cached
+              | git diff --staged
+          li
+            pre: code.language-git
+              | # Toutes les modifications
+              | git diff HEAD
         
-      section
-        h2 Toutes les modifications
-        pre: code.language-git git diff HEAD
-
       section(data-bespoke-backdrop='quote-bg')
         .quote Je veux annuler les modifications faites sur un fichier en particulier.
 
       section
-        pre: code.language-git git checkout -- monFichier.ext
+        pre: code.language-git
+          | # Tout ce qui suit le "--" est considéré comme un nom de fichier 
+          | git checkout -- monFichier.ext
 
       section(data-bespoke-backdrop='quote-bg')
         .quote TODO git rebase --onto
