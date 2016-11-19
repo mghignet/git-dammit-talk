@@ -210,12 +210,26 @@ html
           | git checkout -- monFichier.ext
 
       section(data-bespoke-backdrop='quote-bg')
-        .quote TODO git rebase --onto
-        
+        .quote Je me suis basé sur une autre branche que master pour développer ma feature
+        .subquote Je n'avais pas le choix&#8230;
+          
       section
-        li: pre: code.language-git 
+        ul.row
+          li: img(src='images/rebase-onto-initial.svg')
+          li: img(src='images/rebase-onto-new-branch.svg')
+          
+      section
+        ul.row
+          li: img(src='images/rebase-onto-merged-not-rewritten.svg')
+          li: img(src='images/rebase-onto-merged-rewritten.svg')
+          
+      section
+        ul.column
+          li.triple.centered: img(src='images/rebase-onto-target.svg')
+          li: pre: code.language-git
+            | # On n'oublie pas le ~ tilde ~ !
+            | git rebase {sha1-E}~ --onto master
+          
+      
         
-      section(data-bespoke-backdrop='quote-bg')
-        .quote TODO git reflog
-
     script(src='build/build.js')
