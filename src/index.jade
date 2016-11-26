@@ -13,7 +13,7 @@ html
 
       section.murder-text(data-bespoke-backdrop='murder')
         h1 Git Dammit!
-        
+
       // Modifier dernier commit
       section(data-bespoke-backdrop='quote-bg')
         .quote J'ai besoin de modifier mon dernier commit.
@@ -33,19 +33,26 @@ html
         ul.row
           li: img(src='images/simple-branch.svg')
           li: img(src='images/simple-branch-amended.svg')
-          
+        aside
+          p Le commit modifié a été réécrit, il n'a donc plus le même sha1.
+          hr
+          p Aux yeux de Git, les commits <b>B</b> et <b>B'</b> sont donc totalement différents.
+
       section
         ul
           li: pre: code.language-git
             | # Bien entendu il faudra &laquo; force push &raquo;
             | git push -f origin ma-branche
-
+        aside
+          p Les branches locale et distante ont divergé, et la plus à jour est la branche locale (à condition de travailler seul sur sa branche !)
             
       // Modifier, pas le dernier (fixup)
       section(data-bespoke-backdrop='quote-bg')
         ul.column
           li.notbullet: .quote Celui que je dois modifier n'est pas le dernier...
           li.centered.double: img(src='images/simple-branch-light.svg')
+        aside
+          p Et si maintenant on souhaitait modifier le commit A ?
 
       section
         ul.column
@@ -54,6 +61,11 @@ html
               | # 1. Je fais un commit de fixup
               | git commit --fixup {sha1-A}
           li.double.centered: img(src='images/fixup-branch.svg')
+        aside
+          p Deux étapes :
+          p <b>Etape 1 :</b> je crée un commit de fixup.
+          hr
+          p C'est un commit qui fait office de "patch" du commit à modifier. Il se rajoute en haut de la pile des commits. On l'appelle ici <b>Af</b>.
 
       section
         ul.column
@@ -64,24 +76,32 @@ html
             ul.row
               li: img(src='images/fixup-branch-squashed.svg')
               li: img(src='images/fixup-branch-squashed-end.svg')
+        aside
+          p <b>Etape 2 :</b> j'utilise le rebase intéractif pour réécrire l'historique de mes commits.
+          hr
+          p L'option --autosquash permet de replacer le commit de fixup directement au bon endroit pendant la procédure.
+          p Le commit <b>A</b> sera réécrit (sont contenu sera composé des contenus de <b>A</b> et de <b>Af</b>), mais tous les commits qui suivent seront aussi réécrit car leur parent a changé. Ainsi, <b>B</b> deviendra <b>B'</b>.
+          p Il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.
 
       section
         ul
           li: pre: code.language-git
-            | # A placer dans votre fichier d'alias
+            | # A placer dans mon fichier d'alias
             | function gfixup() {
             |     SHA=$(git rev-parse $1) \
             |         && git commit --fixup $SHA \
             |         && git rebase -i --autosquash $SHA~
             | }
-            | # ==> $ gfixup {sha1}
+            | # Utilisation : gfixup {sha1}
           li: pre: code.language-git
-            | # Ou un alias git dans votre .gitconfig
+            | # Ou un alias git dans mon .gitconfig
             | [alias]
             |   fixup = !sh -c 'SHA=$(git rev-parse $1) \
             |        && git commit --fixup $SHA \
             |        && git rebase -i --autosquash $SHA~' -
-            | # ==> $ git fixup {sha1}
+            | # Utilisation : git fixup {sha1}
+        aside
+          p Pour faciliter la procédure, on peut écrire des alias, soit en créant un alias du shell ou en passant par les alias Git.
 
               
       // J'ai modifié mes commits, puis j'ai pull
@@ -97,6 +117,9 @@ html
             ul.row
               li: img(src='images/local-branch-amended.svg')
               li: img(src='images/remote-branch.svg')
+        aside
+          p En local, on avait réécrit des commits. Notre branche contient les commits <b>A'</b> et <b>B'</b>.
+          p Sur le repository distant, la branche contient toujours les commits <b>A</b> et <b>B</b>.
 
       section
         ul.column
@@ -108,31 +131,71 @@ html
                 img(src='images/merged-branch-wrong.svg')
               li.notbullet
                 img(src='images/rebased-branch-wrong.svg')
+        aside
+          p Dans le cas d'un pull classique, donc stratégie <b>merge</b> (à gauche), Git va prendre les deux branches, créer un commit de merge après la résolution (inutile) de conflits.
+          p Dans le cas d'un pull avec rebase (<b>pull -r</b>), Git va essayer d'appliquer les commits locaux sur la branche distante. <b>A'</b> et <b>B'</b> seront une nouvelle fois réécrits en <b>A''</b> et <b>B''</b>.
+          p Dans les deux cas, c'est loin d'être ce que l'on veut obtenir. On retrouve dans l'historique plusieurs fois les mêmes messages de commits...
 
       section
         ul
           li: pre: code.language-git
             | # Il fallait &laquo; force push &raquo;&#8230;
             | git push -f origin ma-branche
+        aside
+          p Encore une fois, on part du principe que l'on travaille seul sur notre branche et donc que la version la plus récente est donc sur notre poste.
 
       // Abandonner mes modifications
       section(data-bespoke-backdrop='quote-bg')
         .quote Je veux abandonner mes modifications…
         .subquote …et revenir à la version du repository distant.
-      
+
       section
         img(src='images/local-vs-remote-branches.svg')
+        aside
+          p Il est important de savoir comment fonctionne Git.
+          hr
+          p Le repository distant est symbolisé par le nuage. En local, on distingue deux types de branches :
+          p - <b>Les branches de tracking</b>, en lecture seule : ce sont des copies à un instant T du repository distant.
+          p - <b>Les branches de travail</b>, sur lesquelles on peut agir.
 
       section
         h2 Pull ? Fetch ?
-        img(src='images/pull-vs-fetch-merge.svg')
-        
+        ul.column
+          li.quadruple: img(src='images/pull-vs-fetch-merge.svg')
+          li: pre: code.language-git
+            | git pull origin master
+          li: pre: code.language-git
+            | git fetch origin master
+            | git merge master
+        aside
+          p Mais au fait, fetch, pull, c'est quoi la différence ?
+          hr
+          p Un <b>fetch</b> met simplement à jour les branches de tracking pour les faire correspondre avec le repository distant. <b>Les branches de travail ne sont pas modifiées</b>.
+          p Un <b>pull</b> n'est ni plus ni moins qu'un <b>fetch</b> suivi d'un <b>merge</b>. Lorsqu'on fait un <b>pull -r</b> (stratégie <b>rebase</b>), le <b>merge</b> est remplacé par un <b>rebase</b>.
+
       section
         ul.column
-          li.notbullet.triple: img(src='images/local-vs-remote-branches.svg')
+          li.notbullet.quadruple: img(src='images/local-vs-remote-branches.svg')
           li.notbullet: pre: code.language-git
             | git fetch origin ma-branche
             | git reset --hard origin/ma-branche
+        aside
+          p Pour revenir à la version de la branche distante, il suffit donc de se replacer au même niveau que la branche de tracking, <b>après l'avoir mise à jour</b>.
+          p Le <b>fetch</b> met à jour la branche de tracking, le <b>reset --hard</b> replace le pointeur de notre branche actuelle sur celui de la branche de tracking.
+          
+      section
+        ul
+          li: pre: code.language-git
+            | # A placer dans le .gitconfig
+            | [alias]
+            |   dammit = !BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+            |     && git fetch origin $BRANCH \
+            |     && git reset --hard origin/$BRANCH
+            | # Utilisation : git dammit
+        aside
+          p Pour faciliter la procédure, on peut écrire un alias Git.
+          p <b>Git Dammit!</b>
+
         
         
       // Supprimer le dernier commit

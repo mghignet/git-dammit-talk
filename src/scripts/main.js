@@ -8,7 +8,8 @@ var bespoke = require('bespoke'),
   scale = require('bespoke-scale'),
   hash = require('bespoke-hash'),
   progress = require('bespoke-progress'),
-  forms = require('bespoke-forms');
+  forms = require('bespoke-forms'),
+  notes= require('bespoke-notes/dom');
 
 // Bespoke.js
 bespoke.from('article', [
@@ -20,7 +21,8 @@ bespoke.from('article', [
   scale(),
   hash(),
   progress(),
-  forms()
+  forms(),
+  notes()
 ]);
 
 // Prism syntax highlighting

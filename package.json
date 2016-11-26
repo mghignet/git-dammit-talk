@@ -6,8 +6,7 @@
     "deploy": "gulp deploy",
     "compile": "gulp"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "bespoke": "^1.0.0",
     "bespoke-backdrop": "^1.0.0",
@@ -15,6 +14,7 @@
     "bespoke-forms": "^1.0.0",
     "bespoke-hash": "^1.0.0",
     "bespoke-keys": "^1.0.0",
+    "bespoke-notes": "2.1.2",
     "bespoke-progress": "^1.0.0",
     "bespoke-scale": "^1.0.0",
     "bespoke-theme-aria3d": "0.0.2",
