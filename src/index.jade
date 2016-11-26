@@ -11,7 +11,7 @@ html
 
     article
 
-      section.hell-text(data-bespoke-backdrop='hell')
+      section.murder-text(data-bespoke-backdrop='murder')
         h1 Git Dammit!
         
       // Modifier dernier commit
@@ -55,7 +55,7 @@ html
               | git commit --fixup {sha1-A}
           li.double.centered: img(src='images/fixup-branch.svg')
 
-      section.bd-tilde-text(data-bespoke-backdrop='bd-tilde')
+      section
         ul.column
           li: pre: code.language-git
             | # 2. Je rebase
@@ -64,6 +64,24 @@ html
             ul.row
               li: img(src='images/fixup-branch-squashed.svg')
               li: img(src='images/fixup-branch-squashed-end.svg')
+
+      section
+        ul
+          li: pre: code.language-git
+            | # A placer dans votre fichier d'alias
+            | function gfixup() {
+            |     SHA=$(git rev-parse $1) \
+            |         && git commit --fixup $SHA \
+            |         && git rebase -i --autosquash $SHA~
+            | }
+            | # ==> $ gfixup {sha1}
+          li: pre: code.language-git
+            | # Ou un alias git dans votre .gitconfig
+            | [alias]
+            |   fixup = !sh -c 'SHA=$(git rev-parse $1) \
+            |        && git commit --fixup $SHA \
+            |        && git rebase -i --autosquash $SHA~' -
+            | # ==> $ git fixup {sha1}
 
               
       // J'ai modifié mes commits, puis j'ai pull
@@ -133,19 +151,6 @@ html
         img(src='images/git-index-added-file.svg')
       section
         img(src='images/git-index-committed-file.svg')
-          
-      section
-        ul
-          li: pre: code.language-git
-            | # On ne prend pas trop de risques
-            | git reset HEAD~ --soft
-          li: pre: code.language-git
-            | # Les deux sont équivalents
-            | git reset HEAD~ --mixed
-            | git reset HEAD~
-          li: pre: code.language-git
-            | # Bourrin
-            | git reset HEAD~ --hard
 
       section
         img(src='images/reset-initial-state.svg')
@@ -155,6 +160,19 @@ html
         img(src='images/reset-mixed.svg')
       section
         img(src='images/reset-hard.svg')
+
+      section
+        ul
+          li: pre: code.language-git
+            | # On garde les modifs, indexées
+            | git reset HEAD~ --soft
+          li: pre: code.language-git
+            | # On garde toujours les modifs mais non indexées
+            | git reset HEAD~ --mixed
+            | git reset HEAD~
+          li: pre: code.language-git
+            | # On supprime toutes les modifs
+            | git reset HEAD~ --hard
 
       // Revenir sur la branche précédente
       section(data-bespoke-backdrop='quote-bg')
@@ -189,11 +207,11 @@ html
         ul
           li
             pre: code.language-git
-              | # Modifications &laquo; unstaged &raquo;
+              | # Modifications non indexées
               | git diff
           li
             pre: code.language-git
-              | # Modifications &laquo; staged &raquo;
+              | # Modifications indexées
               | git diff --cached
               | git diff --staged
           li
@@ -205,9 +223,11 @@ html
         .quote Je veux annuler les modifications faites sur un fichier en particulier.
 
       section
-        pre: code.language-git
-          | # Tout ce qui suit le "--" est considéré comme un nom de fichier 
-          | git checkout -- monFichier.ext
+        ul
+          li
+            pre: code.language-git
+              | # Tout ce qui suit le "--" est considéré comme un nom de fichier 
+              | git checkout -- monFichier.ext
 
       section(data-bespoke-backdrop='quote-bg')
         .quote Je me suis basé sur une autre branche que master pour développer ma feature
@@ -230,6 +250,8 @@ html
             | # On n'oublie pas le ~ tilde ~ !
             | git rebase {sha1-E}~ --onto master
           
-      
-        
+      Section
+        h1 Merci !
+
+
     script(src='build/build.js')
