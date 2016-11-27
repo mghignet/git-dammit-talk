@@ -201,41 +201,86 @@ html
       // Supprimer le dernier commit
       section(data-bespoke-backdrop='quote-bg')
         .quote Je veux supprimer mon dernier commit.
+        aside
+          p Cela paraît plutôt simple, mais voyons les différentes options que nous offre Git. Pour comprendre ces options il faut comprendre comment Git gère nos sources.
         
       section
         img(src='images/git-index-initial-state.svg')
+        aside
+          p Imaginons nous sur un repository Git local, ayant un fichier <b>file.txt</b> en <b>version 1</b>.
+          p On distingue notions différentes pour la gestion des sources.
+          hr
+          p - <b>Le Working directory</b>: c'est ce qui se trouve effectivement sur votre disque dur : ce que vous voyez et pouvez modifier dans votre éditeur favori.
+          p - <b>L'index</b>: Lorsque Git indexe les fichiers (<b>git add</b>), il crée dans le dossier <b>.git</b> un ensemble d'objets contenant le contenu des fichiers. Il crée aussi d'autres objets pour sauvegarder la hiérarchie et le nom de chaque fichier indexé. Tout cela forme un snapshot, prêt à être commité. D'ailleurs, un commit est un objet qui référence un snapshot.
+          p - <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>.
+          
       section
         img(src='images/git-index-initial-state-status.svg')
+        aside
+          p Imaginons que je modifie <b>file.txt</b>. Il passe en version 2.
+          p Git détecte une différence entre le <b>Working directory</b> et <b>l'index</b>. Il me le notifie. C'est la fameuse <span class="red">zone rouge</span> de mon <b>git status</b>.
+          p A ce stade, la modification n'est pas indexée par Git, donc si je décide de faire un commit, ce dernier ne la contiendra pas.
+        
       section
         img(src='images/git-index-added-file.svg')
+        aside
+          p Maintenant via un <b>git add</b>, je décide d'ajouter ma modification à Git. Elle devient indexée.
+          p Git est heureux, <b>l'index</b> et le <b>Working directory</b> sont en phase. Par contre, <b>HEAD</b> et <b>l'index</b> ne le sont pas. Git me le notifie. C'est la fameuse <span class="green">zone verte</span> de mon <b>git status</b>.
+          p Cette fois, si je décide de faire un commit, la modification sera contenue dans celui-ci.
+        
       section
         img(src='images/git-index-reset-file.svg')
+        aside
+          p Inversement, si je lance un <b>git reset</b> sur mon fichier, Git supprime la modification de son index. On est revenu à l'étape précédente.
+        
       section
         img(src='images/git-index-added-file.svg')
+        aside
+          p Mais revenons à l'étape "j'ai indexé ma modification"...
+        
       section
         img(src='images/git-index-committed-file.svg')
+        aside
+          p Je lance un <b>git commit</b>. Git est à nouveau heureux, le <b>Working directory</b>, <b>l'index</b> et <b>HEAD</b> sont au même point. Ils contiennent tous le fichier en version 2.
 
       section
         img(src='images/reset-initial-state.svg')
+        aside
+          p Maintenant, on s'imagine dans cette situation, placé sur le commit <b>D</b>. Notre fichier <b>file.txt</b> est en version 2.
+          p Nous souhaitons supprimer le commit <b>D</b>. Trois stratégies existent.
+        
       section
         img(src='images/reset-soft.svg')
+        aside
+          p La première déplace <b>HEAD</b> sur le commit parent de <b>D</b>, à savoir <b>C</b>. Le commit <b>D</b> n'est plus visible sur cette branche mais ni <b>l'index</b> ni le <b>Working Directory</b> ne sont modifiés.
+          p Ce qui signifie un fichier toujours en version 2 dans l'éditeur et le fichier dans la <span class="green">zone verte</span> du <b>git status</b>.
+        
       section
         img(src='images/reset-mixed.svg')
+        aside
+          p La seconde déplace toujours <b>HEAD</b>, mais modifie aussi <b>l'index</b>. Le <b>Working Directory</b> contient toujours <b>file.txt</b> en version 2.
+          p Si on exécute <b>git status</b>, on trouvera alors <b>file.txt</b> dans la <span class="red">zone rouge</span>.
+        
       section
         img(src='images/reset-hard.svg')
+        aside
+          p La troisième déplace <b>HEAD</b>, modifie <b>l'index</b> mais aussi le <b>Working directory</b> !
 
       section
         ul
           li: pre: code.language-git
             | # On garde les modifs, indexées
             | git reset HEAD~ --soft
-          li: pre: code.language-git
+          li.notbullet: pre: code.language-git
             | # On garde toujours les modifs mais non indexées
             | git reset HEAD~ --mixed
             | git reset HEAD~
-          li: pre: code.language-git
+          li.notbullet: pre: code.language-git
             | # On supprime toutes les modifs
             | git reset HEAD~ --hard
+        aside
+          p Pour résumer...
+          p On note que l'option <b>--mixed</b> est équivalente à aucune option pour <b>git reset</b>.
 
       // Revenir sur la branche précédente
       section(data-bespoke-backdrop='quote-bg')
@@ -245,7 +290,11 @@ html
         ul: li: pre: code.language-git
           | # Comme "cd -" en shell !
           | git checkout -
-
+        aside
+          p Il existe des similitudes entre <b>git checkout</b> et <b>git reset</b>.
+          hr
+          p - <b>git reset</b> déplace <b>HEAD</b> (notre position) ainsi que la branche (qui n'est autre qu'un pointeur vers un commit, au même titre que <b>HEAD</b>) vers le sha1 spécifié.
+          p - <b>git checkout</b> déplace <b>HEAD</b> uniquement. Cela permet de se déplacer entre les branches par exemple.
 
       // git add -p
       section(data-bespoke-backdrop='quote-bg')
@@ -261,6 +310,9 @@ html
             pre: code.language-git
               | # Dans l'autre sens
               | git reset -p
+        aside
+          p L'option <b>-p</b> permet d'entrer dans un mode interactif où Git va nous proposer d'indexer ou non les modifications par petits morceaux appelés <b>hunks</b>.
+          p Ce mode est aussi disponible pour la commande <b>reset</b>.
 
       // git status, git diff...
       section(data-bespoke-backdrop='quote-bg')
@@ -281,30 +333,54 @@ html
             pre: code.language-git
               | # Toutes les modifications
               | git diff HEAD
+          li
+            pre: code.language-git
+              | # Les modifications entre deux commits / branches
+              | git diff ab0f..89df
+              | git diff ab0f..master
+              | git diff ab0f..HEAD
+        aside
+          p Les options <b>--cached</b> et <b>--staged</b> sont équivalentes.
+          p Ne spécifier qu'un seul sha1 donnera les différences entre le sha1 désigné et l'état actuel du <b>Working Directory</b> ou de <b>l'index</b> (en fonction de l'option choisie).
         
       section(data-bespoke-backdrop='quote-bg')
         .quote Je veux annuler les modifications faites sur un fichier en particulier.
 
       section
         ul
-          li
-            pre: code.language-git
-              | # Tout ce qui suit le "--" est considéré comme un nom de fichier 
-              | git checkout -- monFichier.ext
+          li: pre: code.language-git
+            | # Cette méthode a des défauts...
+            | git checkout monFichier.ext
+          li: pre: code.language-git
+            | # Tout ce qui suit le "--" est considéré comme un nom de fichier
+            | git checkout -- monFichier.ext
+        aside
+          p Ici le <b>--</b> n'est pas obligatoire dans tous les cas mais très conseillé.
+          p Imaginons qu'un fichier porte le même nom qu'une branche, par exemple <b>master</b>. Lancer <b>git checkout master</b> n'aurait pas le résultat attendu.
+          p En shell, un double tiret signifique toujours que ce qui suit représente des noms de fichiers. Cela permet d'éviter les malentendus.
 
       section(data-bespoke-backdrop='quote-bg')
         .quote Je me suis basé sur une autre branche que master pour développer ma feature
         .subquote Je n'avais pas le choix&#8230;
+        aside
+          p Cela arrive régulièrement lorsque l'on a besoin des modifications faites par quelqu'un d'autre sur une branche mais que cette dernière n'a pas encore été mergée.
           
       section
         ul.row
           li: img(src='images/rebase-onto-initial.svg')
           li: img(src='images/rebase-onto-new-branch.svg')
+        aside
+          p Imaginons que depuis <b>master</b> nous ayons tiré une branche qu'on appelle ici <b>john</b>.
+          p Le travail sur <b>john</b> est fini mais pas encore mergé sur <b>master</b>. Pourtant, nous avons besoin des modifications que <b>john</b> contient pour notre nouvelle feature.
+          p On tire alors une branche <b>paul</b>, basée non pas sur <b>master</b> mais sur <b>john</b>.
           
       section
         ul.row
           li: img(src='images/rebase-onto-merged-not-rewritten.svg')
           li: img(src='images/rebase-onto-merged-rewritten.svg')
+        aside
+          p Le souci est qu'une fois <b>john</b> mergée, <b>paul</b> dépend toujours de <b>john</b> et non de <b>master</b>. Dans le premier cas ci-contre, cela ne pose pas trop de problème car les commits de <b>john</b> n'ont pas été modifiés donc Git s'en sortira lors du rebase ou du merge avec <b>master</b>.
+          p Par contre si les commits de <b>john</b> ont été réécrits comme on l'a vu précédemment, on risque de se retrouver avec des commits en double (vu aussi précédemment) lors du rebase ou du merge de <b>paul</b> avec <b>master</b>.
           
       section
         ul.column
@@ -312,9 +388,18 @@ html
           li: pre: code.language-git
             | # On n'oublie pas le ~ tilde ~ !
             | git rebase {sha1-E}~ --onto master
-          
-      Section
-        h1 Merci !
+        aside
+          p On souhaite arriver à ce résultat
+          hr
+          p Pour cela, on utilise la commande ci-contre, en utilisant le sha1 du dernier commit que l'ont veut garder <b>~ avec un tilde ~</b> (cela représente le parent de ce commit), ou alors celui du premier que l'on veut laisser, au choix.
+          p Ensuite, l'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits
+          p Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> (qui deviennent alors <b>E'</b> et <b>F'</b> car ils sont réécrits lors du rebase) au dessus de la branche <b>master</b> mise à jour, qui contient déjà les commits de <b>john</b>.
+
+      section
+        h1 Questions ?
+
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Merci !
 
 
     script(src='build/build.js')
