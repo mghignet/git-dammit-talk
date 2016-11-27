@@ -5,11 +5,35 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    id="svg7431"
    viewBox="0 0 1562.1744 1496.411"
    height="422.32047mm"
-   width="440.88034mm">
+   width="440.88034mm"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="reset-initial-state.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1023"
+     id="namedview8678"
+     showgrid="false"
+     inkscape:zoom="0.63084269"
+     inkscape:cx="803.94332"
+     inkscape:cy="794.40969"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg7431" />
   <defs
      id="defs7433" />
   <metadata
@@ -20,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -81,11 +105,12 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:58.63646317px;line-height:125%;font-family:Photographs;-inkscape-font-specification:Photographs;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            x="2668.2368"
            y="-2529.3806"
-           id="text4988"><tspan
+           id="text4988"
+           sodipodi:linespacing="125%"><tspan
              id="tspan4990"
              x="2668.2368"
              y="-2529.3806"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">file.ext</tspan><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">file.txt</tspan><tspan
              x="2668.2368"
              y="-2504.3806"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
@@ -129,11 +154,12 @@
            y="-2529.3806"
            x="2668.2368"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:58.63646317px;line-height:125%;font-family:Photographs;-inkscape-font-specification:Photographs;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           xml:space="preserve"><tspan
+           xml:space="preserve"
+           sodipodi:linespacing="125%"><tspan
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
              y="-2529.3806"
              x="2668.2368"
-             id="tspan5016">file.ext</tspan><tspan
+             id="tspan5016">file.txt</tspan><tspan
              id="tspan5018"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
              y="-2504.3806"
@@ -177,11 +203,12 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:58.63646317px;line-height:125%;font-family:Photographs;-inkscape-font-specification:Photographs;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            x="2668.2368"
            y="-2529.3806"
-           id="text5040"><tspan
+           id="text5040"
+           sodipodi:linespacing="125%"><tspan
              id="tspan5042"
              x="2668.2368"
              y="-2529.3806"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">file.ext</tspan><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">file.txt</tspan><tspan
              x="2668.2368"
              y="-2504.3806"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
@@ -340,4 +367,15 @@
        id="circle5124"
        style="fill:none;fill-opacity:1;stroke:#364a62;stroke-width:21.9659996;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="221.92537"
+     y="361.42126"
+     id="text9220"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan9222"
+       x="221.92537"
+       y="361.42126"></tspan></text>
 </svg>

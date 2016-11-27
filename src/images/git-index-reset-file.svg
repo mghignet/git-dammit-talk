@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.24748737"
-     inkscape:cx="-515.58017"
+     inkscape:cx="-525.6817"
      inkscape:cy="-262.79587"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -36,7 +36,7 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:window-width="1920"
-     inkscape:window-height="1051"
+     inkscape:window-height="1023"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -207,7 +207,7 @@
          sodipodi:role="line"
          x="922.36853"
          y="1520.0568"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:58.0451889px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;fill:#d40000;fill-opacity:1">file.ext</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:58.0451889px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;fill:#d40000;fill-opacity:1">file.txt</tspan></text>
     <g
        transform="matrix(3,0,0,3,-6000.955,30805.383)"
        id="g5430">

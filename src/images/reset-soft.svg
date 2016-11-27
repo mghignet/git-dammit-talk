@@ -31,9 +31,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.15777016"
-     inkscape:cx="792.84988"
-     inkscape:cy="741.58471"
+     inkscape:zoom="0.63108096"
+     inkscape:cx="402.04573"
+     inkscape:cy="1066.2254"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -339,7 +339,7 @@
            y="-2749.3806"
            x="2668.2368"
            sodipodi:role="line"
-           id="tspan5321">file.ext</tspan><tspan
+           id="tspan5321">file.txt</tspan><tspan
            id="tspan5323"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
            y="-2724.3806"
@@ -396,7 +396,7 @@
            sodipodi:role="line"
            x="2668.2368"
            y="-2529.3806"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">file.ext</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1">file.txt</tspan><tspan
            sodipodi:role="line"
            x="2668.2368"
            y="-2504.3806"
@@ -453,7 +453,7 @@
            y="-2529.3806"
            x="2668.2368"
            sodipodi:role="line"
-           id="tspan5376">file.ext</tspan><tspan
+           id="tspan5376">file.txt</tspan><tspan
            id="tspan5378"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1"
            y="-2504.3806"
