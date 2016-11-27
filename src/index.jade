@@ -13,6 +13,10 @@ html
 
       section.murder-text(data-bespoke-backdrop='murder')
         h1 Git Dammit!
+        .meta
+          div
+            img.icon(src='images/twitter-white.svg')
+            span @mghignet
 
       // Modifier dernier commit
       section(data-bespoke-backdrop='quote-bg')
@@ -52,7 +56,7 @@ html
           li.notbullet: .quote Celui que je dois modifier n'est pas le dernier...
           li.centered.double: img(src='images/simple-branch-light.svg')
         aside
-          p Et si maintenant on souhaitait modifier le commit A ?
+          p Et si maintenant on souhaitait modifier le commit <b>A</b> ?
 
       section
         ul.column
@@ -62,7 +66,7 @@ html
               | git commit --fixup {sha1-A}
           li.double.centered: img(src='images/fixup-branch.svg')
         aside
-          p Deux étapes :
+          p Cette fois ci, deux étapes :
           p <b>Etape 1 :</b> je crée un commit de fixup.
           hr
           p C'est un commit qui fait office de "patch" du commit à modifier. Il se rajoute en haut de la pile des commits. On l'appelle ici <b>Af</b>.
@@ -78,9 +82,10 @@ html
               li: img(src='images/fixup-branch-squashed-end.svg')
         aside
           p <b>Etape 2 :</b> j'utilise le rebase intéractif pour réécrire l'historique de mes commits.
+          p Pour plus d'informations sur le rebase intéractif, je vous recommande vivement <a href="https://www.youtube.com/watch?v=m0_C2cfM9IM">cette présentation</b> de Cyril Lakech et Hubert Sablonnière</a>.
           hr
           p L'option --autosquash permet de replacer le commit de fixup directement au bon endroit pendant la procédure.
-          p Le commit <b>A</b> sera réécrit (sont contenu sera composé des contenus de <b>A</b> et de <b>Af</b>), mais tous les commits qui suivent seront aussi réécrit car leur parent a changé. Ainsi, <b>B</b> deviendra <b>B'</b>.
+          p Le commit <b>A</b> sera réécrit en <b>A'</b> (son contenu sera composé des contenus de <b>A</b> et de <b>Af</b>), mais tous les commits qui suivent seront aussi réécrit car leur parent a changé. Ainsi, <b>B</b> deviendra <b>B'</b>.
           p Il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.
 
       section
@@ -108,6 +113,8 @@ html
       section(data-bespoke-backdrop='quote-bg')
         .quote Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
         .subquote Je me retrouve avec des commits en double :(
+        aside
+          p Pour la majorité des cas présentés ici, on part du principe que l'on travaille seul sur sa branche (une "feature branch"). C'est de toute façon la manière de travailler que je recommande.
 
       section
         ul.column
@@ -119,7 +126,7 @@ html
               li: img(src='images/remote-branch.svg')
         aside
           p En local, on avait réécrit des commits. Notre branche contient les commits <b>A'</b> et <b>B'</b>.
-          p Sur le repository distant, la branche contient toujours les commits <b>A</b> et <b>B</b>.
+          p Sur le repository distant, la branche contient toujours les commits <b>A</b> et <b>B</b> qui rappelons-le, sont totalement différents de <b>A'</b> et <b>B'</b> aux yeux de Git.
 
       section
         ul.column
@@ -127,10 +134,8 @@ html
             h2.centered Aïe&#8230;
           li.quintuple.notbullet
             ul.row
-              li.notbullet
-                img(src='images/merged-branch-wrong.svg')
-              li.notbullet
-                img(src='images/rebased-branch-wrong.svg')
+              li: img(src='images/merged-branch-wrong.svg')
+              li: img(src='images/rebased-branch-wrong.svg')
         aside
           p Dans le cas d'un pull classique, donc stratégie <b>merge</b> (à gauche), Git va prendre les deux branches, créer un commit de merge après la résolution (inutile) de conflits.
           p Dans le cas d'un pull avec rebase (<b>pull -r</b>), Git va essayer d'appliquer les commits locaux sur la branche distante. <b>A'</b> et <b>B'</b> seront une nouvelle fois réécrits en <b>A''</b> et <b>B''</b>.
@@ -182,6 +187,7 @@ html
         aside
           p Pour revenir à la version de la branche distante, il suffit donc de se replacer au même niveau que la branche de tracking, <b>après l'avoir mise à jour</b>.
           p Le <b>fetch</b> met à jour la branche de tracking, le <b>reset --hard</b> replace le pointeur de notre branche actuelle sur celui de la branche de tracking.
+          p En effet, une branche n'est ni plus ni moins qu'un pointeur vers un commit...
           
       section
         ul
@@ -210,7 +216,7 @@ html
           p Imaginons nous sur un repository Git local, ayant un fichier <b>file.txt</b> en <b>version 1</b>.
           p On distingue notions différentes pour la gestion des sources.
           hr
-          p - <b>Le Working directory</b>: c'est ce qui se trouve effectivement sur votre disque dur : ce que vous voyez et pouvez modifier dans votre éditeur favori.
+          p - <b>Le Working Directory</b>: c'est ce qui se trouve effectivement sur votre disque dur : ce que vous voyez et pouvez modifier dans votre éditeur favori.
           p - <b>L'index</b>: Lorsque Git indexe les fichiers (<b>git add</b>), il crée dans le dossier <b>.git</b> un ensemble d'objets contenant le contenu des fichiers. Il crée aussi d'autres objets pour sauvegarder la hiérarchie et le nom de chaque fichier indexé. Tout cela forme un snapshot, prêt à être commité. D'ailleurs, un commit est un objet qui référence un snapshot.
           p - <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>.
           
@@ -395,11 +401,16 @@ html
           p Ensuite, l'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits
           p Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> (qui deviennent alors <b>E'</b> et <b>F'</b> car ils sont réécrits lors du rebase) au dessus de la branche <b>master</b> mise à jour, qui contient déjà les commits de <b>john</b>.
 
+
       section
         h1 Questions ?
 
       section(data-bespoke-backdrop='quote-bg')
         .quote Merci !
+        .meta
+          div
+            img.icon(src='images/twitter-white.svg')
+            span @mghignet
 
 
     script(src='build/build.js')
