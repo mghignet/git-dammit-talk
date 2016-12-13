@@ -7,11 +7,13 @@
 @import 'prism/themes/prism-okaidia.css'
 // Check out "bower_components/prism/themes/" for available themes
 
+.murder
+  background: #000
 
 .murder::after
   content: "";
-  background-image: url('../images/murder.jpg')
-  opacity: 0.8;
+  background: url('../images/murder.jpg')
+  opacity: 0.5;
   top: 0;
   left: 0;
   bottom: 0;
@@ -20,25 +22,37 @@
   z-index: -1;
 
 .murder-text h1
-  color: #710000
+  color: white
   font-family: 'Permanent Marker', cursive
   font-size: 6em
   padding: 10px
   text-shadow: 1px 1px 1px black
   border-radius: 10px
 
-.meta
+.meta-left,
+.meta-right
   position: absolute
   bottom: 20px
-  right: 0
   padding: 20px
-  text-align: right
   white-space: nowrap
+  width: 50%
+  height: 25%
   *
     color: white
     font-size: 1.5rem
     .murder-text &
-      text-shadow: 0px 0px 10px #000
+      text-shadow: 0 0 10px #000
+
+.meta-left
+  left: 0
+  text-align: left
+  .logo-ineat
+    width: 150px
+
+.meta-right
+  right: 0
+  text-align: right
+  padding-top: 10%
 
 .icon
   max-height: 24px

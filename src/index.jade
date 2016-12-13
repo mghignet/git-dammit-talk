@@ -13,10 +13,28 @@ html
 
       section.murder-text(data-bespoke-backdrop='murder')
         h1 Git Dammit!
-        .meta
+        .meta-left
+          div: img.logo-ineat(src='images/logo-ineat-white.svg')
+        .meta-right
           div
             img.icon(src='images/twitter-white.svg')
             span @mghignet
+        aside
+          p Le but de cette présentation est d'apprendre Git par la pratique en balayant un certain nombre de situations dans lequelles on peut se retrouver coincé.
+          hr
+          p Toutes ces situations se sont déjà produites ! Modification ou suppression de commits, séparation de modifications dans plusieurs commits, rebase d'une partie de branche, etc...
+
+      section
+        ul
+          li On travaille sur une &laquo; feature branch &raquo;, seul.
+          li On a soumis notre branche pour une revue de code
+          li Mais les collègues suggèrent des modifications...
+          li On ne va quand même pas refaire un commit pour ce point virgule ?!
+        aside
+          p Dans les différents cas qui suivent, on part du principe que l'on travaille sur une branche Git qui nous appartient, sur laquelle on est seul à travailler.
+          p Le principe est de partir de la branche master pour tirer une branche à chaque feature puis d'effectuer un merge de cette &laquo; feature branch &raquo; une fois le travail terminé.
+          p De manière générale, il n'est pas recommandé de travailler sur master !
+
 
       // Modifier dernier commit
       section(data-bespoke-backdrop='quote-bg')
@@ -24,6 +42,7 @@ html
 
       section
         ul
+          li git add, puis...
           li
             pre: code.language-git
               | # Le contenu et le nom
@@ -32,6 +51,10 @@ html
             pre: code.language-git
               | # Le contenu seulement
               | git commit --amend --no-edit
+        aside
+          p On utilise l'option <b>--amend</b> pour modifier le dernier commit.
+          p Couplé à l'option <b>--no-edit</b>, cela permet de modifier uniquement le contenu sans modifier le message de commit.
+          p Bien entendu, on part du principe qu'on avait ajouté les modifications à commiter à l'index Git avant de lancer cette commande.
 
       section
         ul.row
@@ -70,6 +93,7 @@ html
           p <b>Etape 1 :</b> je crée un commit de fixup.
           hr
           p C'est un commit qui fait office de "patch" du commit à modifier. Il se rajoute en haut de la pile des commits. On l'appelle ici <b>Af</b>.
+          p Ici, <b>A</b>, <b>B</b> et <b>Af</b> représentent les sha1 des commits en question, c'est à dire leur identifiant unique. On leur attribue un nom court pour plus de compréhension...
 
       section
         ul.column
@@ -84,9 +108,17 @@ html
           p <b>Etape 2 :</b> j'utilise le rebase intéractif (option <b>-i</b>) pour réécrire l'historique de mes commits.
           p Pour plus d'informations sur le rebase intéractif, je vous recommande vivement <a href="https://www.youtube.com/watch?v=m0_C2cfM9IM">cette présentation</b> de Cyril Lakech et Hubert Sablonnière</a>.
           hr
-          p L'option --autosquash permet de replacer le commit de fixup directement au bon endroit pendant la procédure.
+          p L'option <b>--autosquash</b> permet de replacer le commit de fixup directement au bon endroit pendant la procédure.
           p Le commit <b>A</b> sera réécrit en <b>A'</b> (son contenu sera composé des contenus de <b>A</b> et de <b>Af</b>), mais tous les commits qui suivent seront aussi réécrit car leur parent a changé. Ainsi, <b>B</b> deviendra <b>B'</b>.
           p Il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.
+
+      section
+        ul
+          li: pre: code.language-git
+            | # Encore une fois...
+            | git push -f origin ma-branche
+        aside
+          p Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; !
 
       section
         ul
@@ -108,22 +140,14 @@ html
         aside
           p Pour faciliter la procédure, on peut écrire des alias, soit en créant un alias du shell ou en passant par les alias Git.
 
-      section
-        ul
-          li: pre: code.language-git
-            | # Encore une fois...
-            | git push -f origin ma-branche
-        aside
-          p Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; !
 
-              
       // J'ai modifié mes commits, puis j'ai pull
       section(data-bespoke-backdrop='quote-bg')
         .quote Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
         .subquote Je me retrouve avec des commits en double :(
         aside
           p Si on a oublié de force push...
-          p Pour la majorité des cas présentés ici, on part du principe que l'on travaille seul sur sa branche (une "feature branch"). C'est en tout cas la manière de travailler que je recommande.
+          p Pour la majorité des cas présentés ici, on part du principe que l'on travaille seul sur sa branche (une &laquo; feature branch &raquo;). C'est en tout cas la manière de travailler que je recommande.
 
       section
         img(src='images/chuck-never-pulls.svg')
@@ -422,7 +446,8 @@ html
         aside
           p On souhaite arriver à ce résultat
           hr
-          p Pour cela, on utilise la commande ci-contre, en utilisant le sha1 du dernier commit que l'ont veut garder <b>~ avec un tilde ~</b> (cela représente le parent de ce commit), ou alors celui du premier que l'on veut laisser, au choix.
+          p Pour cela, on utilise la commande ci-contre, en utilisant le sha1 du dernier commit que l'ont veut garder <b>~ avec un tilde ~</b> (cela représente le commit parent), ou alors celui du premier que l'on veut laisser, au choix.
+          p Quand on effectue une rebase, il faut se replacer avant les commits à réécrire, d'où le tilde.
           p Ensuite, l'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits
           p Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> (qui deviennent alors <b>E'</b> et <b>F'</b> car ils sont réécrits lors du rebase) au dessus de la branche <b>master</b> mise à jour, qui contient déjà les commits de <b>john</b>.
 
@@ -432,7 +457,9 @@ html
 
       section(data-bespoke-backdrop='quote-bg')
         .quote Merci !
-        .meta
+        .meta-left
+          div: img.logo-ineat(src='images/logo-ineat-white.svg')
+        .meta-right
           div
             img.icon(src='images/twitter-white.svg')
             span @mghignet
