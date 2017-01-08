@@ -22,23 +22,22 @@ html
         aside
           p Le but de cette présentation est d'apprendre Git par la pratique en balayant un certain nombre de situations dans lequelles on peut se retrouver coincé.
           hr
-          p Toutes ces situations se sont déjà produites ! Modification ou suppression de commits, séparation de modifications dans plusieurs commits, rebase d'une partie de branche, etc...
+          p Afin de comprendre comment se sortir de ces situations, nous allons tenter de comprendre comment nous nous y sommes retrouvés et comment fonctionne Git.
 
-      section
-        ul
-          li On travaille sur une &laquo; feature branch &raquo;, seul.
-          li On a soumis notre branche pour une revue de code
-          li Mais les collègues suggèrent des modifications...
-          li On ne va quand même pas refaire un commit pour ce point virgule ?!
+      section(data-bespoke-backdrop='console-bg')
+        img(src='images/git-log-wtf.jpg')
         aside
           p Dans les différents cas qui suivent, on part du principe que l'on travaille sur une branche Git qui nous appartient, sur laquelle on est seul à travailler.
           p Le principe est de partir de la branche master pour tirer une branche à chaque feature puis d'effectuer un merge de cette &laquo; feature branch &raquo; une fois le travail terminé.
           p De manière générale, il n'est pas recommandé de travailler sur master !
+          p Il est important d'avoir un bel historique, ne serait-ce que pour la lisiblité, mais aussi car certains outils existent pour générer des changelogs à partir des messages de commits.
 
 
       // Modifier dernier commit
       section(data-bespoke-backdrop='quote-bg')
         .quote J'ai besoin de modifier mon dernier commit.
+        aside
+          p Commençons simplement...
 
       section
         ul
@@ -61,8 +60,9 @@ html
           li: img(src='images/simple-branch.svg')
           li: img(src='images/simple-branch-amended.svg')
         aside
-          p Le commit modifié a été réécrit, il n'a donc plus le même sha1.
+          p Qu'avons-nous fait ?
           hr
+          p Le commit modifié a été réécrit, il n'a donc plus le même sha1.
           p Aux yeux de Git, les commits <b>B</b> et <b>B'</b> sont donc totalement différents.
 
       section
@@ -106,7 +106,7 @@ html
               li: img(src='images/fixup-branch-squashed-end.svg')
         aside
           p <b>Etape 2 :</b> j'utilise le rebase intéractif (option <b>-i</b>) pour réécrire l'historique de mes commits.
-          p Pour plus d'informations sur le rebase intéractif, je vous recommande vivement <a href="https://www.youtube.com/watch?v=m0_C2cfM9IM">cette présentation</b> de Cyril Lakech et Hubert Sablonnière</a>.
+          p Pour plus d'informations sur le rebase intéractif, je vous recommande vivement <a href="https://www.youtube.com/watch?v=m0_C2cfM9IM" target="_blank">cette présentation</b> de Cyril Lakech et Hubert Sablonnière</a>.
           hr
           p L'option <b>--autosquash</b> permet de replacer le commit de fixup directement au bon endroit pendant la procédure.
           p Le commit <b>A</b> sera réécrit en <b>A'</b> (son contenu sera composé des contenus de <b>A</b> et de <b>Af</b>), mais tous les commits qui suivent seront aussi réécrit car leur parent a changé. Ainsi, <b>B</b> deviendra <b>B'</b>.
@@ -146,8 +146,7 @@ html
         .quote Oups, J'ai modifié mes commits, et puis j'ai fait un pull.
         .subquote Je me retrouve avec des commits en double :(
         aside
-          p Si on a oublié de force push...
-          p Pour la majorité des cas présentés ici, on part du principe que l'on travaille seul sur sa branche (une &laquo; feature branch &raquo;). C'est en tout cas la manière de travailler que je recommande.
+          p Si on a oublié les conseils précédents...
 
       section
         img(src='images/chuck-never-pulls.svg')
@@ -454,6 +453,8 @@ html
 
       section
         h1 Questions ?
+        aside
+          p Si vous avez des questions ou des remarques, n'hésitez pas à me contacter sur Twitter : <a href="https://twitter.com/mghignet" target="_blank">@mghignet</a>.
 
       section(data-bespoke-backdrop='quote-bg')
         .quote Merci !
