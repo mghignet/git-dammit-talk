@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Git dammit!</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+  </head>
+  <body>
+    <article>
+      <section data-bespoke-backdrop="murder" class="murder-text">
+        <h1>Git Dammit!</h1>
+        <div class="meta-left">
+          <div><img src="images/logo-ineat-white.svg" class="logo-ineat"></div>
+        </div>
+        <div class="meta-right">
+          <div><img src="images/twitter-white.svg" class="icon"><span>@mghignet</span></div>
+        </div>
+        <aside>
+          <p>Le but de cette présentation est d'apprendre Git par la pratique en balayant un certain nombre de situations dans lequelles on peut se retrouver coincé.</p>
+          <hr>
+          <p>Afin de comprendre comment se sortir de ces situations, nous allons tenter de comprendre comment nous nous y sommes retrouvés et comment fonctionne Git.</p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="console-bg"><img src="images/git-log-wtf.jpg">
+        <aside>
+          <p>Dans les différents cas qui suivent, on part du principe que l'on travaille sur une branche Git qui nous appartient, sur laquelle on est seul à travailler.</p>
+          <p>Le principe est de partir de la branche master pour tirer une branche à chaque feature puis d'effectuer un merge de cette &laquo; feature branch &raquo; une fois le travail terminé.</p>
+          <p>De manière générale, il n'est pas recommandé de travailler sur master !</p>
+          <p>Il est important d'avoir un bel historique, ne serait-ce que pour la lisiblité, mais aussi car certains outils existent pour générer des changelogs à partir des messages de commits.</p>
+        </aside>
+      </section>
+      <!-- Modifier dernier commit-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">J'ai besoin de modifier mon dernier commit.</div>
+        <aside>
+          <p>Commençons simplement...</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>git add, puis...</li>
+          <li>
+            <pre><code class="language-git"># Le contenu et le nom
+git commit --amend</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git"># Le contenu seulement
+git commit --amend --no-edit</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>On utilise l'option <b>--amend</b> pour modifier le dernier commit.</p>
+          <p>Couplé à l'option <b>--no-edit</b>, cela permet de modifier uniquement le contenu sans modifier le message de commit.</p>
+          <p>Bien entendu, on part du principe qu'on avait ajouté les modifications à commiter à l'index Git avant de lancer cette commande.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/simple-branch.svg"></li>
+          <li><img src="images/simple-branch-amended.svg"></li>
+        </ul>
+        <aside>
+          <p>Qu'avons-nous fait ?</p>
+          <hr>
+          <p>Le commit modifié a été réécrit, il n'a donc plus le même sha1.</p>
+          <p>Aux yeux de Git, les commits <b>B</b> et <b>B'</b> sont donc totalement différents.</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># Bien entendu il faudra &laquo; force push &raquo;
+git push -f origin ma-branche</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Les branches locale et distante ont divergé, et la plus à jour est la branche locale (à condition de travailler seul sur sa branche !)</p>
+        </aside>
+      </section>
+      <!-- Modifier, pas le dernier (fixup)-->
+      <section data-bespoke-backdrop="quote-bg">
+        <ul class="column">
+          <li class="notbullet">
+            <div class="quote">Celui que je dois modifier n'est pas le dernier...</div>
+          </li>
+          <li class="centered double"><img src="images/simple-branch-light.svg"></li>
+        </ul>
+        <aside>
+          <p>Et si maintenant on souhaitait modifier le commit <b>A</b> ?</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="column">
+          <li>
+            <pre><code class="language-git"># 1. Je fais un commit de fixup
+git commit --fixup A</code></pre>
+          </li>
+          <li class="double centered"><img src="images/fixup-branch.svg"></li>
+        </ul>
+        <aside>
+          <p>Cette fois ci, deux étapes :</p>
+          <p><b>Etape 1 :</b> je crée un commit de fixup.</p>
+          <hr>
+          <p>C'est un commit qui fait office de "patch" du commit à modifier. Il se rajoute en haut de la pile des commits. On l'appelle ici <b>Af</b>.</p>
+          <p>Ici, <b>A</b>, <b>B</b> et <b>Af</b> représentent les sha1 des commits en question, c'est à dire leur identifiant unique. On leur attribue un nom court pour plus de compréhension...</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="column">
+          <li>
+            <pre><code class="language-git"># 2. Je rebase
+git rebase -i A~ <b>--autosquash</b></code></pre>
+          </li>
+          <li class="triple notbullet">
+            <ul class="row">
+              <li><img src="images/fixup-branch-squashed.svg"></li>
+              <li><img src="images/fixup-branch-squashed-end.svg"></li>
+            </ul>
+          </li>
+        </ul>
+        <aside>
+          <p><b>Etape 2 :</b> j'utilise le rebase intéractif (option <b>-i</b>) pour réécrire l'historique de mes commits.</p>
+          <p>Pour plus d'informations sur le rebase intéractif, je vous recommande vivement <a href="https://www.youtube.com/watch?v=m0_C2cfM9IM" target="_blank">cette présentation</b> de Cyril Lakech et Hubert Sablonnière</a>.</p>
+          <hr>
+          <p>L'option <b>--autosquash</b> permet de replacer le commit de fixup directement au bon endroit pendant la procédure.</p>
+          <p>Le commit <b>A</b> sera réécrit en <b>A'</b> (son contenu sera composé des contenus de <b>A</b> et de <b>Af</b>), mais tous les commits qui suivent seront aussi réécrit car leur parent a changé. Ainsi, <b>B</b> deviendra <b>B'</b>.</p>
+          <p>Il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># Encore une fois...
+git push -f origin ma-branche</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; !</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># A placer dans mon fichier d'alias
+function gfixup() {
+    SHA=$(git rev-parse $1) \
+        && git commit --fixup $SHA \
+        && git rebase -i --autosquash $SHA~
+}
+# Utilisation : gfixup {sha1}</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git"># Ou un alias git dans mon .gitconfig
+[alias]
+  fixup = !sh -c 'SHA=$(git rev-parse $1) \
+       && git commit --fixup $SHA \
+       && git rebase -i --autosquash $SHA~' -
+# Utilisation : git fixup {sha1}</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Pour faciliter la procédure, on peut écrire des alias, soit en créant un alias du shell ou en passant par les alias Git.</p>
+        </aside>
+      </section>
+      <!-- J'ai modifié mes commits, puis j'ai pull-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Oups, J'ai modifié mes commits, et puis j'ai fait un pull.</div>
+        <div class="subquote">Je me retrouve avec des commits en double :(</div>
+        <aside>
+          <p>Si on a oublié les conseils précédents...</p>
+        </aside>
+      </section>
+      <section><img src="images/chuck-never-pulls.svg">
+        <aside>
+          <p>On voit de temps en temps ce genre de stickers sur les ordinateurs des développeurs...</p>
+          <hr>
+          <p>Cela peut être vrai quand on travaille à plusieurs sur la même branche ou si on travaille directement sur <b>master</b>.</p>
+          <p>C'est aussi vrai qu'il faut mettre à jour <b>master</b> pour tirer une nouvelle branche, pour toujours partir de la base de code la plus récente.</p>
+        </aside>
+      </section>
+      <section><img src="images/chuck-never-pulls-wrong.svg">
+        <aside>
+          <p>Par contre c'est totalement faux lorsqu'on travaille <b>seul</b> sur <b>notre</b></span> branche et que l'ont modifie ses commits en local comme on l'a vu précédemment.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="column">
+          <li class="notbullet">
+            <h2 class="centered">Que s'est-il passé ?</h2>
+          </li>
+          <li class="triple">
+            <ul class="row">
+              <li><img src="images/local-branch-amended.svg"></li>
+              <li><img src="images/remote-branch.svg"></li>
+            </ul>
+          </li>
+        </ul>
+        <aside>
+          <p>En local, on avait réécrit des commits. Notre branche contient les commits <b>A'</b> et <b>B'</b>.</p>
+          <p>Sur le repository distant, la branche contient toujours les commits <b>A</b> et <b>B</b> qui rappelons-le, sont totalement différents de <b>A'</b> et <b>B'</b> aux yeux de Git.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="column">
+          <li class="notbullet">
+            <h2 class="centered">Aïe&#8230;</h2>
+          </li>
+          <li class="quintuple notbullet">
+            <ul class="row">
+              <li><img src="images/merged-branch-wrong.svg"></li>
+              <li><img src="images/rebased-branch-wrong.svg"></li>
+            </ul>
+          </li>
+        </ul>
+        <aside>
+          <p>Dans le cas d'un pull classique, donc stratégie <b>merge</b> (à gauche), Git va prendre les deux branches, créer un commit de merge après la résolution (inutile) de conflits.</p>
+          <p>Dans le cas d'un pull avec rebase (<b>pull -r</b>), Git va essayer d'appliquer les commits locaux sur la branche distante. <b>A'</b> et <b>B'</b> seront une nouvelle fois réécrits en <b>A''</b> et <b>B''</b>.</p>
+          <p>Dans les deux cas, c'est loin d'être ce que l'on veut obtenir. On retrouve dans l'historique plusieurs fois les mêmes messages de commits...</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># Il fallait &laquo; force push &raquo;&#8230;
+git push -f origin ma-branche</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Encore une fois, on part du principe que l'on travaille seul sur notre branche et donc que la version la plus récente est donc sur notre poste.</p>
+        </aside>
+      </section>
+      <!-- Supprimer le dernier commit-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Je veux supprimer mon dernier commit.</div>
+        <aside>
+          <p>Cela paraît plutôt simple, mais voyons les différentes options que nous offre Git. Pour comprendre ces options il faut comprendre comment Git gère nos sources.</p>
+        </aside>
+      </section>
+      <section><img src="images/git-index-initial-state.svg">
+        <aside>
+          <p>Imaginons nous sur un repository Git local, ayant un fichier <b>file.txt</b> en <b>version 1</b>.</p>
+          <p>On distingue notions différentes pour la gestion des sources.</p>
+          <hr>
+          <p>- <b>Le Working Directory</b>: c'est ce qui se trouve effectivement sur votre disque dur : ce que vous voyez et pouvez modifier dans votre éditeur favori.</p>
+          <p>- <b>L'index</b>: Lorsque Git indexe les fichiers (<b>git add</b>), il crée dans le dossier <b>.git</b> un ensemble d'objets contenant le contenu des fichiers. Il crée aussi d'autres objets pour sauvegarder la hiérarchie et le nom de chaque fichier indexé. Tout cela forme un snapshot, prêt à être commité. D'ailleurs, un commit est un objet qui référence un snapshot.</p>
+          <p>- <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>.</p>
+        </aside>
+      </section>
+      <section><img src="images/git-index-initial-state-status.svg">
+        <aside>
+          <p>Imaginons que je modifie <b>file.txt</b>. Il passe en version 2.</p>
+          <p>Git détecte une différence entre le <b>Working directory</b> et <b>l'index</b>. Il me le notifie. C'est la fameuse <span class="red">zone rouge</span> de mon <b>git status</b>.</p>
+          <p>A ce stade, la modification n'est pas indexée par Git, donc si je décide de faire un commit, ce dernier ne la contiendra pas.</p>
+        </aside>
+      </section>
+      <section><img src="images/git-index-added-file.svg">
+        <aside>
+          <p>Maintenant via un <b>git add</b>, je décide d'ajouter ma modification à Git. Elle devient indexée.</p>
+          <p>Git est heureux, <b>l'index</b> et le <b>Working directory</b> sont en phase. Par contre, <b>HEAD</b> et <b>l'index</b> ne le sont pas. Git me le notifie. C'est la fameuse <span class="green">zone verte</span> de mon <b>git status</b>.</p>
+          <p>Cette fois, si je décide de faire un commit, la modification sera contenue dans celui-ci.</p>
+        </aside>
+      </section>
+      <section><img src="images/git-index-reset-file.svg">
+        <aside>
+          <p>Inversement, si je lance un <b>git reset</b> sur mon fichier, Git supprime la modification de son index. On est revenu à l'étape précédente.</p>
+        </aside>
+      </section>
+      <section><img src="images/git-index-added-file.svg">
+        <aside>
+          <p>Mais revenons à l'étape "j'ai indexé ma modification"...</p>
+        </aside>
+      </section>
+      <section><img src="images/git-index-committed-file.svg">
+        <aside>
+          <p>Je lance un <b>git commit</b>. Git est à nouveau heureux, le <b>Working directory</b>, <b>l'index</b> et <b>HEAD</b> sont au même point. Ils contiennent tous le fichier en version 2.</p>
+        </aside>
+      </section>
+      <section><img src="images/reset-initial-state.svg">
+        <aside>
+          <p>Maintenant, on s'imagine dans cette situation, placé sur le commit <b>D</b>. Notre fichier <b>file.txt</b> est en version 2.</p>
+          <p>Nous souhaitons supprimer le commit <b>D</b>. Trois stratégies existent.</p>
+        </aside>
+      </section>
+      <section><img src="images/reset-soft.svg">
+        <aside>
+          <p>La première déplace <b>HEAD</b> sur le commit parent de <b>D</b>, à savoir <b>C</b>. Le commit <b>D</b> n'est plus visible sur cette branche mais ni <b>l'index</b> ni le <b>Working Directory</b> ne sont modifiés.</p>
+          <p>Ce qui signifie un fichier toujours en version 2 dans l'éditeur et le fichier dans la <span class="green">zone verte</span> du <b>git status</b>.</p>
+        </aside>
+      </section>
+      <section><img src="images/reset-mixed.svg">
+        <aside>
+          <p>La seconde déplace toujours <b>HEAD</b>, mais modifie aussi <b>l'index</b>. Le <b>Working Directory</b> contient toujours <b>file.txt</b> en version 2.</p>
+          <p>Si on exécute <b>git status</b>, on trouvera alors <b>file.txt</b> dans la <span class="red">zone rouge</span>.</p>
+        </aside>
+      </section>
+      <section><img src="images/reset-hard.svg">
+        <aside>
+          <p>La troisième déplace <b>HEAD</b>, modifie <b>l'index</b> mais aussi le <b>Working directory</b> !</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># On garde les modifs, indexées
+git reset HEAD~ --soft</code></pre>
+          </li>
+          <li class="notbullet">
+            <pre><code class="language-git"># On garde toujours les modifs mais non indexées
+git reset HEAD~ --mixed
+git reset HEAD~</code></pre>
+          </li>
+          <li class="notbullet">
+            <pre><code class="language-git"># On supprime toutes les modifs
+git reset HEAD~ --hard</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Pour résumer...</p>
+          <p>On note que l'option <b>--mixed</b> est équivalente à aucune option pour <b>git reset</b>.</p>
+        </aside>
+      </section>
+      <!-- Revenir sur la branche précédente-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Je veux revenir sur la branche sur laquelle j'étais juste avant.</div>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># Comme "cd -" en shell !
+git checkout -</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Il existe des similitudes entre <b>git checkout</b> et <b>git reset</b>.</p>
+          <hr>
+          <p>- <b>git reset</b> déplace <b>HEAD</b> (notre position) ainsi que la branche (qui n'est autre qu'un pointeur vers un commit, au même titre que <b>HEAD</b>) vers le sha1 spécifié.</p>
+          <p>- <b>git checkout</b> déplace <b>HEAD</b> uniquement. Cela permet de se déplacer entre les branches par exemple.</p>
+        </aside>
+      </section>
+      <!-- Abandonner mes modifications-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Je veux abandonner mes modifications…</div>
+        <div class="subquote">…et revenir à la version du repository distant.</div>
+        <aside>
+          <p>Dans le cas où j'ai tout cassé...</p>
+          <p>Avant de parler de la solution, on va d'abord tenter de comprendre comment Git gère ses branches.</p>
+        </aside>
+      </section>
+      <section><img src="images/local-vs-remote-branches.svg">
+        <aside>
+          <p>Le repository distant est symbolisé par le nuage. En local, on distingue deux types de branches :</p>
+          <p>- <b>Les branches de tracking</b>, en lecture seule : ce sont des copies à un instant T du repository distant.</p>
+          <p>- <b>Les branches de travail</b>, sur lesquelles on peut agir.</p>
+        </aside>
+      </section>
+      <section>
+        <h2>Pull ? Fetch ?</h2>
+        <ul class="column">
+          <li class="quadruple"><img src="images/pull-vs-fetch-merge.svg"></li>
+          <li>
+            <pre><code class="language-git">git pull origin master</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git">git fetch origin master
+git merge master</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Mais au fait, fetch, pull, c'est quoi la différence ?</p>
+          <hr>
+          <p>Un <b>fetch</b> met simplement à jour les branches de tracking pour les faire correspondre avec le repository distant. <b>Les branches de travail ne sont pas modifiées</b>.</p>
+          <p>Un <b>pull</b> n'est ni plus ni moins qu'un <b>fetch</b> suivi d'un <b>merge</b>. Lorsqu'on fait un <b>pull -r</b> (stratégie <b>rebase</b>), le <b>merge</b> est remplacé par un <b>rebase</b>.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="column">
+          <li class="notbullet quadruple"><img src="images/local-vs-remote-branches.svg"></li>
+          <li class="notbullet">
+            <pre><code class="language-git">git fetch origin ma-branche
+git reset --hard origin/ma-branche</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Pour revenir à la version de la branche distante, il suffit donc de se replacer au même niveau que la branche de tracking, <b>après l'avoir mise à jour</b>.</p>
+          <p>Le <b>fetch</b> met à jour la branche de tracking, le <b>reset --hard</b> replace le pointeur de notre branche actuelle sur celui de la branche de tracking.</p>
+          <p>En effet, une branche n'est ni plus ni moins qu'un pointeur vers un commit...</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># A placer dans le .gitconfig
+[alias]
+  dammit = !BRANCH=$(git rev-parse --abbrev-ref HEAD) \
+    && git fetch origin $BRANCH \
+    && git reset --hard origin/$BRANCH
+# Utilisation : git dammit</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Pour faciliter la procédure, on peut écrire un alias Git.</p>
+          <p><b>Git Dammit!</b></p>
+        </aside>
+      </section>
+      <!-- git add -p-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Je veux séparer les modifications d'un même fichier dans deux commits différents.</div>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># pour indexer des modifications
+git add -p</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git"># Dans l'autre sens
+git reset -p</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>L'option <b>-p</b> permet d'entrer dans un mode interactif où Git va nous proposer d'indexer ou non les modifications par petits morceaux appelés <b>hunks</b>.</p>
+          <p>Ce mode est aussi disponible pour la commande <b>reset</b>.</p>
+        </aside>
+      </section>
+      <!-- git status, git diff...-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Comment voir les modifications en cours ?</div>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># Modifications non indexées
+git diff</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git"># Modifications indexées
+git diff --cached
+git diff --staged</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git"># Toutes les modifications
+git diff HEAD</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git"># Les modifications entre deux commits / branches
+git diff ab0f..89df
+git diff ab0f..master
+git diff ab0f..HEAD</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Les options <b>--cached</b> et <b>--staged</b> sont équivalentes.</p>
+          <p>Ne spécifier qu'un seul sha1 donnera les différences entre le sha1 désigné et l'état actuel du <b>Working Directory</b> ou de <b>l'index</b> (en fonction de l'option choisie).</p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Je veux annuler les modifications faites sur un fichier en particulier.</div>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># Cette méthode a des défauts...
+git checkout monFichier.ext</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git"># Tout ce qui suit le "--" est considéré comme un nom de fichier
+git checkout -- monFichier.ext</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Ici le <b>--</b> n'est pas obligatoire dans tous les cas mais très conseillé.</p>
+          <p>Imaginons qu'un fichier porte le même nom qu'une branche, par exemple <b>master</b>. Lancer <b>git checkout master</b> n'aurait pas le résultat attendu.</p>
+          <p>En shell, un double tiret signifique toujours que ce qui suit représente des noms de fichiers. Cela permet d'éviter les malentendus.</p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Je me suis basé sur une autre branche que master pour développer ma feature</div>
+        <div class="subquote">Je n'avais pas le choix&#8230;</div>
+        <aside>
+          <p>Cela arrive régulièrement lorsque l'on a besoin des modifications faites par quelqu'un d'autre sur une branche mais que cette dernière n'a pas encore été mergée.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/rebase-onto-initial.svg"></li>
+          <li><img src="images/rebase-onto-new-branch.svg"></li>
+        </ul>
+        <aside>
+          <p>Imaginons que depuis <b>master</b> nous ayons tiré une branche qu'on appelle ici <b>john</b>.</p>
+          <p>Le travail sur <b>john</b> est fini mais pas encore mergé sur <b>master</b>. Pourtant, nous avons besoin des modifications que <b>john</b> contient pour notre nouvelle feature.</p>
+          <p>On tire alors une branche <b>paul</b>, basée non pas sur <b>master</b> mais sur <b>john</b>.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/rebase-onto-merged-not-rewritten.svg"></li>
+          <li><img src="images/rebase-onto-merged-rewritten.svg"></li>
+        </ul>
+        <aside>
+          <p>Le souci est qu'une fois <b>john</b> mergée, <b>paul</b> dépend toujours de <b>john</b> et non de <b>master</b>. Dans le premier cas ci-contre, cela ne pose pas trop de problème car les commits de <b>john</b> n'ont pas été modifiés donc Git s'en sortira lors du rebase ou du merge avec <b>master</b>.</p>
+          <p>Par contre si les commits de <b>john</b> ont été réécrits comme on l'a vu précédemment, on risque de se retrouver avec des commits en double (vu aussi précédemment) lors du rebase ou du merge de <b>paul</b> avec <b>master</b>.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="column">
+          <li class="triple centered"><img src="images/rebase-onto-target.svg"></li>
+          <li>
+            <pre><code class="language-git"># On n'oublie pas le ~ tilde ~ !
+git rebase E~ --onto master</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>On souhaite arriver à ce résultat</p>
+          <hr>
+          <p>Pour cela, on utilise la commande ci-contre, en utilisant le sha1 du dernier commit que l'ont veut garder <b>~ avec un tilde ~</b> (cela représente le commit parent), ou alors celui du premier que l'on veut laisser, au choix.</p>
+          <p>Quand on effectue une rebase, il faut se replacer avant les commits à réécrire, d'où le tilde.</p>
+          <p>Ensuite, l'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits</p>
+          <p>Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> (qui deviennent alors <b>E'</b> et <b>F'</b> car ils sont réécrits lors du rebase) au dessus de la branche <b>master</b> mise à jour, qui contient déjà les commits de <b>john</b>.</p>
+        </aside>
+      </section>
+      <section>
+        <h1>Questions ?</h1>
+        <aside>
+          <p>Si vous avez des questions ou des remarques, n'hésitez pas à me contacter sur Twitter : <a href="https://twitter.com/mghignet" target="_blank">@mghignet</a>.</p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Merci !</div>
+        <div class="meta-left">
+          <div><img src="images/logo-ineat-white.svg" class="logo-ineat"></div>
+        </div>
+        <div class="meta-right">
+          <div><img src="images/twitter-white.svg" class="icon"><span>@mghignet</span></div>
+        </div>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
