@@ -11,6 +11,7 @@ html
 
     article
 
+      // Introduction
       section.murder-text(data-bespoke-backdrop='murder')
         h1 Git Dammit!
         .meta-left
@@ -280,21 +281,6 @@ html
           p Pour résumer...
           p On note que l'option <b>--mixed</b> est équivalente à aucune option pour <b>git reset</b>.
 
-      // Revenir sur la branche précédente
-      section(data-bespoke-backdrop='quote-bg')
-        .quote Je veux revenir sur la branche sur laquelle j'étais juste avant.
-
-      section
-        ul: li: pre: code.language-git
-          | # Comme "cd -" en shell !
-          | git checkout -
-        aside
-          p Il existe des similitudes entre <b>git checkout</b> et <b>git reset</b>.
-          hr
-          p - <b>git reset</b> déplace <b>HEAD</b> (notre position) ainsi que la branche (qui n'est autre qu'un pointeur vers un commit, au même titre que <b>HEAD</b>) vers le sha1 spécifié.
-          p - <b>git checkout</b> déplace <b>HEAD</b> uniquement. Cela permet de se déplacer entre les branches par exemple.
-
-
       // Abandonner mes modifications
       section(data-bespoke-backdrop='quote-bg')
         .quote Je veux abandonner mes modifications…
@@ -350,24 +336,6 @@ html
           p <b>Git Dammit!</b>
 
 
-      // git add -p
-      section(data-bespoke-backdrop='quote-bg')
-        .quote Je veux séparer les modifications d'un même fichier dans deux commits différents.
-
-      section
-        ul
-          li
-            pre: code.language-git
-              | # pour indexer des modifications
-              | git add -p
-          li
-            pre: code.language-git
-              | # Dans l'autre sens
-              | git reset -p
-        aside
-          p L'option <b>-p</b> permet d'entrer dans un mode interactif où Git va nous proposer d'indexer ou non les modifications par petits morceaux appelés <b>hunks</b>.
-          p Ce mode est aussi disponible pour la commande <b>reset</b>.
-
       // git status, git diff...
       section(data-bespoke-backdrop='quote-bg')
         .quote Comment voir les modifications en cours ?
@@ -396,7 +364,40 @@ html
         aside
           p Les options <b>--cached</b> et <b>--staged</b> sont équivalentes.
           p Ne spécifier qu'un seul sha1 donnera les différences entre le sha1 désigné et l'état actuel du <b>Working Directory</b> ou de <b>l'index</b> (en fonction de l'option choisie).
-        
+
+      // git add -p
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Je veux séparer les modifications d'un même fichier dans deux commits différents.
+
+      section
+        ul
+          li
+            pre: code.language-git
+              | # pour indexer des modifications
+              | git add -p
+          li
+            pre: code.language-git
+              | # Dans l'autre sens
+              | git reset -p
+        aside
+          p L'option <b>-p</b> permet d'entrer dans un mode interactif où Git va nous proposer d'indexer ou non les modifications par petits morceaux appelés <b>hunks</b>.
+          p Ce mode est aussi disponible pour la commande <b>reset</b>.
+
+      // Revenir sur la branche précédente
+      section(data-bespoke-backdrop='quote-bg')
+        .quote Je veux revenir sur la branche sur laquelle j'étais juste avant.
+
+      section
+        ul: li: pre: code.language-git
+          | # Comme "cd -" en shell !
+          | git checkout -
+        aside
+          p Il existe des similitudes entre <b>git checkout</b> et <b>git reset</b>.
+          hr
+          p - <b>git reset</b> déplace <b>HEAD</b> (notre position) ainsi que la branche (qui n'est autre qu'un pointeur vers un commit, au même titre que <b>HEAD</b>) vers le sha1 spécifié.
+          p - <b>git checkout</b> déplace <b>HEAD</b> uniquement. Cela permet de se déplacer entre les branches par exemple.
+
+      // Annuler les modifications d'un seul fichier
       section(data-bespoke-backdrop='quote-bg')
         .quote Je veux annuler les modifications faites sur un fichier en particulier.
 
@@ -413,6 +414,7 @@ html
           p Imaginons qu'un fichier porte le même nom qu'une branche, par exemple <b>master</b>. Lancer <b>git checkout master</b> n'aurait pas le résultat attendu.
           p En shell, un double tiret signifique toujours que ce qui suit représente des noms de fichiers. Cela permet d'éviter les malentendus.
 
+      // Rebase --onto
       section(data-bespoke-backdrop='quote-bg')
         .quote Je me suis basé sur une autre branche que master pour développer ma feature
         .subquote Je n'avais pas le choix&#8230;
@@ -451,6 +453,7 @@ html
           p Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> (qui deviennent alors <b>E'</b> et <b>F'</b> car ils sont réécrits lors du rebase) au dessus de la branche <b>master</b> mise à jour, qui contient déjà les commits de <b>john</b>.
 
 
+      // Questions / Merci
       section
         h1 Questions ?
         aside
@@ -465,6 +468,8 @@ html
           div
             img.icon(src='images/twitter-white.svg')
             span @mghignet
+        aside
+          p Et pour afficher les notes, c'est la touche <b>N</b> !
 
 
     script(src='build/build.js')
