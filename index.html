@@ -8,6 +8,7 @@
   </head>
   <body>
     <article>
+      <!-- Introduction-->
       <section data-bespoke-backdrop="murder" class="murder-text">
         <h1>Git Dammit!</h1>
         <div class="meta-left">
@@ -320,24 +321,6 @@ git reset HEAD~ --hard</code></pre>
           <p>On note que l'option <b>--mixed</b> est équivalente à aucune option pour <b>git reset</b>.</p>
         </aside>
       </section>
-      <!-- Revenir sur la branche précédente-->
-      <section data-bespoke-backdrop="quote-bg">
-        <div class="quote">Je veux revenir sur la branche sur laquelle j'étais juste avant.</div>
-      </section>
-      <section>
-        <ul>
-          <li>
-            <pre><code class="language-git"># Comme "cd -" en shell !
-git checkout -</code></pre>
-          </li>
-        </ul>
-        <aside>
-          <p>Il existe des similitudes entre <b>git checkout</b> et <b>git reset</b>.</p>
-          <hr>
-          <p>- <b>git reset</b> déplace <b>HEAD</b> (notre position) ainsi que la branche (qui n'est autre qu'un pointeur vers un commit, au même titre que <b>HEAD</b>) vers le sha1 spécifié.</p>
-          <p>- <b>git checkout</b> déplace <b>HEAD</b> uniquement. Cela permet de se déplacer entre les branches par exemple.</p>
-        </aside>
-      </section>
       <!-- Abandonner mes modifications-->
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Je veux abandonner mes modifications…</div>
@@ -403,26 +386,6 @@ git reset --hard origin/ma-branche</code></pre>
           <p><b>Git Dammit!</b></p>
         </aside>
       </section>
-      <!-- git add -p-->
-      <section data-bespoke-backdrop="quote-bg">
-        <div class="quote">Je veux séparer les modifications d'un même fichier dans deux commits différents.</div>
-      </section>
-      <section>
-        <ul>
-          <li>
-            <pre><code class="language-git"># pour indexer des modifications
-git add -p</code></pre>
-          </li>
-          <li>
-            <pre><code class="language-git"># Dans l'autre sens
-git reset -p</code></pre>
-          </li>
-        </ul>
-        <aside>
-          <p>L'option <b>-p</b> permet d'entrer dans un mode interactif où Git va nous proposer d'indexer ou non les modifications par petits morceaux appelés <b>hunks</b>.</p>
-          <p>Ce mode est aussi disponible pour la commande <b>reset</b>.</p>
-        </aside>
-      </section>
       <!-- git status, git diff...-->
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Comment voir les modifications en cours ?</div>
@@ -454,6 +417,45 @@ git diff ab0f..HEAD</code></pre>
           <p>Ne spécifier qu'un seul sha1 donnera les différences entre le sha1 désigné et l'état actuel du <b>Working Directory</b> ou de <b>l'index</b> (en fonction de l'option choisie).</p>
         </aside>
       </section>
+      <!-- git add -p-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Je veux séparer les modifications d'un même fichier dans deux commits différents.</div>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># pour indexer des modifications
+git add -p</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-git"># Dans l'autre sens
+git reset -p</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>L'option <b>-p</b> permet d'entrer dans un mode interactif où Git va nous proposer d'indexer ou non les modifications par petits morceaux appelés <b>hunks</b>.</p>
+          <p>Ce mode est aussi disponible pour la commande <b>reset</b>.</p>
+        </aside>
+      </section>
+      <!-- Revenir sur la branche précédente-->
+      <section data-bespoke-backdrop="quote-bg">
+        <div class="quote">Je veux revenir sur la branche sur laquelle j'étais juste avant.</div>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># Comme "cd -" en shell !
+git checkout -</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Il existe des similitudes entre <b>git checkout</b> et <b>git reset</b>.</p>
+          <hr>
+          <p>- <b>git reset</b> déplace <b>HEAD</b> (notre position) ainsi que la branche (qui n'est autre qu'un pointeur vers un commit, au même titre que <b>HEAD</b>) vers le sha1 spécifié.</p>
+          <p>- <b>git checkout</b> déplace <b>HEAD</b> uniquement. Cela permet de se déplacer entre les branches par exemple.</p>
+        </aside>
+      </section>
+      <!-- Annuler les modifications d'un seul fichier-->
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Je veux annuler les modifications faites sur un fichier en particulier.</div>
       </section>
@@ -474,6 +476,7 @@ git checkout -- monFichier.ext</code></pre>
           <p>En shell, un double tiret signifique toujours que ce qui suit représente des noms de fichiers. Cela permet d'éviter les malentendus.</p>
         </aside>
       </section>
+      <!-- Rebase --onto-->
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Je me suis basé sur une autre branche que master pour développer ma feature</div>
         <div class="subquote">Je n'avais pas le choix&#8230;</div>
@@ -519,6 +522,7 @@ git rebase E~ --onto master</code></pre>
           <p>Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> (qui deviennent alors <b>E'</b> et <b>F'</b> car ils sont réécrits lors du rebase) au dessus de la branche <b>master</b> mise à jour, qui contient déjà les commits de <b>john</b>.</p>
         </aside>
       </section>
+      <!-- Questions / Merci-->
       <section>
         <h1>Questions ?</h1>
         <aside>
@@ -534,6 +538,9 @@ git rebase E~ --onto master</code></pre>
         <div class="meta-right">
           <div><img src="images/twitter-white.svg" class="icon"><span>@mghignet</span></div>
         </div>
+        <aside>
+          <p>Et pour afficher les notes, c'est la touche <b>N</b> !</p>
+        </aside>
       </section>
     </article>
     <script src="build/build.js"></script>
