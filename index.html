@@ -11,6 +11,7 @@
       <!-- Introduction-->
       <section data-bespoke-backdrop="murder" class="murder-text">
         <h1>Git Dammit!</h1>
+        <div class="notes">Appuyez sur N pour afficher les notes</div>
         <div class="meta-left">
           <div><img src="images/logo-ineat-white.svg" class="logo-ineat"></div>
         </div>
@@ -18,25 +19,150 @@
           <div><img src="images/twitter-white.svg" class="icon"><span>@mghignet</span></div>
         </div>
         <aside>
-          <p>Le but de cette présentation est d'apprendre Git par la pratique en balayant un certain nombre de situations dans lequelles on peut se retrouver coincé.</p>
-          <hr>
-          <p>Afin de comprendre comment se sortir de ces situations, nous allons tenter de comprendre comment nous nous y sommes retrouvés et comment fonctionne Git.</p>
+          <p>Bonjour à tous ! Si vous êtes ici, c'est sûrement que vous utilisez Git régulièrement... Et vous vous êtes sûrement déjà retrouvé dans une situation un peu compliquée, sans savoir quoi faire... </p>
+          <p>Cela peut être des problèmes de toutes sortes: conflits, états inconsistents, commits en double... Ou simplement des questions : "Mais comment on fait ça ?"</p>
         </aside>
       </section>
-      <section data-bespoke-backdrop="console-bg"><img src="images/git-log-wtf.jpg">
+      <section><img src="images/maxime-normal.svg">
         <aside>
-          <p>Dans les différents cas qui suivent, on part du principe que l'on travaille sur une branche Git qui nous appartient, sur laquelle on est seul à travailler.</p>
-          <p>Le principe est de partir de la branche master pour tirer une branche à chaque feature puis d'effectuer un merge de cette &laquo; feature branch &raquo; une fois le travail terminé.</p>
-          <p>De manière générale, il n'est pas recommandé de travailler sur master !</p>
-          <p>Il est important d'avoir un bel historique, ne serait-ce que pour la lisiblité, mais aussi car certains outils existent pour générer des changelogs à partir des messages de commits.</p>
+          <p>Je m'appelle Maxime et l'idée de cette présentation m'est venue car les problématiques autour de Git sont souvent les mêmes...</p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <h2>TDM/s</h2>
+        <aside>
+          <p>Et l'idée était aussi de baisser, au sein de mon équipe, le taux de TDM/s...</p>
+          <p>Bah oui, les TDM/s, vous connaissez pas ? </p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <h2>T'as deux minutes ?</h2>
+        <aside>
+          <p>- T'as deux minutes ? J'ai un problème avec Git"</p>
+          <p>- *agacé* Ouais, j'arrive...</p>
+          <p>Et on se rencontre que ces questions, c'est souvent un peu les mêmes.</p>
+          <p>Donc le but c'est de passer en revue différents cas que l'on peut rencontrer avec Git au cours d'un projet et de tenter de les résoudre.</p>
+          <p>On verra aussi quelques astuces par ci par là, des commandes peu utilisées, etc... J'en ai découvert quelques unes en créant cette présentation d'ailleurs.</p>
+        </aside>
+      </section>
+      <section>
+        <!-- Empty slide-->
+        <aside>
+          <p>Pour continuer sur moi (je n'ai pas encore assez parlé de moi)</p>
+          <p>Je travaille dans une équipe de gens très sympas...</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li>
+            <ul>
+              <li class="notbullet"><img src="images/fabrice-normal.svg"></li>
+              <li class="notbullet">Fabrice</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li class="notbullet"><img src="images/aurore-normal.svg"></li>
+              <li class="notbullet">Aurore</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li class="notbullet"><img src="images/maxime-normal.svg"></li>
+              <li class="notbullet">Maxime</li>
+            </ul>
+          </li>
+        </ul>
+        <aside>
+          <p>Je vous présente Fabrice et Aurore. Et pour compléter l'équipe... moi-même.</p>
+        </aside>
+      </section>
+      <section><img src="images/nicer-car.png">
+        <aside>
+          <p>On développe un super programme qui affiche une voiture dans le shell... (Qui a dit qu'il fallait faire des choses utiles ?)</p>
+          <p>On prendra exemple là-dessus pendant cette présentation.</p>
+        </aside>
+      </section>
+      <section><img src="images/git-log-wtf.png">
+        <aside>
+          <p>Et dans cette équipe ce qu'on déteste plus que tout, c'est les historiques comme ça.</p>
+          <p>Des commits dont le message ne veut rien dire, d'autres commits qui rajoutent juste un point virgule, des merges dans tous les sens...</p>
+          <p>Mais pourquoi ?</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>C'est moche</li>
+          <li>Ça ne permet pas de s'y retrouver</li>
+          <li>Des outils existent pour générer des changelogs</li>
+        </ul>
+        <aside>
+          <p>De un, c'est moche ! Vous développeurs, qui aimez les choses bien claires, carrées... C'est pas vous ça quand même ?</p>
+          <p>De deux, allez tenter de comprendre la démarche de quelqu'un qui fait ce genre de commits, 6 mois après, en vous disant "mais oui, ce changement là, c'était dans ce commit !"</p>
+          <p>Mais aussi, à partir des messages de commits, on peut faire d'autres choses... comme générer des changelogs. Du coup on ouvre nos messages de commits à un public plus important que juste les développeurs, et tous doivent comprendre sans lire le code, si tant est qu'ils y aient accès.</p>
+        </aside>
+      </section>
+      <section><img src="images/changelog.png">
+        <aside>
+          <p>Je ne vais pas m'étaler là-dessus, mais avec quelques conventions pour les noms de commits, il est possible de générer de beaux changelog comme celui que vous voyez.</p>
+          <p>Plus besoin de les écrire à la main !</p>
+          <p>A partir de là, on se doit d'écrire nos commits correctement...</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li class="notbullet"><img src="images/fabrice-normal.svg"></li>
+          <li class="notbullet"><img src="images/aurore-normal.svg"></li>
+          <li class="notbullet"><img src="images/maxime-normal.svg"></li>
+        </ul>
+        <aside>
+          <p>Du coup, je reviens à mon équipe. La manière dont on fonctionne est la suivante.</p>
+          <p>On a une branche principale, qui dans notre cas est <b>master</b>, mais qui peut différer, par exemple si vous faites du Git Flow où ce sera <b>develop</b>... Mais l'idée principale est là, on a une branche <b>partagée</b>, sur laquelle personne ne commit directement.</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>On tire une branche</li>
+          <li>On fait un ou plusieurs commits</li>
+          <li>On soumet sa branche à une revue de code</li>
+        </ul>
+        <aside>
+          <p>Ensuite depuis la branche <b>partagée</b>, on tire une branche <b>personnelle</b>. C'est notre branche à nous, on fait ce qu'on veut dessus... On peut faire des bêtises, c'est pas grave, c'est notre branche.</p>
+          <p>Sur cette branche, on va développer nos fonctionalités, on va faire des commits... Bien formés tant qu'à faire.</p>
+          <p>Et une fois satisfaits, on soumet notre code à une revue de code pour demander à l'équipe de merger cette branche, dans la branche <b>principale</b>. Cela peut être une Pull Request sur GitHub, une Merge Request sur Gitlab, etc.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li class="notbullet"><img src="images/fabrice-doubtful.svg"></li>
+          <li class="notbullet"><img src="images/aurore-doubtful.svg"></li>
+        </ul>
+        <aside>
+          <p>Et là... Fabrice et Aurore... Ils ne sont pas toujours contents...</p>
+        </aside>
+      </section>
+      <section><img src="images/changes-requested.png">
+        <aside>
+          <p>"Je ne merge pas ta PR tant que les problèmes que j'ai énoncés ne sont pas corrigés."</p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="quote-bg">
+        <!-- Empty slide-->
+        <aside>
+          <p>Maintenant, on va passer en revue ces commentaires.</p>
         </aside>
       </section>
       <!-- Modifier dernier commit-->
       <section data-bespoke-backdrop="quote-bg">
-        <div class="quote">J'ai besoin de modifier mon dernier commit.</div>
+        <div class="quote">T'as oublié un point virgule dans ton dernier commit.</div>
+        <div class="subquote">Fabrice</div>
         <aside>
-          <p>Commençons simplement...</p>
+          <p>"T'as oublié un point virgule dans ton dernier commit.", me dit Fabrice. On commence simple, mais vous verrez après...</p>
+          <p>Alors comme je suis développeur depuis assez longtemps, j'ai de l'expérience, donc ajouter un point virgule, je sais faire.</p>
         </aside>
+      </section>
+      <section>
+        <!-- Empty slide-->
       </section>
       <section>
         <ul>
@@ -51,10 +177,13 @@ git commit --amend --no-edit</code></pre>
           </li>
         </ul>
         <aside>
-          <p>On utilise l'option <b>--amend</b> pour modifier le dernier commit.</p>
-          <p>Couplé à l'option <b>--no-edit</b>, cela permet de modifier uniquement le contenu sans modifier le message de commit.</p>
-          <p>Bien entendu, on part du principe qu'on avait ajouté les modifications à commiter à l'index Git avant de lancer cette commande.</p>
+          <p>J'ajoute mes modifications à l'index Git, elles sont prêtes à être committées...</p>
+          <p>Ensuite j'utilise l'option <b>--amend</b> pour modifier le dernier commit. Il va même vous demander si vous voulez modifier son nom.</p>
+          <p>Comme je veux uniquement modifier le contenu du commit, j'utilise l'option <b>--no-edit</b>, cela permet de modifier uniquement le contenu sans modifier le message de commit. Il ne va juste pas ouvrir l'éditeur de texte qui permet de le modifier. </p>
         </aside>
+      </section>
+      <section>
+        <!-- Empty slide-->
       </section>
       <section>
         <ul class="row">
@@ -62,9 +191,11 @@ git commit --amend --no-edit</code></pre>
           <li><img src="images/simple-branch-amended.svg"></li>
         </ul>
         <aside>
-          <p>Qu'avons-nous fait ?</p>
+          <p>Qu'est-ce qu'on a fait ?</p>
           <hr>
-          <p>Le commit modifié a été réécrit, il n'a donc plus le même sha1.</p>
+          <p>On est partis d'une branche contenant des commits A et B.</p>
+          <p>On a réécrit le dernier commit, c'est important de le souligner. Il n'a donc plus le même sha1. On passe de <b>B</b> à <b>B'</b>.</p>
+          <p>Sur Git, les commits, entre autres, sont identifiés de manière unique par leur sha1 (vous savez, la longue chaîne de caractères générée). </p>
           <p>Aux yeux de Git, les commits <b>B</b> et <b>B'</b> sont donc totalement différents.</p>
         </aside>
       </section>
@@ -76,57 +207,108 @@ git push -f origin ma-branche</code></pre>
           </li>
         </ul>
         <aside>
-          <p>Les branches locale et distante ont divergé, et la plus à jour est la branche locale (à condition de travailler seul sur sa branche !)</p>
+          <p>Les branches locale et distante ont divergé, et la plus à jour est la branche locale. Comme on est sur une branche <b>personnelle</b>, on peut sans danger écraser les modifications distantes.</p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="quote-bg">
+        <!-- Empty slide-->
+        <aside>
+          <p>Bon, c'était plutôt simple... On va voir un peu ce que les collègues ont trouvé d'autre.</p>
         </aside>
       </section>
       <!-- Modifier, pas le dernier (fixup)-->
       <section data-bespoke-backdrop="quote-bg">
-        <ul class="column">
-          <li class="notbullet">
-            <div class="quote">Celui que je dois modifier n'est pas le dernier...</div>
+        <ul>
+          <li>
+            <div class="quote">Ce serait pas une faute d'orthographe ça ?</div>
+            <div class="subquote">Aurore</div>
           </li>
-          <li class="centered double"><img src="images/simple-branch-light.svg"></li>
+          <li>
+            <div class="subquote">(C'est Tuning, pas Tunning)</div>
+          </li>
         </ul>
         <aside>
-          <p>Et si maintenant on souhaitait modifier le commit <b>A</b> ?</p>
+          <p>Aie. Aurore a aussi des remarques.</p>
+        </aside>
+      </section>
+      <section><img src="images/simple-branch.svg">
+        <aside>
+          <p>Le problème c'est que maintenant, le code à modifier se trouve dans le commit <b>A</b>.</p>
+          <p>Et comme on m'a expliqué que c'était bien d'avoir un historique propre, je vais éviter de rajouter ma modification dans le mauvais commit...</p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <!-- Empty slide-->
+        <aside>
+          <p>L'opération se fait maintenant en deux étapes...</p>
+          <p>Donc là c'est un peu plus compliqué mais vous allez voir, rien d'impossible.</p>
+          <p>A noter qu'il existe plusieurs méthodes pour arriver à nos fins. J'en présente une, celle qui me paraît la mieux adaptée à la plupart des situations. </p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <h2>1. FIXUP</h2>
+        <aside>
+          <p>Première étape, le fixup !</p>
         </aside>
       </section>
       <section>
         <ul class="column">
           <li>
-            <pre><code class="language-git"># 1. Je fais un commit de fixup
-git commit --fixup A</code></pre>
+            <pre><code class="language-git">git commit --fixup A</code></pre>
           </li>
           <li class="double centered"><img src="images/fixup-branch.svg"></li>
         </ul>
         <aside>
-          <p>Cette fois ci, deux étapes :</p>
-          <p><b>Etape 1 :</b> je crée un commit de fixup.</p>
-          <hr>
+          <p>Je spécifie le commit à "fixup", en l'occurence ici <b>A</b>.</p>
           <p>C'est un commit qui fait office de "patch" du commit à modifier. Il se rajoute en haut de la pile des commits. On l'appelle ici <b>Af</b>.</p>
           <p>Ici, <b>A</b>, <b>B</b> et <b>Af</b> représentent les sha1 des commits en question, c'est à dire leur identifiant unique. On leur attribue un nom court pour plus de compréhension...</p>
         </aside>
       </section>
-      <section>
-        <ul class="column">
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <!-- Empty slide-->
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <ul>
           <li>
-            <pre><code class="language-git"># 2. Je rebase
-git rebase -i A~ <b>--autosquash</b></code></pre>
+            <h2>2. REBASE</h2>
           </li>
-          <li class="triple notbullet">
-            <ul class="row">
-              <li><img src="images/fixup-branch-squashed.svg"></li>
-              <li><img src="images/fixup-branch-squashed-end.svg"></li>
-            </ul>
+          <li>
+            <h3>Réécrire les commits</h3>
           </li>
         </ul>
         <aside>
-          <p><b>Etape 2 :</b> j'utilise le rebase intéractif (option <b>-i</b>) pour réécrire l'historique de mes commits.</p>
-          <p>Pour plus d'informations sur le rebase intéractif, je vous recommande vivement <a href="https://www.youtube.com/watch?v=m0_C2cfM9IM" target="_blank">cette présentation</b> de Cyril Lakech et Hubert Sablonnière</a>.</p>
+          <p>2e étape: le rebase.</p>
+          <p>Il permet de réécrire l'historique des commits à partir d'un certain point.</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git">git rebase -i A~ <b>--autosquash</b></code></pre>
+          </li>
+          <li><b>-i</b> : mode interactif</li>
+          <li><b>A~</b> : le parent de A</li>
+          <li><b>--autosquash</b> : placer le commit de fixup au bon endroit</li>
+        </ul>
+        <aside>
+          <p>Oula, mais c'est quoi cette commande barbare ?</p>
           <hr>
-          <p>L'option <b>--autosquash</b> permet de replacer le commit de fixup directement au bon endroit pendant la procédure.</p>
-          <p>Le commit <b>A</b> sera réécrit en <b>A'</b> (son contenu sera composé des contenus de <b>A</b> et de <b>Af</b>), mais tous les commits qui suivent seront aussi réécrit car leur parent a changé. Ainsi, <b>B</b> deviendra <b>B'</b>.</p>
-          <p>Il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.</p>
+          <p>C'est simple, on va la découper :</p>
+          <p><b>-i</b>: Le mode intéractif nous permet de choisir comment réécrire les commits: les renommer, les réordonner, changer leur contenu... plein de choses sont possibles.</p>
+          <p><b>A~</b>: Quand on rebase, on se replace dans le passé pour faire comme si on n'avait pas encore créé les commits que l'on va réécrire. Du coup, si on veut réécrire l'historique à partir (et en incluant) <b>A</b>, il faut se replacer, non pas sur <b>A</b> mais juste avant. C'est ce que fait le tilde: il désigne le parent de <b>A</b>. En général, ajouter un tilde à un sha1 désigne le parent du commit désigné par le sha1.  </p>
+          <p><b>--autosquash</b>: Cela permet de replacer le commit de fixup directement au bon endroit pendant la procédure interactive.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/fixup-branch.svg"></li>
+          <li><img src="images/fixup-branch-squashed.svg"></li>
+          <li><img src="images/fixup-branch-squashed-end.svg"></li>
+        </ul>
+        <aside>
+          <p>Ce qui s'est passé, c'est qu'on avait d'abord notre commit de fixup, tout en haut de la pile des commits.</p>
+          <p>Puis <b>A</b> a été réécrit en <b>A'</b>, en intégrant les modifications de <b>Af</b>.</p>
+          <p>Enfin, <b>B</b> a été réécrit en <b>B'</b>. On est obligé de le réécrire parce-que son parent a changé. D'ailleurs, il est possible d'oobtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.</p>
         </aside>
       </section>
       <section>
@@ -137,7 +319,7 @@ git push -f origin ma-branche</code></pre>
           </li>
         </ul>
         <aside>
-          <p>Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; !</p>
+          <p>Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous somme toujours sur notre branche <b>personnelle</b>...</p>
         </aside>
       </section>
       <section>
@@ -164,60 +346,43 @@ function gfixup() {
           <p>Pour faciliter la procédure, on peut écrire des alias, soit en créant un alias du shell ou en passant par les alias Git.</p>
         </aside>
       </section>
+      <section data-bespoke-backdrop="dammit-bg">
+        <!-- Empty slide-->
+      </section>
       <!-- J'ai modifié mes commits, puis j'ai pull-->
-      <section data-bespoke-backdrop="quote-bg">
-        <div class="quote">Oups, J'ai modifié mes commits, et puis j'ai fait un pull.</div>
+      <section data-bespoke-backdrop="dammit-bg">
+        <div class="quote">Diantre ! J'ai modifié mes commits, et puis j'ai fait un pull.</div>
         <div class="subquote">Je me retrouve avec des commits en double :(</div>
         <aside>
-          <p>Si on a oublié les conseils précédents...</p>
-        </aside>
-      </section>
-      <section><img src="images/chuck-never-pulls.svg">
-        <aside>
-          <p>On voit de temps en temps ce genre de stickers sur les ordinateurs des développeurs...</p>
-          <hr>
-          <p>Cela peut être vrai quand on travaille à plusieurs sur la même branche ou si on travaille directement sur <b>master</b>.</p>
-          <p>C'est aussi vrai qu'il faut mettre à jour <b>master</b> pour tirer une nouvelle branche, pour toujours partir de la base de code la plus récente.</p>
-        </aside>
-      </section>
-      <section><img src="images/chuck-never-pulls-wrong.svg">
-        <aside>
-          <p>Par contre c'est totalement faux lorsqu'on travaille <b>seul</b> sur <b>notre</b></span> branche et que l'ont modifie ses commits en local comme on l'a vu précédemment.</p>
+          <p>Si on a oublié les conseils précédents, à savoir <b>&laquo; force push si tu as modifié ta branche personnelle locale &raquo;</b>, on risque de récupérer une ancienne version de notre code, qui tentera de fusionner avec notre code local, légèrement modifié. Dans certains cas, il y aura même des conflits.</p>
         </aside>
       </section>
       <section>
-        <ul class="column">
-          <li class="notbullet">
-            <h2 class="centered">Que s'est-il passé ?</h2>
-          </li>
-          <li class="triple">
-            <ul class="row">
-              <li><img src="images/local-branch-amended.svg"></li>
-              <li><img src="images/remote-branch.svg"></li>
-            </ul>
-          </li>
-        </ul>
+        <!-- Empty slide-->
         <aside>
-          <p>En local, on avait réécrit des commits. Notre branche contient les commits <b>A'</b> et <b>B'</b>.</p>
-          <p>Sur le repository distant, la branche contient toujours les commits <b>A</b> et <b>B</b> qui rappelons-le, sont totalement différents de <b>A'</b> et <b>B'</b> aux yeux de Git.</p>
+          <p>Voyons ce qu'il s'est passé</p>
         </aside>
       </section>
       <section>
-        <ul class="column">
-          <li class="notbullet">
-            <h2 class="centered">Aïe&#8230;</h2>
-          </li>
-          <li class="quintuple notbullet">
-            <ul class="row">
-              <li><img src="images/merged-branch-wrong.svg"></li>
-              <li><img src="images/rebased-branch-wrong.svg"></li>
-            </ul>
-          </li>
+        <ul class="row">
+          <li><img src="images/local-branch-amended.svg"></li>
+          <li><img src="images/remote-branch.svg"></li>
         </ul>
         <aside>
-          <p>Dans le cas d'un pull classique, donc stratégie <b>merge</b> (à gauche), Git va prendre les deux branches, créer un commit de merge après la résolution (inutile) de conflits.</p>
-          <p>Dans le cas d'un pull avec rebase (<b>pull -r</b>), Git va essayer d'appliquer les commits locaux sur la branche distante. <b>A'</b> et <b>B'</b> seront une nouvelle fois réécrits en <b>A''</b> et <b>B''</b>.</p>
-          <p>Dans les deux cas, c'est loin d'être ce que l'on veut obtenir. On retrouve dans l'historique plusieurs fois les mêmes messages de commits...</p>
+          <p>- En local, on avait réécrit des commits. Notre branche contient les commits <b>A'</b> et <b>B'</b>.</p>
+          <p>- Sur le repository distant, on a encore les commits dont on voulait justement se débarrasser. Pourquoi vouloir les récupérer en faisant un pull ?</p>
+          <p>On rappelle que les nouveaux commits sont totalement différents des anciens aux yeux de Git. Du coup que tente de faire Git... Il tente de les garder ! </p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/merged-branch-wrong.svg"></li>
+          <li><img src="images/rebased-branch-wrong.svg"></li>
+        </ul>
+        <aside>
+          <p>Git va donc essayer de satisfaire tout le monde et va créer un commit de merge pour garder tous les commits. Il est même possible d'obtenir des conflits...</p>
+          <p>Et si vous être plus malins et que vous avez utilisé la stratégie rebase (<b>pull -r</b>), voilà le résultat sur la droite. C'est même encore pire parce-que Git va essayer de replacer <b>A'</b> et <b>B'</b> au dessus de <b>A</b> et <b>B</b>. donc il va les réécrire encore une fois en <b>A''</b> et <b>B''</b>.</p>
+          <p>Dans les deux cas, c'est loin d'être ce que l'on veut obtenir. On va retrouver dans l'historique plusieurs fois les mêmes messages de commits...</p>
         </aside>
       </section>
       <section>
@@ -228,24 +393,38 @@ git push -f origin ma-branche</code></pre>
           </li>
         </ul>
         <aside>
-          <p>Encore une fois, on part du principe que l'on travaille seul sur notre branche et donc que la version la plus récente est donc sur notre poste.</p>
+          <p>Encore une fois, on travaille sur notre branche <b>personnelle</b>, donc on a le droit.</p>
+          <p>Je ne détaille pas ici les solutions pour se sortir de cette situation, c'est au cas par cas... L'idée est d'annuler le commit de merge ou le rebase, ou alors de supprimer les commits en trop.</p>
         </aside>
+      </section>
+      <section data-bespoke-backdrop="quote-bg">
+        <!-- Empty slide-->
       </section>
       <!-- Supprimer le dernier commit-->
       <section data-bespoke-backdrop="quote-bg">
-        <div class="quote">Je veux supprimer mon dernier commit.</div>
+        <ul>
+          <li>
+            <div class="quote">Il me semble qu'on avait dit qu'on ne développait plus les roues bleues ?</div>
+            <div class="subquote">Aurore.</div>
+          </li>
+          <li>
+            <div class="subquote">(il écoute vraiment rien lui)</div>
+          </li>
+        </ul>
         <aside>
-          <p>Cela paraît plutôt simple, mais voyons les différentes options que nous offre Git. Pour comprendre ces options il faut comprendre comment Git gère nos sources.</p>
+          <p>Aïe ! Aurore me rappelle qu'en effet, on ne colorie plus les roues de la voiture en bleu. "Faute de goût, me disent les UX designers".</p>
+          <p>Du coup, je vais devoir supprimer un commit. En l'occurrence ici c'est le dernier.</p>
+          <p>Cela paraît plutôt simple (on va utiliser la commande reset), mais voyons les différentes options que nous offre Git. Pour comprendre ces options il faut comprendre comment Git gère nos sources.</p>
         </aside>
       </section>
       <section><img src="images/git-index-initial-state.svg">
         <aside>
-          <p>Imaginons nous sur un repository Git local, ayant un fichier <b>file.txt</b> en <b>version 1</b>.</p>
+          <p>Imaginons nous sur note repository Git, en local, ayant notre fichier (qu'on a appelé ici <b>file.txt</b>) en <b>version 1</b>.</p>
           <p>On distingue notions différentes pour la gestion des sources.</p>
           <hr>
           <p>- <b>Le Working Directory</b>: c'est ce qui se trouve effectivement sur votre disque dur : ce que vous voyez et pouvez modifier dans votre éditeur favori.</p>
           <p>- <b>L'index</b>: Lorsque Git indexe les fichiers (<b>git add</b>), il crée dans le dossier <b>.git</b> un ensemble d'objets contenant le contenu des fichiers. Il crée aussi d'autres objets pour sauvegarder la hiérarchie et le nom de chaque fichier indexé. Tout cela forme un snapshot, prêt à être commité. D'ailleurs, un commit est un objet qui référence un snapshot.</p>
-          <p>- <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>.</p>
+          <p>- <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>. Et donc par exemple si je me place sur master, alors HEAD, master et le dernier commit de master référencent exactement la même chose.</p>
         </aside>
       </section>
       <section><img src="images/git-index-initial-state-status.svg">
@@ -321,20 +500,25 @@ git reset HEAD~ --hard</code></pre>
           <p>On note que l'option <b>--mixed</b> est équivalente à aucune option pour <b>git reset</b>.</p>
         </aside>
       </section>
+      <section data-bespoke-backdrop="dammit-bg">
+        <!-- Empty slide-->
+      </section>
       <!-- Abandonner mes modifications-->
-      <section data-bespoke-backdrop="quote-bg">
-        <div class="quote">Je veux abandonner mes modifications…</div>
-        <div class="subquote">…et revenir à la version du repository distant.</div>
+      <section data-bespoke-backdrop="dammit-bg">
+        <div class="quote">J'ai tout cassé !</div>
+        <div class="subquote">Comment je reviens à la version du repository distant ?</div>
         <aside>
-          <p>Dans le cas où j'ai tout cassé...</p>
+          <p>Oups, j'ai tout cassé !</p>
+          <p>Bon pas de panique, j'avais un code fonctionnel sur le repository distant. Il faut juste que je me replace dessus...</p>
           <p>Avant de parler de la solution, on va d'abord tenter de comprendre comment Git gère ses branches.</p>
         </aside>
       </section>
       <section><img src="images/local-vs-remote-branches.svg">
         <aside>
           <p>Le repository distant est symbolisé par le nuage. En local, on distingue deux types de branches :</p>
+          <p>- <b>Les branches de travail</b>, sur lesquelles on peut agir. Ce sont les branches que l'on manipule jusqu'à présent.</p>
           <p>- <b>Les branches de tracking</b>, en lecture seule : ce sont des copies à un instant T du repository distant.</p>
-          <p>- <b>Les branches de travail</b>, sur lesquelles on peut agir.</p>
+          <p>On agit sur les branches de tracking en communiquant avec le repository. Pull, fetch, push...</p>
         </aside>
       </section>
       <section>
@@ -358,8 +542,8 @@ git merge master</code></pre>
       </section>
       <section>
         <ul class="column">
-          <li class="notbullet quadruple"><img src="images/local-vs-remote-branches.svg"></li>
-          <li class="notbullet">
+          <li class="quadruple"><img src="images/local-vs-remote-branches.svg"></li>
+          <li>
             <pre><code class="language-git">git fetch origin ma-branche
 git reset --hard origin/ma-branche</code></pre>
           </li>
@@ -386,9 +570,95 @@ git reset --hard origin/ma-branche</code></pre>
           <p><b>Git Dammit!</b></p>
         </aside>
       </section>
+      <!-- Rebase --onto-->
+      <section data-bespoke-backdrop="quote-bg">
+        <ul>
+          <li>
+            <div class="quote">Ok pour les modifs, mais tu t'es basé sur ma branche, pas sur master !</div>
+            <div class="subquote">Fabrice</div>
+          </li>
+          <li>
+            <div class="subquote">(en même temps j'avais pas le choix)</div>
+          </li>
+        </ul>
+        <aside>
+          <p>Ah oui en effet... Au moment où j'ai commencé à développer ma feature, j'avais besoin de ce que Fabrice avait fait. Le problème c'est que son code n'était pas encore sur <b>master</b>. J'ai donc dû me baser sur sa branche.</p>
+          <p>Depuis, le code de Fabrice a été mergé, du coup je dois réappliquer mes commits en me basant sur <b>master</b>, pas sur l'ancienne branche de Fabrice !</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/rebase-onto-initial.svg"></li>
+          <li><img src="images/rebase-onto-new-branch.svg"></li>
+        </ul>
+        <aside>
+          <p>On voit ici que Fabrice était parti de <b>master</b> pour développer sa feature.</p>
+          <p>Moi, j'avais besoin son code. Du coup je suis parti de la branche de Fabrice.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/rebase-onto-merged-not-rewritten.svg"></li>
+          <li><img src="images/rebase-onto-merged-rewritten.svg"></li>
+        </ul>
+        <aside>
+          <p>Mais entre temps, Fabrice a mergé son code. Mais ma branche se base toujours sur la branche de Fabrice et non sur <b>master</b> !</p>
+          <p>Dans ce cas là, si je fais un simple rebase sur master, aucun souci, Git sait s'y retrouver.</p>
+          <p>Par contre il existe un cas où c'est problématique : Si Fabrice a réécrit ses commits entre temps. Je me retrouve avec des anciens commits de Fabrice qui n'ont plus lieu d'être et dont je dois absolument me débarraser !</p>
+          <P>Je pense que maintenant vous vous souvenez de l'histoire des commits en double dont on a parlé précédemment... C'est le même risque ici.</P>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/rebase-onto-target.svg"></li>
+          <li class="notbullet">
+            <ul>
+              <li>
+                <pre><code class="language-git"># On n'oublie pas le ~ tilde ~ !
+git rebase E~ --onto master</code></pre>
+              </li>
+              <li style="text-align:left"><b>E~</b> : On réécrit à partir de E</li>
+              <li style="text-align:left"><b>--onto master</b> : Au dessus de master</li>
+            </ul>
+          </li>
+        </ul>
+        <aside>
+          <p>Donc à la fin, on souhaite arriver à ce résultat</p>
+          <hr>
+          <p>Comme pour tout à l'heure, réécrire des commits signifie <i>se replacer dans le passé, juste avant le premier commit à réécrire</i>, donc on utilise encore un <b>~ tilde ~</b>, qui pointe le parent du commit désigné.</p>
+          <p>L'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits</p>
+          <p>Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> au dessus de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. </p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li class="notbullet"><img src="images/fabrice-happy.svg"></li>
+          <li class="notbullet"><img src="images/aurore-happy.svg"></li>
+        </ul>
+        <aside>
+          <p>Tiens, maintenant on dirait que Fabrice et Aurore ont l'air un peu plus détendus...</p>
+        </aside>
+      </section>
+      <section><img src="images/fabrice-merged.png">
+        <aside>
+          <p>Et hop, c'est mergé. Mission accomplie !</p>
+        </aside>
+      </section>
       <!-- git status, git diff...-->
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <!-- Empty slide-->
+        <aside>
+          <p>Maintenant qu'on est devenus des confirmés sur Git, j'aimerais vous partager quelques astuces, pour vraiment devenir des pros. </p>
+        </aside>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <h2>Quelques Astuces...</h2>
+      </section>
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Comment voir les modifications en cours ?</div>
+        <aside>
+          <p>Première chose, comment je fais pour savoir ce que j'ai modifié, ce qui est prêt à être commité et ce qui ne l'est pas ?</p>
+        </aside>
       </section>
       <section>
         <ul>
@@ -413,13 +683,24 @@ git diff ab0f..HEAD</code></pre>
           </li>
         </ul>
         <aside>
-          <p>Les options <b>--cached</b> et <b>--staged</b> sont équivalentes.</p>
-          <p>Ne spécifier qu'un seul sha1 donnera les différences entre le sha1 désigné et l'état actuel du <b>Working Directory</b> ou de <b>l'index</b> (en fonction de l'option choisie).</p>
+          <p>Vous aurez sûrement deviné... <b>git diff</b> ! Sauf que cette commande seule ne répertorie les modifications que sur les fichiers non encore dans l'index Git. Si j'ai déjà fait un <b>git add</b>, je ne vois plus mes modifs.</p>
+          <p>Pour cela, il y a les options <b>--cached</b> ou <b>--staged</b>, qui sont équivalentes.</p>
+          <p>Si je veux voir toutes les modifs, peu importe sur j'ai fait un <b>git add</b> ou non, j'utilise <b>git diff HEAD</b>. C'est le delta entre mon working directory et le dernier commit.</p>
+          <p>On peut même aller plus loin et demander les modifications entre 2 sha1, ou entre un sha1 et notre état actuel. N'hésitez pas à jouer avec !</p>
         </aside>
       </section>
       <!-- git add -p-->
+      <section data-bespoke-backdrop="quote-bg" class="emphatic-text">
+        <!-- Empty slide-->
+        <aside>
+          <p>Astuce suivante...</p>
+        </aside>
+      </section>
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Je veux séparer les modifications d'un même fichier dans deux commits différents.</div>
+        <aside>
+          <p>Tiens, ça c'est intéressant, et plutôt facile à mettre en oeuvre.</p>
+        </aside>
       </section>
       <section>
         <ul>
@@ -438,8 +719,17 @@ git reset -p</code></pre>
         </aside>
       </section>
       <!-- Revenir sur la branche précédente-->
+      <section data-bespoke-backdrop="quote-bg" class="emphatic-text">
+        <!-- Empty slide-->
+        <aside>
+          <p>La suite !</p>
+        </aside>
+      </section>
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Je veux revenir sur la branche sur laquelle j'étais juste avant.</div>
+        <aside>
+          <p>Une commande tellement simple et tellement méconnue...</p>
+        </aside>
       </section>
       <section>
         <ul>
@@ -449,15 +739,21 @@ git checkout -</code></pre>
           </li>
         </ul>
         <aside>
-          <p>Il existe des similitudes entre <b>git checkout</b> et <b>git reset</b>.</p>
-          <hr>
-          <p>- <b>git reset</b> déplace <b>HEAD</b> (notre position) ainsi que la branche (qui n'est autre qu'un pointeur vers un commit, au même titre que <b>HEAD</b>) vers le sha1 spécifié.</p>
-          <p>- <b>git checkout</b> déplace <b>HEAD</b> uniquement. Cela permet de se déplacer entre les branches par exemple.</p>
+          <p>De la même manière que <b>cd -</b> nous renvoie vers le dossier précédent en shell (comme le bouton précédent sur Windows !), cette commande Git nous renvoie vers la dernière branche sur laquelle on se trouvait.</p>
         </aside>
       </section>
       <!-- Annuler les modifications d'un seul fichier-->
+      <section data-bespoke-backdrop="quote-bg" class="emphatic-text">
+        <!-- Empty slide-->
+        <aside>
+          <p>Encore !</p>
+        </aside>
+      </section>
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Je veux annuler les modifications faites sur un fichier en particulier.</div>
+        <aside>
+          <p>Ici même chose, cela paraît simple, et peut-être qu'on utilise la syntaxe sans savoir pourquoi.</p>
+        </aside>
       </section>
       <section>
         <ul>
@@ -466,7 +762,8 @@ git checkout -</code></pre>
 git checkout monFichier.ext</code></pre>
           </li>
           <li>
-            <pre><code class="language-git"># Tout ce qui suit le "--" est considéré comme un nom de fichier
+            <pre><code class="language-git"># Tout ce qui suit le "--"
+# est considéré comme un nom de fichier
 git checkout -- monFichier.ext</code></pre>
           </li>
         </ul>
@@ -476,53 +773,10 @@ git checkout -- monFichier.ext</code></pre>
           <p>En shell, un double tiret signifique toujours que ce qui suit représente des noms de fichiers. Cela permet d'éviter les malentendus.</p>
         </aside>
       </section>
-      <!-- Rebase --onto-->
-      <section data-bespoke-backdrop="quote-bg">
-        <div class="quote">Je me suis basé sur une autre branche que master pour développer ma feature</div>
-        <div class="subquote">Je n'avais pas le choix&#8230;</div>
-        <aside>
-          <p>Cela arrive régulièrement lorsque l'on a besoin des modifications faites par quelqu'un d'autre sur une branche mais que cette dernière n'a pas encore été mergée.</p>
-        </aside>
-      </section>
-      <section>
-        <ul class="row">
-          <li><img src="images/rebase-onto-initial.svg"></li>
-          <li><img src="images/rebase-onto-new-branch.svg"></li>
-        </ul>
-        <aside>
-          <p>Imaginons que depuis <b>master</b> nous ayons tiré une branche qu'on appelle ici <b>john</b>.</p>
-          <p>Le travail sur <b>john</b> est fini mais pas encore mergé sur <b>master</b>. Pourtant, nous avons besoin des modifications que <b>john</b> contient pour notre nouvelle feature.</p>
-          <p>On tire alors une branche <b>paul</b>, basée non pas sur <b>master</b> mais sur <b>john</b>.</p>
-        </aside>
-      </section>
-      <section>
-        <ul class="row">
-          <li><img src="images/rebase-onto-merged-not-rewritten.svg"></li>
-          <li><img src="images/rebase-onto-merged-rewritten.svg"></li>
-        </ul>
-        <aside>
-          <p>Le souci est qu'une fois <b>john</b> mergée, <b>paul</b> dépend toujours de <b>john</b> et non de <b>master</b>. Dans le premier cas ci-contre, cela ne pose pas trop de problème car les commits de <b>john</b> n'ont pas été modifiés donc Git s'en sortira lors du rebase ou du merge avec <b>master</b>.</p>
-          <p>Par contre si les commits de <b>john</b> ont été réécrits comme on l'a vu précédemment, on risque de se retrouver avec des commits en double (vu aussi précédemment) lors du rebase ou du merge de <b>paul</b> avec <b>master</b>.</p>
-        </aside>
-      </section>
-      <section>
-        <ul class="column">
-          <li class="triple centered"><img src="images/rebase-onto-target.svg"></li>
-          <li>
-            <pre><code class="language-git"># On n'oublie pas le ~ tilde ~ !
-git rebase E~ --onto master</code></pre>
-          </li>
-        </ul>
-        <aside>
-          <p>On souhaite arriver à ce résultat</p>
-          <hr>
-          <p>Pour cela, on utilise la commande ci-contre, en utilisant le sha1 du dernier commit que l'ont veut garder <b>~ avec un tilde ~</b> (cela représente le commit parent), ou alors celui du premier que l'on veut laisser, au choix.</p>
-          <p>Quand on effectue une rebase, il faut se replacer avant les commits à réécrire, d'où le tilde.</p>
-          <p>Ensuite, l'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits</p>
-          <p>Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> (qui deviennent alors <b>E'</b> et <b>F'</b> car ils sont réécrits lors du rebase) au dessus de la branche <b>master</b> mise à jour, qui contient déjà les commits de <b>john</b>.</p>
-        </aside>
-      </section>
       <!-- Questions / Merci-->
+      <section>
+        <!--Empty slide-->
+      </section>
       <section>
         <h1>Questions ?</h1>
         <aside>
@@ -539,7 +793,7 @@ git rebase E~ --onto master</code></pre>
           <div><img src="images/twitter-white.svg" class="icon"><span>@mghignet</span></div>
         </div>
         <aside>
-          <p>Et pour afficher les notes, c'est la touche <b>N</b> !</p>
+          <p>Merci !</p>
         </aside>
       </section>
     </article>
