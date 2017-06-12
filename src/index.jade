@@ -280,14 +280,6 @@ html
       section
         ul
           li: pre: code.language-git
-            | # A placer dans mon fichier d'alias
-            | function gfixup() {
-            |     SHA=$(git rev-parse $1) \
-            |         && git commit --fixup $SHA \
-            |         && git rebase -i --autosquash $SHA~
-            | }
-            | # Utilisation : gfixup {sha1}
-          li: pre: code.language-git
             | # Ou un alias git dans mon .gitconfig
             | [alias]
             |   fixup = !sh -c 'SHA=$(git rev-parse $1) \
@@ -295,7 +287,7 @@ html
             |        && git rebase -i --autosquash $SHA~' -
             | # Utilisation : git fixup {sha1}
         aside
-          p Pour faciliter la procédure, on peut écrire des alias, soit en créant un alias du shell ou en passant par les alias Git.
+          p Pour faciliter la procédure, on peut écrire un alias Git.
 
       section(data-bespoke-backdrop='dammit-bg')
         // Empty slide
