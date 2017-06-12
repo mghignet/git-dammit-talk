@@ -324,15 +324,9 @@ git push -f origin ma-branche</code></pre>
           <p><b>--autosquash</b>: Cela permet de replacer le commit de fixup directement au bon endroit pendant la procédure interactive.</p>
         </aside>
       </section>
-      <section>
-        <ul>
-          <li>
-            <pre><code class="language-git"># Encore une fois...
-git push -f origin ma-branche</code></pre>
-          </li>
-        </ul>
+      <section><img src="images/demo.svg">
         <aside>
-          <p>Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous sommes toujours sur notre branche <b>personnelle</b>...</p>
+          <p>Démo !</p>
         </aside>
       </section>
       <section>
@@ -348,6 +342,17 @@ git push -f origin ma-branche</code></pre>
         </ul>
         <aside>
           <p>Pour faciliter la procédure, on peut écrire un alias Git.</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-git"># Encore une fois...
+git push -f origin ma-branche</code></pre>
+          </li>
+        </ul>
+        <aside>
+          <p>Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous sommes toujours sur notre branche <b>personnelle</b>...</p>
         </aside>
       </section>
       <section data-bespoke-backdrop="dammit-bg">
@@ -548,8 +553,8 @@ git merge master</code></pre>
         <ul class="column">
           <li class="quadruple"><img src="images/local-vs-remote-branches.svg"></li>
           <li>
-            <pre><code class="language-git">git fetch origin ma-branche
-git reset --hard origin/ma-branche</code></pre>
+            <pre><code class="language-git">git fetch origin feature1
+git reset --hard origin/feature1</code></pre>
           </li>
         </ul>
         <aside>
@@ -573,6 +578,9 @@ git reset --hard origin/ma-branche</code></pre>
           <p>Pour faciliter la procédure, on peut écrire un alias Git.</p>
           <p><b>Git Dammit!</b></p>
         </aside>
+      </section>
+      <section data-bespoke-backdrop="quote-bg">
+        <!-- Empty slide-->
       </section>
       <!-- Rebase --onto-->
       <section data-bespoke-backdrop="quote-bg">
@@ -632,6 +640,11 @@ git rebase E~ --onto master</code></pre>
           <p>Comme pour tout à l'heure, réécrire des commits signifie <i>se replacer dans le passé, juste avant le premier commit à réécrire</i>, donc on utilise encore un <b>~ tilde ~</b>, qui pointe le parent du commit désigné.</p>
           <p>L'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits</p>
           <p>Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> au dessus de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. </p>
+        </aside>
+      </section>
+      <section><img src="images/demo.svg">
+        <aside>
+          <p>Démo !</p>
         </aside>
       </section>
       <section>
@@ -722,6 +735,11 @@ git reset -p</code></pre>
           <p>Ce mode est aussi disponible pour la commande <b>reset</b>.</p>
         </aside>
       </section>
+      <section><img src="images/demo.svg">
+        <aside>
+          <p>Démo !</p>
+        </aside>
+      </section>
       <!-- Revenir sur la branche précédente-->
       <section data-bespoke-backdrop="quote-bg" class="emphatic-text">
         <!-- Empty slide-->
@@ -746,6 +764,11 @@ git checkout -</code></pre>
           <p>De la même manière que <b>cd -</b> nous renvoie vers le dossier précédent en shell (comme le bouton précédent sur Windows !), cette commande Git nous renvoie vers la dernière branche sur laquelle on se trouvait.</p>
         </aside>
       </section>
+      <section><img src="images/demo.svg">
+        <aside>
+          <p>Démo !</p>
+        </aside>
+      </section>
       <!-- Annuler les modifications d'un seul fichier-->
       <section data-bespoke-backdrop="quote-bg" class="emphatic-text">
         <!-- Empty slide-->
@@ -765,6 +788,19 @@ git checkout -</code></pre>
             <pre><code class="language-git"># Cette méthode a des défauts...
 git checkout monFichier.ext</code></pre>
           </li>
+        </ul>
+        <aside>
+          <p>Très bien, cette méthode fonctionne la plupart du temps...</p>
+          <p>Mais qu'est-ce qui se passe si mon fichier s'appelle <b>master</b> ?</p>
+        </aside>
+      </section>
+      <section><img src="images/demo.svg">
+        <aside>
+          <p>Démo !</p>
+        </aside>
+      </section>
+      <section>
+        <ul>
           <li>
             <pre><code class="language-git"># Tout ce qui suit le "--"
 # est considéré comme un nom de fichier
@@ -773,8 +809,8 @@ git checkout -- monFichier.ext</code></pre>
         </ul>
         <aside>
           <p>Ici le <b>--</b> n'est pas obligatoire dans tous les cas mais très conseillé.</p>
-          <p>Imaginons qu'un fichier porte le même nom qu'une branche, par exemple <b>master</b>. Lancer <b>git checkout master</b> n'aurait pas le résultat attendu.</p>
-          <p>En shell, un double tiret signifique toujours que ce qui suit représente des noms de fichiers. Cela permet d'éviter les malentendus.</p>
+          <p>Comme on a pu le voit pendant la démo, si un fichier porte le même nom qu'un nom de branche, il risque d'y avoir conflit.</p>
+          <p>En shell, un double tiret signifique toujours la fin des options de la commande. Ce qui suit ici représente un nom de fichier. Cela permet d'éviter les malentendus.</p>
         </aside>
       </section>
       <!-- Questions / Merci-->
