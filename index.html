@@ -327,15 +327,6 @@ git push -f origin ma-branche</code></pre>
       <section>
         <ul>
           <li>
-            <pre><code class="language-git"># A placer dans mon fichier d'alias
-function gfixup() {
-    SHA=$(git rev-parse $1) \
-        && git commit --fixup $SHA \
-        && git rebase -i --autosquash $SHA~
-}
-# Utilisation : gfixup {sha1}</code></pre>
-          </li>
-          <li>
             <pre><code class="language-git"># Ou un alias git dans mon .gitconfig
 [alias]
   fixup = !sh -c 'SHA=$(git rev-parse $1) \
@@ -345,7 +336,7 @@ function gfixup() {
           </li>
         </ul>
         <aside>
-          <p>Pour faciliter la procédure, on peut écrire des alias, soit en créant un alias du shell ou en passant par les alias Git.</p>
+          <p>Pour faciliter la procédure, on peut écrire un alias Git.</p>
         </aside>
       </section>
       <section data-bespoke-backdrop="dammit-bg">
