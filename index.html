@@ -226,7 +226,7 @@ git push -f origin ma-branche</code></pre>
             <div class="subquote">Aurore</div>
           </li>
           <li>
-            <div class="subquote">(C'est Tuning, pas Tunning)</div>
+            <div class="subquote">(C'est "Tuning", pas "Tunning")</div>
           </li>
         </ul>
         <aside>
@@ -240,7 +240,11 @@ git push -f origin ma-branche</code></pre>
         </aside>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
-        <!-- Empty slide-->
+        <ul>
+          <li>
+            <h2>Deux étapes</h2>
+          </li>
+        </ul>
         <aside>
           <p>L'opération se fait maintenant en deux étapes...</p>
           <p>Donc là c'est un peu plus compliqué mais vous allez voir, rien d'impossible.</p>
@@ -248,7 +252,14 @@ git push -f origin ma-branche</code></pre>
         </aside>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
-        <h2>1. FIXUP</h2>
+        <ul>
+          <li>
+            <h3>1. Créer un commit</h3>
+          </li>
+          <li>
+            <h2>de FIXUP</h2>
+          </li>
+        </ul>
         <aside>
           <p>Première étape, le fixup !</p>
         </aside>
@@ -272,15 +283,27 @@ git push -f origin ma-branche</code></pre>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
         <ul>
           <li>
-            <h2>2. REBASE</h2>
+            <h3>2. Réécrire l'historique</h3>
           </li>
           <li>
-            <h3>Réécrire les commits</h3>
+            <h2>REBASE</h2>
           </li>
         </ul>
         <aside>
           <p>2e étape: le rebase.</p>
           <p>Il permet de réécrire l'historique des commits à partir d'un certain point.</p>
+        </aside>
+      </section>
+      <section>
+        <ul class="row">
+          <li><img src="images/fixup-branch.svg"></li>
+          <li><img src="images/fixup-branch-squashed.svg"></li>
+          <li><img src="images/fixup-branch-squashed-end.svg"></li>
+        </ul>
+        <aside>
+          <p>Donc on veut partir de notre première étape (le fixup), et aller intégrer le commit de fixup dans notre commit <b>A</b>. </p>
+          <p><b>A</b> sera donc réécrit en <b>A'</b>.</p>
+          <p>Enfin, <b>B</b> sera réécrit en <b>B'</b>. Git change son sha1 parce-que son parent aura changé. D'ailleurs, il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.</p>
         </aside>
       </section>
       <section>
@@ -302,18 +325,6 @@ git push -f origin ma-branche</code></pre>
         </aside>
       </section>
       <section>
-        <ul class="row">
-          <li><img src="images/fixup-branch.svg"></li>
-          <li><img src="images/fixup-branch-squashed.svg"></li>
-          <li><img src="images/fixup-branch-squashed-end.svg"></li>
-        </ul>
-        <aside>
-          <p>Ce qui s'est passé, c'est qu'on avait d'abord notre commit de fixup, tout en haut de la pile des commits.</p>
-          <p>Puis <b>A</b> a été réécrit en <b>A'</b>, en intégrant les modifications de <b>Af</b>.</p>
-          <p>Enfin, <b>B</b> a été réécrit en <b>B'</b>. On est obligé de le réécrire parce-que son parent a changé. D'ailleurs, il est possible d'oobtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.</p>
-        </aside>
-      </section>
-      <section>
         <ul>
           <li>
             <pre><code class="language-git"># Encore une fois...
@@ -321,7 +332,7 @@ git push -f origin ma-branche</code></pre>
           </li>
         </ul>
         <aside>
-          <p>Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous somme toujours sur notre branche <b>personnelle</b>...</p>
+          <p>Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous sommes toujours sur notre branche <b>personnelle</b>...</p>
         </aside>
       </section>
       <section>
