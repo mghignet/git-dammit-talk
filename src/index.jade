@@ -199,7 +199,7 @@ html
             .quote Ce serait pas une faute d'orthographe ça ?
             .subquote Aurore
           li
-            .subquote (C'est Tuning, pas Tunning)
+            .subquote (C'est "Tuning", pas "Tunning")
 
         aside
           p Aie. Aurore a aussi des remarques.
@@ -211,14 +211,17 @@ html
           p Et comme on m'a expliqué que c'était bien d'avoir un historique propre, je vais éviter de rajouter ma modification dans le mauvais commit...
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
-        // Empty slide
+        ul
+          li: h2 Deux étapes
         aside
           p L'opération se fait maintenant en deux étapes...
           p Donc là c'est un peu plus compliqué mais vous allez voir, rien d'impossible.
           p A noter qu'il existe plusieurs méthodes pour arriver à nos fins. J'en présente une, celle qui me paraît la mieux adaptée à la plupart des situations. 
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 1. FIXUP
+        ul
+          li: h3 1. Créer un commit
+          li: h2 de FIXUP
         aside
           p Première étape, le fixup !
 
@@ -238,11 +241,21 @@ html
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         ul
-          li: h2 2. REBASE
-          li: h3 Réécrire les commits
+          li: h3 2. Réécrire l'historique
+          li: h2 REBASE
         aside
           p 2e étape: le rebase.
           p Il permet de réécrire l'historique des commits à partir d'un certain point.
+
+      section
+        ul.row
+          li: img(src='images/fixup-branch.svg')
+          li: img(src='images/fixup-branch-squashed.svg')
+          li: img(src='images/fixup-branch-squashed-end.svg')
+        aside
+          p Donc on veut partir de notre première étape (le fixup), et aller intégrer le commit de fixup dans notre commit <b>A</b>. 
+          p <b>A</b> sera donc réécrit en <b>A'</b>.
+          p Enfin, <b>B</b> sera réécrit en <b>B'</b>. Git change son sha1 parce-que son parent aura changé. D'ailleurs, il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.
 
       section
         ul
@@ -260,22 +273,12 @@ html
           p <b>--autosquash</b>: Cela permet de replacer le commit de fixup directement au bon endroit pendant la procédure interactive.
 
       section
-        ul.row
-          li: img(src='images/fixup-branch.svg')
-          li: img(src='images/fixup-branch-squashed.svg')
-          li: img(src='images/fixup-branch-squashed-end.svg')
-        aside
-          p Ce qui s'est passé, c'est qu'on avait d'abord notre commit de fixup, tout en haut de la pile des commits.
-          p Puis <b>A</b> a été réécrit en <b>A'</b>, en intégrant les modifications de <b>Af</b>.
-          p Enfin, <b>B</b> a été réécrit en <b>B'</b>. On est obligé de le réécrire parce-que son parent a changé. D'ailleurs, il est possible d'oobtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.
-
-      section
         ul
           li: pre: code.language-git
             | # Encore une fois...
             | git push -f origin ma-branche
         aside
-          p Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous somme toujours sur notre branche <b>personnelle</b>...
+          p Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous sommes toujours sur notre branche <b>personnelle</b>...
 
       section
         ul
