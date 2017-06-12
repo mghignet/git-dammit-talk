@@ -271,14 +271,11 @@ html
           p <b>-i</b>: Le mode intéractif nous permet de choisir comment réécrire les commits: les renommer, les réordonner, changer leur contenu... plein de choses sont possibles.
           p <b>A~</b>: Quand on rebase, on se replace dans le passé pour faire comme si on n'avait pas encore créé les commits que l'on va réécrire. Du coup, si on veut réécrire l'historique à partir (et en incluant) <b>A</b>, il faut se replacer, non pas sur <b>A</b> mais juste avant. C'est ce que fait le tilde: il désigne le parent de <b>A</b>. En général, ajouter un tilde à un sha1 désigne le parent du commit désigné par le sha1.  
           p <b>--autosquash</b>: Cela permet de replacer le commit de fixup directement au bon endroit pendant la procédure interactive.
-
+          
       section
-        ul
-          li: pre: code.language-git
-            | # Encore une fois...
-            | git push -f origin ma-branche
+        img(src='images/demo.svg')
         aside
-          p Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous sommes toujours sur notre branche <b>personnelle</b>...
+          p Démo !
 
       section
         ul
@@ -291,6 +288,14 @@ html
             | # Utilisation : git fixup {sha1}
         aside
           p Pour faciliter la procédure, on peut écrire un alias Git.
+          
+      section
+        ul
+          li: pre: code.language-git
+            | # Encore une fois...
+            | git push -f origin ma-branche
+        aside
+          p Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous sommes toujours sur notre branche <b>personnelle</b>...
 
       section(data-bespoke-backdrop='dammit-bg')
         // Empty slide
@@ -468,8 +473,8 @@ html
         ul.column
           li.quadruple: img(src='images/local-vs-remote-branches.svg')
           li: pre: code.language-git
-            | git fetch origin ma-branche
-            | git reset --hard origin/ma-branche
+            | git fetch origin feature1
+            | git reset --hard origin/feature1
         aside
           p Pour revenir à la version de la branche distante, il suffit donc de se replacer au même niveau que la branche de tracking, <b>après l'avoir mise à jour</b>.
           p Le <b>fetch</b> met à jour la branche de tracking, le <b>reset --hard</b> replace le pointeur de notre branche actuelle sur celui de la branche de tracking.
@@ -489,6 +494,9 @@ html
           p <b>Git Dammit!</b>
 
 
+      section(data-bespoke-backdrop='quote-bg')
+        // Empty slide
+          
       // Rebase --onto
       section(data-bespoke-backdrop='quote-bg')
         ul
@@ -537,6 +545,11 @@ html
           p L'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits
           p Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> au dessus de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. 
 
+      section
+        img(src='images/demo.svg')
+        aside
+          p Démo !
+          
       section
         ul.row
           li.notbullet: img(src='images/fabrice-happy.svg')
@@ -615,6 +628,11 @@ html
         aside
           p L'option <b>-p</b> permet d'entrer dans un mode interactif où Git va nous proposer d'indexer ou non les modifications par petits morceaux appelés <b>hunks</b>.
           p Ce mode est aussi disponible pour la commande <b>reset</b>.
+          
+      section
+        img(src='images/demo.svg')
+        aside
+          p Démo !
 
       // Revenir sur la branche précédente
       section.emphatic-text(data-bespoke-backdrop='quote-bg')
@@ -633,6 +651,11 @@ html
           | git checkout -
         aside
           p De la même manière que <b>cd -</b> nous renvoie vers le dossier précédent en shell (comme le bouton précédent sur Windows !), cette commande Git nous renvoie vers la dernière branche sur laquelle on se trouvait.
+          
+      section
+        img(src='images/demo.svg')
+        aside
+          p Démo !
 
       // Annuler les modifications d'un seul fichier
       section.emphatic-text(data-bespoke-backdrop='quote-bg')
@@ -646,18 +669,27 @@ html
           p Ici même chose, cela paraît simple, et peut-être qu'on utilise la syntaxe sans savoir pourquoi.
 
       section
-        ul
-          li: pre: code.language-git
+        ul: li: pre: code.language-git
             | # Cette méthode a des défauts...
             | git checkout monFichier.ext
-          li: pre: code.language-git
+        aside
+          p Très bien, cette méthode fonctionne la plupart du temps...
+          p Mais qu'est-ce qui se passe si mon fichier s'appelle <b>master</b> ?
+          
+      section
+        img(src='images/demo.svg')
+        aside
+          p Démo !
+          
+      section
+        ul: li: pre: code.language-git
             | # Tout ce qui suit le "--"
             | # est considéré comme un nom de fichier
             | git checkout -- monFichier.ext
         aside
           p Ici le <b>--</b> n'est pas obligatoire dans tous les cas mais très conseillé.
-          p Imaginons qu'un fichier porte le même nom qu'une branche, par exemple <b>master</b>. Lancer <b>git checkout master</b> n'aurait pas le résultat attendu.
-          p En shell, un double tiret signifique toujours que ce qui suit représente des noms de fichiers. Cela permet d'éviter les malentendus.
+          p Comme on a pu le voit pendant la démo, si un fichier porte le même nom qu'un nom de branche, il risque d'y avoir conflit.
+          p En shell, un double tiret signifique toujours la fin des options de la commande. Ce qui suit ici représente un nom de fichier. Cela permet d'éviter les malentendus.
 
 
       // Questions / Merci
