@@ -41,7 +41,7 @@ html
         aside
           p - T'as deux minutes ? J'ai un problème avec Git"
           p - *agacé* Ouais, j'arrive...
-          p Et on se rencontre que ces questions, c'est souvent un peu les mêmes.
+          p Et on se rend compte que ces questions, c'est souvent un peu les mêmes.
           p Donc le but c'est de passer en revue différents cas que l'on peut rencontrer avec Git au cours d'un projet et de tenter de les résoudre.
           p On verra aussi quelques astuces par ci par là, des commandes peu utilisées, etc... J'en ai découvert quelques unes en créant cette présentation d'ailleurs.
 
@@ -223,7 +223,8 @@ html
           li: h3 1. Créer un commit
           li: h2 de FIXUP
         aside
-          p Première étape, le fixup !
+          p Première étape, on va créer un commit qui contiendra nos modifications. Mais pas n'importe quel type de commit...
+          p Un commit de fixup !
 
       section
         ul.column
@@ -244,8 +245,8 @@ html
           li: h3 2. Réécrire l'historique
           li: h2 REBASE
         aside
-          p 2e étape: le rebase.
-          p Il permet de réécrire l'historique des commits à partir d'un certain point.
+          p Deuxième étape: je dois intégrer mon commit de fixup dans le commit à modifier. Pour ça, il faut réécrire l'historique.
+          p On va alors utiliser le Rebase.
 
       section
         ul.row
@@ -302,7 +303,7 @@ html
 
       // J'ai modifié mes commits, puis j'ai pull
       section(data-bespoke-backdrop='dammit-bg')
-        .quote Diantre ! J'ai modifié mes commits, et puis j'ai fait un pull.
+        .quote Oups ! J'ai modifié mes commits, et puis j'ai fait un pull.
         .subquote Je me retrouve avec des commits en double :(
         aside
           p Si on a oublié les conseils précédents, à savoir <b>&laquo; force push si tu as modifié ta branche personnelle locale &raquo;</b>, on risque de récupérer une ancienne version de notre code, qui tentera de fusionner avec notre code local, légèrement modifié. Dans certains cas, il y aura même des conflits.
@@ -358,12 +359,12 @@ html
       section
         img(src='images/git-index-initial-state.svg')
         aside
-          p Imaginons nous sur note repository Git, en local, ayant notre fichier (qu'on a appelé ici <b>file.txt</b>) en <b>version 1</b>.
-          p On distingue notions différentes pour la gestion des sources.
+          p Imaginons nous sur notre repository Git, en local, ayant notre fichier <b>file.txt</b> en <b>version 1</b>.
+          p On distingue 3 notions différentes pour la gestion des sources.
           hr
           p - <b>Le Working Directory</b>: c'est ce qui se trouve effectivement sur votre disque dur : ce que vous voyez et pouvez modifier dans votre éditeur favori.
           p - <b>L'index</b>: Lorsque Git indexe les fichiers (<b>git add</b>), il crée dans le dossier <b>.git</b> un ensemble d'objets contenant le contenu des fichiers. Il crée aussi d'autres objets pour sauvegarder la hiérarchie et le nom de chaque fichier indexé. Tout cela forme un snapshot, prêt à être commité. D'ailleurs, un commit est un objet qui référence un snapshot.
-          p - <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>. Et donc par exemple si je me place sur master, alors HEAD, master et le dernier commit de master référencent exactement la même chose.
+          p - <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>. Et donc par exemple si je me place sur master, alors <b>HEAD</b>, <b>master</b> et le <b>dernier commit</b> de master référencent exactement la même chose.
 
       section
         img(src='images/git-index-initial-state-status.svg')
@@ -431,7 +432,7 @@ html
             | git reset HEAD~ --hard
         aside
           p Pour résumer...
-          p On note que l'option <b>--mixed</b> est équivalente à aucune option pour <b>git reset</b>.
+          p On note que l'option <b>--mixed</b> est équivalente à "aucune option" pour <b>git reset</b>.
 
       section(data-bespoke-backdrop='dammit-bg')
         // Empty slide
@@ -542,8 +543,8 @@ html
           p Donc à la fin, on souhaite arriver à ce résultat
           hr
           p Comme pour tout à l'heure, réécrire des commits signifie <i>se replacer dans le passé, juste avant le premier commit à réécrire</i>, donc on utilise encore un <b>~ tilde ~</b>, qui pointe le parent du commit désigné.
-          p L'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits
-          p Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> au dessus de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. 
+          p L'option <b>--onto</b> désigne la branche sur laquelle se baser pour réappliquer ces commits
+          p Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> sur la base de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. 
 
       section
         img(src='images/demo.svg')
@@ -570,7 +571,7 @@ html
           p Maintenant qu'on est devenus des confirmés sur Git, j'aimerais vous partager quelques astuces, pour vraiment devenir des pros. 
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Quelques Astuces...
+        h2 Quelques Astuces à emporter...
         
       section(data-bespoke-backdrop='quote-bg')
         .quote Comment voir les modifications en cours ?
