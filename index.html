@@ -261,7 +261,8 @@ git push -f origin ma-branche</code></pre>
           </li>
         </ul>
         <aside>
-          <p>Première étape, le fixup !</p>
+          <p>Première étape, on va créer un commit qui contiendra nos modifications. Mais pas n'importe quel type de commit...</p>
+          <p>Un commit de fixup !</p>
         </aside>
       </section>
       <section>
@@ -290,8 +291,8 @@ git push -f origin ma-branche</code></pre>
           </li>
         </ul>
         <aside>
-          <p>2e étape: le rebase.</p>
-          <p>Il permet de réécrire l'historique des commits à partir d'un certain point.</p>
+          <p>Deuxième étape: je dois intégrer mon commit de fixup dans le commit à modifier. Pour ça, il faut réécrire l'historique.</p>
+          <p>On va alors utiliser le Rebase.</p>
         </aside>
       </section>
       <section>
@@ -360,7 +361,7 @@ git push -f origin ma-branche</code></pre>
       </section>
       <!-- J'ai modifié mes commits, puis j'ai pull-->
       <section data-bespoke-backdrop="dammit-bg">
-        <div class="quote">Diantre ! J'ai modifié mes commits, et puis j'ai fait un pull.</div>
+        <div class="quote">Oups ! J'ai modifié mes commits, et puis j'ai fait un pull.</div>
         <div class="subquote">Je me retrouve avec des commits en double :(</div>
         <aside>
           <p>Si on a oublié les conseils précédents, à savoir <b>&laquo; force push si tu as modifié ta branche personnelle locale &raquo;</b>, on risque de récupérer une ancienne version de notre code, qui tentera de fusionner avec notre code local, légèrement modifié. Dans certains cas, il y aura même des conflits.</p>
@@ -428,12 +429,12 @@ git push -f origin ma-branche</code></pre>
       </section>
       <section><img src="images/git-index-initial-state.svg">
         <aside>
-          <p>Imaginons nous sur note repository Git, en local, ayant notre fichier (qu'on a appelé ici <b>file.txt</b>) en <b>version 1</b>.</p>
-          <p>On distingue notions différentes pour la gestion des sources.</p>
+          <p>Imaginons nous sur notre repository Git, en local, ayant notre fichier <b>file.txt</b> en <b>version 1</b>.</p>
+          <p>On distingue 3 notions différentes pour la gestion des sources.</p>
           <hr>
           <p>- <b>Le Working Directory</b>: c'est ce qui se trouve effectivement sur votre disque dur : ce que vous voyez et pouvez modifier dans votre éditeur favori.</p>
           <p>- <b>L'index</b>: Lorsque Git indexe les fichiers (<b>git add</b>), il crée dans le dossier <b>.git</b> un ensemble d'objets contenant le contenu des fichiers. Il crée aussi d'autres objets pour sauvegarder la hiérarchie et le nom de chaque fichier indexé. Tout cela forme un snapshot, prêt à être commité. D'ailleurs, un commit est un objet qui référence un snapshot.</p>
-          <p>- <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>. Et donc par exemple si je me place sur master, alors HEAD, master et le dernier commit de master référencent exactement la même chose.</p>
+          <p>- <b>HEAD</b>: C'est notre position actuelle sur Git. C'est à dire le commit sur lequel nous pointons. En d'autres termes, c'est un pointeur vers le commit en haut de la pile lorsque l'on lance un <b>git log</b>. Et donc par exemple si je me place sur master, alors <b>HEAD</b>, <b>master</b> et le <b>dernier commit</b> de master référencent exactement la même chose.</p>
         </aside>
       </section>
       <section><img src="images/git-index-initial-state-status.svg">
@@ -506,7 +507,7 @@ git reset HEAD~ --hard</code></pre>
         </ul>
         <aside>
           <p>Pour résumer...</p>
-          <p>On note que l'option <b>--mixed</b> est équivalente à aucune option pour <b>git reset</b>.</p>
+          <p>On note que l'option <b>--mixed</b> est équivalente à "aucune option" pour <b>git reset</b>.</p>
         </aside>
       </section>
       <section data-bespoke-backdrop="dammit-bg">
@@ -638,8 +639,8 @@ git rebase E~ --onto master</code></pre>
           <p>Donc à la fin, on souhaite arriver à ce résultat</p>
           <hr>
           <p>Comme pour tout à l'heure, réécrire des commits signifie <i>se replacer dans le passé, juste avant le premier commit à réécrire</i>, donc on utilise encore un <b>~ tilde ~</b>, qui pointe le parent du commit désigné.</p>
-          <p>L'option <b>--onto</b> désigne la branche sur laquelle appliquer ces commits</p>
-          <p>Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> au dessus de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. </p>
+          <p>L'option <b>--onto</b> désigne la branche sur laquelle se baser pour réappliquer ces commits</p>
+          <p>Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> sur la base de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. </p>
         </aside>
       </section>
       <section><img src="images/demo.svg">
@@ -669,7 +670,7 @@ git rebase E~ --onto master</code></pre>
         </aside>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
-        <h2>Quelques Astuces...</h2>
+        <h2>Quelques Astuces à emporter...</h2>
       </section>
       <section data-bespoke-backdrop="quote-bg">
         <div class="quote">Comment voir les modifications en cours ?</div>
