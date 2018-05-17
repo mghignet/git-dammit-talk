@@ -14,7 +14,7 @@ html
       // Introduction
       section.murder-text(data-bespoke-backdrop='murder')
         h1 Git Dammit!
-        .notes Appuyez sur N pour afficher les notes
+        .notes Type N to show notes
         .meta-left
           div: img.logo-mgh(src='images/mgh-logo-white.png')
         .meta-right
@@ -31,13 +31,13 @@ html
           p Je m'appelle Maxime et l'idée de cette présentation m'est venue car les problématiques autour de Git sont souvent les mêmes...
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 TDM/s
+        h2 GAM/s
         aside
           p Et l'idée était aussi de baisser, au sein de mon équipe, le taux de TDM/s...
           p Bah oui, les TDM/s, vous connaissez pas ? 
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 T'as deux minutes ?
+        h2 Got a minute?
         aside
           p - T'as deux minutes ? J'ai un problème avec Git"
           p - *agacé* Ouais, j'arrive...
@@ -56,11 +56,11 @@ html
           li
             ul
               li.notbullet: img(src='images/fabrice-normal.svg')
-              li.notbullet Fabrice
+              li.notbullet Paul Request
           li
             ul
               li.notbullet: img(src='images/aurore-normal.svg')
-              li.notbullet Aurore
+              li.notbullet Jane Kins
           li
             ul
               li.notbullet: img(src='images/maxime-normal.svg')
@@ -83,10 +83,10 @@ html
 
       section
         ul
-          li C'est moche
-          li Ça ne permet pas de s'y retrouver
-          li La revue de code est plus difficile
-          li Des outils existent pour générer des changelogs
+          li It's ugly
+          li It hides useful information
+          li Code review is more difficult
+          li Tools exist to generate changelogs
         aside
           p De un, c'est moche ! Vous développeurs, qui aimez les choses bien claires, carrées... C'est pas vous ça quand même ?
           p De deux, allez tenter de comprendre la démarche de quelqu'un qui fait ce genre de commits, 6 mois après, en vous disant "mais oui, ce changement là, c'était dans ce commit !"
@@ -112,9 +112,9 @@ html
 
       section
         ul
-          li On tire une branche
-          li On fait un ou plusieurs commits
-          li On soumet sa branche à une revue de code
+          li Create a branch from the main one
+          li Make one or several commits 
+          li Submit the branch for review
         aside
           p Ensuite depuis la branche <b>partagée</b>, on tire une branche <b>personnelle</b>. C'est notre branche à nous, on fait ce qu'on veut dessus... On peut faire des bêtises, c'est pas grave, c'est notre branche.
           p Sur cette branche, on va développer nos fonctionalités, on va faire des commits... Bien formés tant qu'à faire.
@@ -139,8 +139,8 @@ html
 
       // Modifier dernier commit
       section(data-bespoke-backdrop='quote-bg')
-        .quote T'as oublié un point virgule dans ton dernier commit.
-        .subquote Fabrice
+        .quote You missed a semicolon in your last commit.
+        .subquote Paul
         aside
           p "T'as oublié un point virgule dans ton dernier commit.", me dit Fabrice. On commence simple, mais vous verrez après...
           p Alors comme je suis développeur depuis assez longtemps, j'ai de l'expérience, donc ajouter un point virgule, je sais faire.
@@ -150,14 +150,14 @@ html
 
       section
         ul
-          li git add, puis...
+          li git add, then&#8230;
           li
             pre: code.language-git
-              | # Le contenu et le nom
+              | # Content and name
               | git commit --amend
           li
             pre: code.language-git
-              | # Le contenu seulement
+              | # Content only
               | git commit --amend --no-edit
         aside
           p J'ajoute mes modifications à l'index Git, elles sont prêtes à être committées...
@@ -182,8 +182,8 @@ html
       section
         ul
           li: pre: code.language-git
-            | # Bien entendu il faudra &laquo; force push &raquo;
-            | git push -f origin ma-branche
+            | # Of course we'll have to &laquo; force push &raquo;
+            | git push -f origin my-branch
         aside
           p Les branches locale et distante ont divergé, et la plus à jour est la branche locale. Comme on est sur une branche <b>personnelle</b>, on peut sans danger écraser les modifications distantes.
 
@@ -196,10 +196,10 @@ html
       section(data-bespoke-backdrop='quote-bg')
         ul
           li
-            .quote Ce serait pas une faute d'orthographe ça ?
-            .subquote Aurore
+            .quote Isn't that a typo?
+            .subquote Jane
           li
-            .subquote (C'est "Tuning", pas "Tunning")
+            .subquote (It's "Tuning", not "Tunning")
 
         aside
           p Aie. Aurore a aussi des remarques.
@@ -212,7 +212,7 @@ html
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         ul
-          li: h2 Deux étapes
+          li: h2 Two steps
         aside
           p L'opération se fait maintenant en deux étapes...
           p Donc là c'est un peu plus compliqué mais vous allez voir, rien d'impossible.
@@ -220,8 +220,8 @@ html
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         ul
-          li: h3 1. Créer un commit
-          li: h2 de FIXUP
+          li: h3 1. Make a commit
+          li: h2 FIXUP
         aside
           p Première étape, on va créer un commit qui contiendra nos modifications. Mais pas n'importe quel type de commit...
           p Un commit de fixup !
@@ -242,7 +242,7 @@ html
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         ul
-          li: h3 2. Réécrire l'historique
+          li: h3 2. Rewrite history
           li: h2 REBASE
         aside
           p Deuxième étape: je dois intégrer mon commit de fixup dans le commit à modifier. Pour ça, il faut réécrire l'historique.
@@ -262,9 +262,9 @@ html
         ul
           li: pre: code.language-git
             | git rebase -i A~ <b>--autosquash</b>
-          li <b>-i</b> : mode interactif
-          li <b>A~</b> : le parent de A
-          li <b>--autosquash</b> : placer le commit de fixup au bon endroit
+          li <b>-i</b> : interactive mode
+          li <b>A~</b> : A's parent commit
+          li <b>--autosquash</b> : correctly place the fixup commit
         aside
           p Oula, mais c'est quoi cette commande barbare ?
           hr
@@ -276,25 +276,25 @@ html
       section
         img(src='images/demo.svg')
         aside
-          p Démo !
+          p Demo!
 
       section
         ul
           li: pre: code.language-git
-            | # Ou un alias git dans mon .gitconfig
+            | # In .gitconfig file
             | [alias]
             |   fixup = !sh -c 'SHA=$(git rev-parse $1) \
             |        && git commit --fixup $SHA \
             |        && git rebase -i --autosquash $SHA~' -
-            | # Utilisation : git fixup {sha1}
+            | # Usage: git fixup {sha1}
         aside
           p Pour faciliter la procédure, on peut écrire un alias Git.
           
       section
         ul
           li: pre: code.language-git
-            | # Encore une fois...
-            | git push -f origin ma-branche
+            | # Once again&#8230;
+            | git push -f origin my-branch
         aside
           p Même chose que pour le premier cas... commit réécrit = &laquo; force push &raquo; ! Nous sommes toujours sur notre branche <b>personnelle</b>...
 
@@ -303,8 +303,8 @@ html
 
       // J'ai modifié mes commits, puis j'ai pull
       section(data-bespoke-backdrop='dammit-bg')
-        .quote Oups ! J'ai modifié mes commits, et puis j'ai fait un pull.
-        .subquote Je me retrouve avec des commits en double :(
+        .quote Oops! I rewrote my commits and then I pulled the remote branch...
+        .subquote I'm now struggling with duplicate commits :(
         aside
           p Si on a oublié les conseils précédents, à savoir <b>&laquo; force push si tu as modifié ta branche personnelle locale &raquo;</b>, on risque de récupérer une ancienne version de notre code, qui tentera de fusionner avec notre code local, légèrement modifié. Dans certains cas, il y aura même des conflits.
 
@@ -334,8 +334,8 @@ html
       section
         ul
           li: pre: code.language-git
-            | # Il fallait &laquo; force push &raquo;&#8230;
-            | git push -f origin ma-branche
+            | # You had to &#8230; &laquo; force push &raquo!
+            | git push -f origin my-branch
         aside
           p Encore une fois, on travaille sur notre branche <b>personnelle</b>, donc on a le droit.
           p Je ne détaille pas ici les solutions pour se sortir de cette situation, c'est au cas par cas... L'idée est d'annuler le commit de merge ou le rebase, ou alors de supprimer les commits en trop.
@@ -347,9 +347,8 @@ html
       section(data-bespoke-backdrop='quote-bg')
         ul
           li
-            .quote Il me semble qu'on avait dit qu'on ne développait plus les roues bleues ?
-            .subquote Aurore.
-          li: .subquote (il écoute vraiment rien lui)
+            .quote I thought we said we weren't developing the blue wheels?
+            .subquote Jane.
 
         aside
           p Aïe ! Aurore me rappelle qu'en effet, on ne colorie plus les roues de la voiture en bleu. "Faute de goût, me disent les UX designers".
@@ -421,14 +420,14 @@ html
       section
         ul
           li: pre: code.language-git
-            | # On garde les modifs, indexées
+            | # Keep the changes, indexed
             | git reset HEAD~ --soft
           li.notbullet: pre: code.language-git
-            | # On garde toujours les modifs mais non indexées
+            | # Keep the changes, but not indexed
             | git reset HEAD~ --mixed
             | git reset HEAD~
           li.notbullet: pre: code.language-git
-            | # On supprime toutes les modifs
+            | # Discard all changes
             | git reset HEAD~ --hard
         aside
           p Pour résumer...
@@ -439,7 +438,8 @@ html
 
       // Abandonner mes modifications
       section(data-bespoke-backdrop='dammit-bg')
-        .quote J'ai tout cassé !
+        .quote Everything's broken!
+        .subquote I'd like to 
         .subquote Comment je reviens à la version du repository distant ?
         aside
           p Oups, j'ai tout cassé !
@@ -484,12 +484,12 @@ html
       section
         ul
           li: pre: code.language-git
-            | # A placer dans le .gitconfig
+            | # In .gitconfig file
             | [alias]
             |   dammit = !BRANCH=$(git rev-parse --abbrev-ref HEAD) \
             |     && git fetch origin $BRANCH \
             |     && git reset --hard origin/$BRANCH
-            | # Utilisation : git dammit
+            | # Usage: git dammit
         aside
           p Pour faciliter la procédure, on peut écrire un alias Git.
           p <b>Git Dammit!</b>
@@ -502,10 +502,8 @@ html
       section(data-bespoke-backdrop='quote-bg')
         ul
           li
-            .quote Ok pour les modifs, mais tu t'es basé sur ma branche, pas sur master !
-            .subquote Fabrice
-          li
-            .subquote (en même temps j'avais pas le choix)
+            .quote Alright, your code is correct. But you branched from my branch, not from master!
+            .subquote Paul
 
         aside
           p Ah oui en effet... Au moment où j'ai commencé à développer ma feature, j'avais besoin de ce que Fabrice avait fait. Le problème c'est que son code n'était pas encore sur <b>master</b>. J'ai donc dû me baser sur sa branche.
@@ -535,10 +533,10 @@ html
           li.notbullet
             ul
               li: pre: code.language-git
-                | # On n'oublie pas le ~ tilde ~ !
+                | # Don't forget the ~ tilde ~ !
                 | git rebase E~ --onto master
-              li(style="text-align:left") <b>E~</b> : On réécrit à partir de E
-              li(style="text-align:left") <b>--onto master</b> : Au dessus de master
+              li(style="text-align:left") <b>E~</b> : Rewrite from E
+              li(style="text-align:left") <b>--onto master</b> : On top of master
         aside
           p Donc à la fin, on souhaite arriver à ce résultat
           hr
@@ -549,7 +547,7 @@ html
       section
         img(src='images/demo.svg')
         aside
-          p Démo !
+          p Demo!
           
       section
         ul.row
@@ -559,7 +557,7 @@ html
           p Tiens, maintenant on dirait que Fabrice et Aurore ont l'air un peu plus détendus...
 
       section
-        img(src='images/fabrice-merged.png')
+        img(src='images/paul-merged.png')
         aside
           p Et hop, c'est mergé. Mission accomplie !
 
@@ -571,10 +569,10 @@ html
           p Maintenant qu'on est devenus des confirmés sur Git, j'aimerais vous partager quelques astuces, pour vraiment devenir des pros. 
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Quelques Astuces à emporter...
+        h2 Some tips to go...
         
       section(data-bespoke-backdrop='quote-bg')
-        .quote Comment voir les modifications en cours ?
+        .quote How can I see the ongoing changes?
         aside
           p Première chose, comment je fais pour savoir ce que j'ai modifié, ce qui est prêt à être commité et ce qui ne l'est pas ?
 
@@ -582,20 +580,20 @@ html
         ul
           li
             pre: code.language-git
-              | # Modifications non indexées
+              | # Unindexed changes
               | git diff
           li
             pre: code.language-git
-              | # Modifications indexées
+              | # indexed changes
               | git diff --cached
               | git diff --staged
           li
             pre: code.language-git
-              | # Toutes les modifications
+              | # All changes
               | git diff HEAD
           li
             pre: code.language-git
-              | # Les modifications entre deux commits / branches
+              | # changes between two commits/branches
               | git diff ab0f..89df
               | git diff ab0f..master
               | git diff ab0f..HEAD
@@ -612,7 +610,7 @@ html
           p Astuce suivante...
           
       section(data-bespoke-backdrop='quote-bg')
-        .quote Je veux séparer les modifications d'un même fichier dans deux commits différents.
+        .quote I want to separate my changes to a single file in two different commits.
         aside
           p Tiens, ça c'est intéressant, et plutôt facile à mettre en oeuvre.
 
@@ -620,11 +618,11 @@ html
         ul
           li
             pre: code.language-git
-              | # pour indexer des modifications
+              | # To index changes
               | git add -p
           li
             pre: code.language-git
-              | # Dans l'autre sens
+              | # The other way round
               | git reset -p
         aside
           p L'option <b>-p</b> permet d'entrer dans un mode interactif où Git va nous proposer d'indexer ou non les modifications par petits morceaux appelés <b>hunks</b>.
@@ -633,7 +631,7 @@ html
       section
         img(src='images/demo.svg')
         aside
-          p Démo !
+          p Demo!
 
       // Revenir sur la branche précédente
       section.emphatic-text(data-bespoke-backdrop='quote-bg')
@@ -642,13 +640,13 @@ html
           p La suite !
           
       section(data-bespoke-backdrop='quote-bg')
-        .quote Je veux revenir sur la branche sur laquelle j'étais juste avant.
+        .quote I want to checkout the previous branch
         aside
           p Une commande tellement simple et tellement méconnue...
 
       section
         ul: li: pre: code.language-git
-          | # Comme "cd -" en shell !
+          | # Like the "cd -" shell command!
           | git checkout -
         aside
           p De la même manière que <b>cd -</b> nous renvoie vers le dossier précédent en shell (comme le bouton précédent sur Windows !), cette commande Git nous renvoie vers la dernière branche sur laquelle on se trouvait.
@@ -660,13 +658,13 @@ html
           p Encore !
           
       section(data-bespoke-backdrop='quote-bg')
-        .quote Je veux annuler les modifications faites sur un fichier en particulier.
+        .quote I want to discard changes on one particular file only.
         aside
           p Ici même chose, cela paraît simple, et peut-être qu'on utilise la syntaxe sans savoir pourquoi.
 
       section
         ul: li: pre: code.language-git
-            | # Cette méthode a des défauts...
+            | # This is flawed...
             | git checkout monFichier.ext
         aside
           p Très bien, cette méthode fonctionne la plupart du temps...
@@ -675,13 +673,13 @@ html
       section
         img(src='images/demo.svg')
         aside
-          p Démo !
+          p Demo!
           
       section
         ul: li: pre: code.language-git
-            | # Tout ce qui suit le "--"
-            | # est considéré comme un nom de fichier
-            | git checkout -- monFichier.ext
+            | # Everything following the "--"
+            | # is considered as a file name
+            | git checkout -- myFile.ext
         aside
           p Ici le <b>--</b> n'est pas obligatoire dans tous les cas mais très conseillé.
           p Comme on a pu le voit pendant la démo, si un fichier porte le même nom qu'un nom de branche, il risque d'y avoir conflit.
@@ -693,7 +691,7 @@ html
         //Empty slide
 
       section(data-bespoke-backdrop='quote-bg')
-        .quote Merci !
+        .quote Thank you!
         .subquote mghignet.github.io/git-dammit-talk/
         .meta-left
           div: img.logo-mgh(src='images/mgh-logo-white.png')
