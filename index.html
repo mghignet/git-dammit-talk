@@ -13,7 +13,7 @@
         <h1>Git Dammit!</h1>
         <div class="notes">Appuyez sur N pour afficher les notes</div>
         <div class="meta-left">
-          <div><img src="images/mgh-logo-white.png" class="logo-mgh"></div>
+          <div>#DevfestLille</div>
         </div>
         <div class="meta-right">
           <div><img src="images/twitter-white.svg" class="icon"><span>@mghignet</span></div>
@@ -304,7 +304,7 @@ git push -f origin ma-branche</code></pre>
         <aside>
           <p>Donc on veut partir de notre première étape (le fixup), et aller intégrer le commit de fixup dans notre commit <b>A</b>. </p>
           <p><b>A</b> sera donc réécrit en <b>A'</b>.</p>
-          <p>Enfin, <b>B</b> sera réécrit en <b>B'</b>. Git change son sha1 parce-que son parent aura changé. D'ailleurs, il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.</p>
+          <p>Enfin, <b>B</b> sera réécrit en <b>B'</b>. Git change son sha1 parce-que son parent aura changé. D'ailleurs, il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modification ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.</p>
         </aside>
       </section>
       <section>
@@ -638,8 +638,8 @@ git rebase E~ --onto master</code></pre>
         <aside>
           <p>Donc à la fin, on souhaite arriver à ce résultat</p>
           <hr>
-          <p>Comme pour tout à l'heure, réécrire des commits signifie <i>se replacer dans le passé, juste avant le premier commit à réécrire</i>, donc on utilise encore un <b>~ tilde ~</b>, qui pointe le parent du commit désigné.</p>
-          <p>L'option <b>--onto</b> désigne la branche sur laquelle se baser pour réappliquer ces commits</p>
+          <p>Comme pour tout à l'heure, réécrire des commits signifie <i>se replacer dans le passé, juste avant le premier commit à réécrire</i>, donc on utilise encore un <b>~ tilde ~</b>, qui pointe sur le parent du commit désigné.</p>
+          <p>L'option <b>--onto</b> désigne la branche sur laquelle se baser pour réappliquer ces commits.</p>
           <p>Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> sur la base de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. </p>
         </aside>
       </section>
@@ -784,19 +784,6 @@ git checkout -</code></pre>
             <pre><code class="language-git"># Cette méthode a des défauts...
 git checkout monFichier.ext</code></pre>
           </li>
-        </ul>
-        <aside>
-          <p>Très bien, cette méthode fonctionne la plupart du temps...</p>
-          <p>Mais qu'est-ce qui se passe si mon fichier s'appelle <b>master</b> ?</p>
-        </aside>
-      </section>
-      <section><img src="images/demo.svg">
-        <aside>
-          <p>Démo !</p>
-        </aside>
-      </section>
-      <section>
-        <ul>
           <li>
             <pre><code class="language-git"># Tout ce qui suit le "--"
 # est considéré comme un nom de fichier
@@ -804,9 +791,11 @@ git checkout -- monFichier.ext</code></pre>
           </li>
         </ul>
         <aside>
+          <p>Très bien, cette méthode fonctionne la plupart du temps...</p>
+          <p>Mais qu'est-ce qui se passe si mon fichier s'appelle <b>master</b> ?</p>
           <p>Ici le <b>--</b> n'est pas obligatoire dans tous les cas mais très conseillé.</p>
-          <p>Comme on a pu le voit pendant la démo, si un fichier porte le même nom qu'un nom de branche, il risque d'y avoir conflit.</p>
-          <p>En shell, un double tiret signifique toujours la fin des options de la commande. Ce qui suit ici représente un nom de fichier. Cela permet d'éviter les malentendus.</p>
+          <p>Si un fichier porte le même nom qu'un nom de branche, il risque d'y avoir conflit.</p>
+          <p>En shell, un double tiret signifie toujours la fin des options de la commande. Ce qui suit ici représente un nom de fichier. Cela permet d'éviter les malentendus.</p>
         </aside>
       </section>
       <!-- Questions / Merci-->
@@ -817,7 +806,7 @@ git checkout -- monFichier.ext</code></pre>
         <div class="quote">Merci !</div>
         <div class="subquote">mghignet.github.io/git-dammit-talk/</div>
         <div class="meta-left">
-          <div><img src="images/mgh-logo-white.png" class="logo-mgh"></div>
+          <div>#DevfestLille</div>
         </div>
         <div class="meta-right">
           <div><img src="images/twitter-white.svg" class="icon"><span>@mghignet</span></div>
