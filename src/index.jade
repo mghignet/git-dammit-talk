@@ -665,29 +665,21 @@ html
           p Ici même chose, cela paraît simple, et peut-être qu'on utilise la syntaxe sans savoir pourquoi.
 
       section
-        ul: li: pre: code.language-git
+        ul
+          li: pre: code.language-git
             | # Cette méthode a des défauts...
             | git checkout monFichier.ext
-        aside
-          p Très bien, cette méthode fonctionne la plupart du temps...
-          p Mais qu'est-ce qui se passe si mon fichier s'appelle <b>master</b> ?
-          
-      section
-        img(src='images/demo.svg')
-        aside
-          p Démo !
-          
-      section
-        ul: li: pre: code.language-git
+          li: pre: code.language-git
             | # Tout ce qui suit le "--"
             | # est considéré comme un nom de fichier
             | git checkout -- monFichier.ext
         aside
+          p Très bien, cette méthode fonctionne la plupart du temps...
+          p Mais qu'est-ce qui se passe si mon fichier s'appelle <b>master</b> ?
           p Ici le <b>--</b> n'est pas obligatoire dans tous les cas mais très conseillé.
-          p Comme on a pu le voit pendant la démo, si un fichier porte le même nom qu'un nom de branche, il risque d'y avoir conflit.
+          p Si un fichier porte le même nom qu'un nom de branche, il risque d'y avoir conflit.
           p En shell, un double tiret signifie toujours la fin des options de la commande. Ce qui suit ici représente un nom de fichier. Cela permet d'éviter les malentendus.
-
-
+          
       // Questions / Merci
       section
         //Empty slide
