@@ -256,7 +256,7 @@ html
         aside
           p Donc on veut partir de notre première étape (le fixup), et aller intégrer le commit de fixup dans notre commit <b>A</b>. 
           p <b>A</b> sera donc réécrit en <b>A'</b>.
-          p Enfin, <b>B</b> sera réécrit en <b>B'</b>. Git change son sha1 parce-que son parent aura changé. D'ailleurs, il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modifications ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.
+          p Enfin, <b>B</b> sera réécrit en <b>B'</b>. Git change son sha1 parce-que son parent aura changé. D'ailleurs, il est possible d'obtenir des conflits en réécrivant l'historique, par exemple si une modification ajoutée à <b>Af</b> est en conflit avec le contenu du commit <b>B</b>.
 
       section
         ul
@@ -542,8 +542,8 @@ html
         aside
           p Donc à la fin, on souhaite arriver à ce résultat
           hr
-          p Comme pour tout à l'heure, réécrire des commits signifie <i>se replacer dans le passé, juste avant le premier commit à réécrire</i>, donc on utilise encore un <b>~ tilde ~</b>, qui pointe le parent du commit désigné.
-          p L'option <b>--onto</b> désigne la branche sur laquelle se baser pour réappliquer ces commits
+          p Comme pour tout à l'heure, réécrire des commits signifie <i>se replacer dans le passé, juste avant le premier commit à réécrire</i>, donc on utilise encore un <b>~ tilde ~</b>, qui pointe sur le parent du commit désigné.
+          p L'option <b>--onto</b> désigne la branche sur laquelle se baser pour réappliquer ces commits.
           p Dans ce cas précis, Git va appliquer les commits <b>E</b> et <b>F</b> sur la base de <b>master</b>, donc il y a réécriture car changement de parent. Leurs sha1s vont donc changer en <b>E'</b> et <b>F'</b>. 
 
       section
@@ -685,7 +685,7 @@ html
         aside
           p Ici le <b>--</b> n'est pas obligatoire dans tous les cas mais très conseillé.
           p Comme on a pu le voit pendant la démo, si un fichier porte le même nom qu'un nom de branche, il risque d'y avoir conflit.
-          p En shell, un double tiret signifique toujours la fin des options de la commande. Ce qui suit ici représente un nom de fichier. Cela permet d'éviter les malentendus.
+          p En shell, un double tiret signifie toujours la fin des options de la commande. Ce qui suit ici représente un nom de fichier. Cela permet d'éviter les malentendus.
 
 
       // Questions / Merci
