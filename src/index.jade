@@ -55,18 +55,18 @@ html
         ul.row
           li
             ul
-              li.notbullet: img(src='images/fabrice-normal.svg')
-              li.notbullet Fabrice
+              li.notbullet: img(src='images/paul-normal.svg')
+              li.notbullet Paul Request
           li
             ul
-              li.notbullet: img(src='images/aurore-normal.svg')
-              li.notbullet Aurore
+              li.notbullet: img(src='images/jane-normal.svg')
+              li.notbullet Jane Kins
           li
             ul
               li.notbullet: img(src='images/maxime-normal.svg')
               li.notbullet Maxime
         aside
-          p Je vous présente Fabrice et Aurore. Et pour compléter l'équipe... moi-même.
+          p Je vous présente Paul et Jane. Et pour compléter l'équipe... moi-même.
 
       section
         img(src='images/nicer-car.png')
@@ -103,8 +103,8 @@ html
 
       section
         ul.row
-          li.notbullet: img(src='images/fabrice-normal.svg')
-          li.notbullet: img(src='images/aurore-normal.svg')
+          li.notbullet: img(src='images/paul-normal.svg')
+          li.notbullet: img(src='images/jane-normal.svg')
           li.notbullet: img(src='images/maxime-normal.svg')
         aside
           p Du coup, je reviens à mon équipe. La manière dont on fonctionne est la suivante.
@@ -122,15 +122,10 @@ html
 
       section
         ul.row
-          li.notbullet: img(src='images/fabrice-doubtful.svg')
-          li.notbullet: img(src='images/aurore-doubtful.svg')
+          li.notbullet: img(src='images/paul-doubtful.svg')
+          li.notbullet: img(src='images/jane-doubtful.svg')
         aside
-          p Et là... Fabrice et Aurore... Ils ne sont pas toujours contents...
-
-      section
-        img(src='images/changes-requested.png')
-        aside
-          p "Je ne merge pas ta PR tant que les problèmes que j'ai énoncés ne sont pas corrigés."
+          p Et là... Paul et Jane... Ils ne sont pas toujours contents... "Je ne merge pas ta PR tant que les problèmes que j'ai énoncés ne sont pas corrigés."
 
       section(data-bespoke-backdrop='quote-bg')
         // Empty slide
@@ -140,9 +135,9 @@ html
       // Modifier dernier commit
       section(data-bespoke-backdrop='quote-bg')
         .quote T'as oublié un point virgule dans ton dernier commit.
-        .subquote Fabrice
+        .subquote Paul
         aside
-          p "T'as oublié un point virgule dans ton dernier commit.", me dit Fabrice. On commence simple, mais vous verrez après...
+          p "T'as oublié un point virgule dans ton dernier commit.", me dit Paul. On commence simple, mais vous verrez après...
           p Alors comme je suis développeur depuis assez longtemps, j'ai de l'expérience, donc ajouter un point virgule, je sais faire.
 
       section
@@ -197,12 +192,12 @@ html
         ul
           li
             .quote Ce serait pas une faute d'orthographe ça ?
-            .subquote Aurore
+            .subquote Jane
           li
             .subquote (C'est "Tuning", pas "Tunning")
 
         aside
-          p Aie. Aurore a aussi des remarques.
+          p Aie. Jane a aussi des remarques.
           
       section
         img(src='images/simple-branch.svg')
@@ -348,10 +343,10 @@ html
         ul
           li
             .quote Il me semble qu'on avait dit qu'on ne développait plus les roues bleues ?
-            .subquote Aurore.
+            .subquote Jane.
 
         aside
-          p Aïe ! Aurore me rappelle qu'en effet, on ne colorie plus les roues de la voiture en bleu. "Faute de goût, me disent les UX designers".
+          p Aïe ! Jane me rappelle qu'en effet, on ne colorie plus les roues de la voiture en bleu. "Faute de goût, me disent les UX designers".
           p Du coup, je vais devoir supprimer un commit. En l'occurrence ici c'est le dernier.
           p Cela paraît plutôt simple (on va utiliser la commande reset), mais voyons les différentes options que nous offre Git. Pour comprendre ces options il faut comprendre comment Git gère nos sources.
 
@@ -502,28 +497,28 @@ html
         ul
           li
             .quote Ok pour les modifs, mais tu t'es basé sur ma branche, pas sur master !
-            .subquote Fabrice
+            .subquote Paul
 
         aside
-          p Ah oui en effet... Au moment où j'ai commencé à développer ma feature, j'avais besoin de ce que Fabrice avait fait. Le problème c'est que son code n'était pas encore sur <b>master</b>. J'ai donc dû me baser sur sa branche.
-          p Depuis, le code de Fabrice a été mergé, du coup je dois réappliquer mes commits en me basant sur <b>master</b>, pas sur l'ancienne branche de Fabrice !
+          p Ah oui en effet... Au moment où j'ai commencé à développer ma feature, j'avais besoin de ce que Paul avait fait. Le problème c'est que son code n'était pas encore sur <b>master</b>. J'ai donc dû me baser sur sa branche.
+          p Depuis, le code de Paul a été mergé, du coup je dois réappliquer mes commits en me basant sur <b>master</b>, pas sur l'ancienne branche de Paul !
 
       section
         ul.row
           li: img(src='images/rebase-onto-initial.svg')
           li: img(src='images/rebase-onto-new-branch.svg')
         aside
-          p On voit ici que Fabrice était parti de <b>master</b> pour développer sa feature.
-          p Moi, j'avais besoin son code. Du coup je suis parti de la branche de Fabrice.
+          p On voit ici que Paul était parti de <b>master</b> pour développer sa feature.
+          p Moi, j'avais besoin son code. Du coup je suis parti de la branche de Paul.
 
       section
         ul.row
           li: img(src='images/rebase-onto-merged-not-rewritten.svg')
           li: img(src='images/rebase-onto-merged-rewritten.svg')
         aside
-          p Mais entre temps, Fabrice a mergé son code. Mais ma branche se base toujours sur la branche de Fabrice et non sur <b>master</b> !
+          p Mais entre temps, Paul a mergé son code. Mais ma branche se base toujours sur la branche de Paul et non sur <b>master</b> !
           p Dans ce cas là, si je fais un simple rebase sur master, aucun souci, Git sait s'y retrouver.
-          p Par contre il existe un cas où c'est problématique : Si Fabrice a réécrit ses commits entre temps. Je me retrouve avec des anciens commits de Fabrice qui n'ont plus lieu d'être et dont je dois absolument me débarraser !
+          p Par contre il existe un cas où c'est problématique : Si Paul a réécrit ses commits entre temps. Je me retrouve avec des anciens commits de Paul qui n'ont plus lieu d'être et dont je dois absolument me débarraser !
           P Je pense que maintenant vous vous souvenez de l'histoire des commits en double dont on a parlé précédemment... C'est le même risque ici.
           
       section
@@ -550,13 +545,13 @@ html
           
       section
         ul.row
-          li.notbullet: img(src='images/fabrice-happy.svg')
-          li.notbullet: img(src='images/aurore-happy.svg')
+          li.notbullet: img(src='images/paul-happy.svg')
+          li.notbullet: img(src='images/jane-happy.svg')
         aside
-          p Tiens, maintenant on dirait que Fabrice et Aurore ont l'air un peu plus détendus...
+          p Tiens, maintenant on dirait que Paul et Jane ont l'air un peu plus détendus...
 
       section
-        img(src='images/fabrice-merged.png')
+        img(src='images/paul-merged.png')
         aside
           p Et hop, c'est mergé. Mission accomplie !
 
