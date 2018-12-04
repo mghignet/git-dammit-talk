@@ -22,8 +22,8 @@ html
             img.icon(src='images/twitter-white.svg')
             span @mghignet
         aside
-          p Bonjour à tous ! Si vous êtes ici, c'est sûrement que vous utilisez Git régulièrement... Et vous vous êtes sûrement déjà retrouvé dans une situation un peu compliquée, sans savoir quoi faire... 
-          p Cela peut être des problèmes de toutes sortes: conflits, états inconsistents, commits en double... Ou simplement des questions : "Mais comment on fait ça ?"
+          p Bonjour à tous ! Si vous êtes ici, c'est sûrement que vous utilisez Git régulièrement... Et vous vous êtes sûrement déjà retrouvé dans une situation un peu compliquée, sans savoir quoi faire...
+          p Cela peut être des problèmes de toutes sortes : conflits, états inconsistents, commits en double... Ou simplement des questions : "Mais comment on fait ça ?"
 
       section
         img(src='images/maxime-normal.svg')
@@ -90,13 +90,13 @@ html
         aside
           p De un, allez tenter de comprendre la démarche de quelqu'un qui fait ce genre de commits, 6 mois après, en vous disant "mais oui, ce changement là, c'était dans ce commit !"
           p De deux, la plupart des projets Open source demandent une certaine rigueur, que ce soit niveau testing ou conventions de commits.
-          p Aussi, peut-être aimez-vous faire vos revue de code en procédant "commit par commit", surtout pour les gros changements. Avec du code éparpillé dans tous les commits, c'est impossible de procéder comme ça. Vous avez peut-être déjà rencontré une situation où vous commentez une modification dans un commit qui disparaît dans le suivant ?
+          p Aussi, peut-être aimez-vous faire vos revues de code en procédant "commit par commit", surtout pour les gros changements. Avec du code éparpillé dans tous les commits, c'est impossible de procéder comme ça. Vous avez peut-être déjà rencontré une situation où vous commentez une modification dans un commit qui disparaît dans le suivant ?
           p Enfin, à partir des messages de commits, on peut faire d'autres choses... comme générer des changelogs. Du coup on ouvre nos messages de commits à un public plus important que juste les développeurs, et tous doivent comprendre sans lire le code, si tant est qu'ils y aient accès.
 
       section
         img(src='images/changelog.png')
         aside
-          p Je ne vais pas m'étaler là-dessus, mais avec quelques conventions pour les noms de commits, il est possible de générer de beaux changelog comme celui que vous voyez.
+          p Je ne vais pas m'étaler là-dessus, mais avec quelques conventions pour les noms de commits, il est possible de générer de beaux changelogs comme celui que vous voyez.
           p Plus besoin de les écrire à la main !
           p A partir de là, on se doit d'écrire nos commits correctement...
 
@@ -108,7 +108,7 @@ html
           li.notbullet: img(src='images/maxime-normal.svg')
         aside
           p Du coup, je reviens à mon équipe. La manière dont on fonctionne est la suivante.
-          p On a une branche principale, qui dans notre cas est <b>master</b>, mais qui peut différer, par exemple si vous faites du Git Flow où ce sera <b>develop</b>... Mais l'idée principale est là, on a une branche <b>partagée</b>, sur laquelle personne ne commit directement.
+          p On a une branche principale, qui dans notre cas est <b>master</b>, mais qui peut différer, par exemple si vous faîtes du Git Flow où ce sera <b>develop</b>... Mais l'idée principale est là, on a une branche <b>partagée</b>, sur laquelle personne ne commit directement.
 
       section
         ul
@@ -230,7 +230,7 @@ html
         aside
           p Je spécifie le commit à "fixup", en l'occurence ici <b>A</b>.
           p C'est un commit qui fait office de "patch" du commit à modifier. Il se rajoute en haut de la pile des commits. On l'appelle ici <b>Af</b>.
-          p Ici, <b>A</b>, <b>B</b> et <b>Af</b> représentent les sha1 des commits en question, c'est à dire leur identifiant unique. On leur attribue un nom court pour plus de compréhension...
+          p Ici, <b>A</b>, <b>B</b> et <b>Af</b> représentent les sha1 des commits en question, c'est-à-dire leur identifiant unique. On leur attribue un nom court pour plus de compréhension...
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
         // Empty slide
@@ -240,7 +240,7 @@ html
           li: h3 2. Réécrire l'historique
           li: h2 REBASE
         aside
-          p Deuxième étape: je dois intégrer mon commit de fixup dans le commit à modifier. Pour ça, il faut réécrire l'historique.
+          p Deuxième étape : je dois intégrer mon commit de fixup dans le commit à modifier. Pour ça, il faut réécrire l'historique.
           p On va alors utiliser le Rebase.
 
       section
@@ -264,10 +264,10 @@ html
           p Oula, mais c'est quoi cette commande barbare ?
           hr
           p C'est simple, on va la découper :
-          p <b>-i</b>: Le mode intéractif nous permet de choisir comment réécrire les commits: les renommer, les réordonner, changer leur contenu... plein de choses sont possibles.
-          p <b>A~</b>: Quand on rebase, on se replace dans le passé pour faire comme si on n'avait pas encore créé les commits que l'on va réécrire. Du coup, si on veut réécrire l'historique à partir (et en incluant) <b>A</b>, il faut se replacer, non pas sur <b>A</b> mais juste avant. C'est ce que fait le tilde: il désigne le parent de <b>A</b>. En général, ajouter un tilde à un sha1 désigne le parent du commit désigné par le sha1.  
-          p <b>--autosquash</b>: Cela permet de replacer le commit de fixup directement au bon endroit pendant la procédure interactive.
-          
+          p <b>-i</b> : Le mode intéractif nous permet de choisir comment réécrire les commits : les renommer, les réordonner, changer leur contenu... plein de choses sont possibles.
+          p <b>A~</b> : Quand on rebase, on se replace dans le passé pour faire comme si on n'avait pas encore créé les commits que l'on va réécrire. Du coup, si on veut réécrire l'historique à partir de (et en incluant) <b>A</b>, il faut se replacer, non pas sur <b>A</b> mais juste avant. C'est ce que fait le tilde : il désigne le parent de <b>A</b>. En général, ajouter un tilde à un sha1 désigne le parent du commit désigné par le sha1.
+          p <b>--autosquash</b> : Cela permet de replacer le commit de fixup directement au bon endroit pendant la procédure interactive.
+
       section
         img(src='images/demo.svg')
         aside
@@ -323,7 +323,7 @@ html
           li: img(src='images/rebased-branch-wrong.svg')
         aside
           p Git va donc essayer de satisfaire tout le monde et va créer un commit de merge pour garder tous les commits. Il est même possible d'obtenir des conflits...
-          p Et si vous être plus malins et que vous avez utilisé la stratégie rebase (<b>pull -r</b>), voilà le résultat sur la droite. C'est même encore pire parce-que Git va essayer de replacer <b>A'</b> et <b>B'</b> au dessus de <b>A</b> et <b>B</b>. donc il va les réécrire encore une fois en <b>A''</b> et <b>B''</b>.
+          p Et si vous êtes plus malins et que vous avez utilisé la stratégie rebase (<b>pull -r</b>), voilà le résultat sur la droite. C'est même encore pire parce-que Git va essayer de replacer <b>A'</b> et <b>B'</b> au dessus de <b>A</b> et <b>B</b>. donc il va les réécrire encore une fois en <b>A''</b> et <b>B''</b>.
           p Dans les deux cas, c'est loin d'être ce que l'on veut obtenir. On va retrouver dans l'historique plusieurs fois les mêmes messages de commits...
 
       section
@@ -563,8 +563,8 @@ html
           p Maintenant qu'on est devenus des confirmés sur Git, j'aimerais vous partager quelques astuces, pour vraiment devenir des pros. 
 
       section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Quelques Astuces à emporter...
-        
+        h2 Quelques astuces à emporter...
+
       section(data-bespoke-backdrop='quote-bg')
         .quote Comment voir les modifications en cours ?
         aside
@@ -594,7 +594,7 @@ html
         aside
           p Vous aurez sûrement deviné... <b>git diff</b> ! Sauf que cette commande seule ne répertorie les modifications que sur les fichiers non encore dans l'index Git. Si j'ai déjà fait un <b>git add</b>, je ne vois plus mes modifs.
           p Pour cela, il y a les options <b>--cached</b> ou <b>--staged</b>, qui sont équivalentes.
-          p Si je veux voir toutes les modifs, peu importe sur j'ai fait un <b>git add</b> ou non, j'utilise <b>git diff HEAD</b>. C'est le delta entre mon working directory et le dernier commit.
+          p Si je veux voir toutes les modifs, peu importe que j'ai fait un <b>git add</b> ou non, j'utilise <b>git diff HEAD</b>. C'est le delta entre mon working directory et le dernier commit.
           p On peut même aller plus loin et demander les modifications entre 2 sha1, ou entre un sha1 et notre état actuel. N'hésitez pas à jouer avec !
 
       // git add -p
@@ -652,7 +652,7 @@ html
           p Encore !
           
       section(data-bespoke-backdrop='quote-bg')
-        .quote Je veux annuler les modifications faites sur un fichier en particulier.
+        .quote Je veux annuler les modifications faîtes sur un fichier en particulier.
         aside
           p Ici même chose, cela paraît simple, et peut-être qu'on utilise la syntaxe sans savoir pourquoi.
 
